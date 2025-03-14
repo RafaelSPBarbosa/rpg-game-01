@@ -2,9 +2,10 @@ extends CharacterBody3D
 class_name PlayerMovement
 
 @export_group("Movement")
-@export var move_speed = 5.0
+@export var move_speed := 5.0
+@export var acceleration := 20.0
 
-@onready var _camera: Camera3D = $"../Camera"
+@onready var _camera: Camera3D = $"../CameraPivot/SpringArm3D/Camera"
 
 func _ready():
 	
@@ -19,5 +20,5 @@ func _physics_process(delta):
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
 	
-	velocity = move_direction * move_speed
+	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
 	move_and_slide()

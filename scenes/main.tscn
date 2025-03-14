@@ -1,14 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=16 format=3 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://b03io5xk8qkyb" path="res://Scripts/Player/Player.gd" id="3_jyhfs"]
 [ext_resource type="Material" uid="uid://dur61ko0cxbpa" path="res://Sources/Materials/black.tres" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://ck0jeoayjtnu7" path="res://Scripts/Player/PlayerMovement.gd" id="4_tbgi4"]
+[ext_resource type="Script" uid="uid://c1gfibua1ldhh" path="res://Scripts/Player/PlayerCamera.gd" id="4_tefeu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0wfyh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
+size = Vector3(1, 0.001, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
 sun_curve = 0.409812
@@ -31,6 +35,8 @@ glow_enabled = true
 adjustment_enabled = true
 adjustment_contrast = 1.2
 adjustment_saturation = 1.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tefeu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
 
@@ -63,6 +69,11 @@ transform = Transform3D(44.7747, 0, 0, 0, 44.7747, 0, 0, 0, 44.7747, 0, 0, 0)
 material_override = ExtResource("2_0wfyh")
 mesh = SubResource("PlaneMesh_0wfyh")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Grass"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Grass/StaticBody3D"]
+shape = SubResource("BoxShape3D_tefeu")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0wfyh")
 
@@ -77,8 +88,15 @@ shadow_blur = 3.136
 [node name="Player" type="Node3D" parent="."]
 script = ExtResource("3_jyhfs")
 
-[node name="Camera" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13357, 2.52295)
+[node name="CameraPivot" type="Node3D" parent="Player"]
+script = ExtResource("4_tefeu")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.528, 0)
+shape = SubResource("SphereShape3D_tefeu")
+spring_length = 4.0
+
+[node name="Camera" type="Camera3D" parent="Player/CameraPivot/SpringArm3D"]
 
 [node name="Body" type="CharacterBody3D" parent="Player"]
 script = ExtResource("4_tbgi4")
@@ -87,41 +105,41 @@ script = ExtResource("4_tbgi4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_0wfyh")
 
-[node name="Mesh" type="Node3D" parent="Player/Body"]
+[node name="Skin" type="Node3D" parent="Player/Body"]
 
-[node name="Body" type="MeshInstance3D" parent="Player/Body/Mesh"]
+[node name="Body" type="MeshInstance3D" parent="Player/Body/Skin"]
 transform = Transform3D(0.684885, 0, 0, 0, 0.684885, 0, 0, 0, 0.684885, 0, 0.997934, 0)
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
-[node name="HandR" type="MeshInstance3D" parent="Player/Body/Mesh"]
+[node name="HandR" type="MeshInstance3D" parent="Player/Body/Skin"]
 transform = Transform3D(0.287733, 0, 0, 0, 0.287733, 0, 0, 0, 0.287733, 0.51554, 0.728945, -0.224178)
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
-[node name="HandL" type="MeshInstance3D" parent="Player/Body/Mesh"]
+[node name="HandL" type="MeshInstance3D" parent="Player/Body/Skin"]
 transform = Transform3D(0.287733, 0, 0, 0, 0.287733, 0, 0, 0, 0.287733, -0.504836, 0.728945, -0.224178)
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
-[node name="EyeL" type="MeshInstance3D" parent="Player/Body/Mesh"]
+[node name="EyeL" type="MeshInstance3D" parent="Player/Body/Skin"]
 transform = Transform3D(0.150377, 0, 0, 0, 0.290392, 0, 0, 0, 0.0612991, -0.165235, 1.06839, -0.375534)
 material_override = ExtResource("3_sugp2")
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
-[node name="EyeR" type="MeshInstance3D" parent="Player/Body/Mesh"]
+[node name="EyeR" type="MeshInstance3D" parent="Player/Body/Skin"]
 transform = Transform3D(0.150377, 0, 0, 0, 0.290392, 0, 0, 0, 0.0612991, 0.137502, 1.06839, -0.375534)
 material_override = ExtResource("3_sugp2")
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
-[node name="FootL" type="MeshInstance3D" parent="Player/Body/Mesh"]
+[node name="FootL" type="MeshInstance3D" parent="Player/Body/Skin"]
 transform = Transform3D(0.186027, 0, 0.14891, 0, 0.224023, 0, -0.104603, 0, 0.264823, -0.346319, 0.113758, -0.0606588)
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
-[node name="FootR" type="MeshInstance3D" parent="Player/Body/Mesh"]
+[node name="FootR" type="MeshInstance3D" parent="Player/Body/Skin"]
 transform = Transform3D(0.186116, 0, -0.148683, 0, 0.224023, 0, 0.104443, 0, 0.264951, 0.346, 0.114, -0.061)
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")

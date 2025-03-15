@@ -3,13 +3,14 @@ class_name PlayerMovement
 
 @export_group("Movement")
 @export var move_speed := 5.0
-@export var acceleration := 20.0
+@export var acceleration := 40.0
 @export var rotation_speed := 12.0
 
 var _last_movement_direction := Vector3.BACK
 
 @onready var _camera: Camera3D = $"../CameraPivot/SpringArm3D/Camera"
-@onready var _skin = $Skin
+@onready var _skin = $"Skin"
+@onready var _skin_character = $"Skin/character"
 	
 func _physics_process(delta):
 	var raw_input := Input.get_vector("move_left","move_right","move_forward","move_backwards")
@@ -27,4 +28,10 @@ func _physics_process(delta):
 		_last_movement_direction = move_direction	
 	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
 	_skin.global_rotation.y = lerp_angle(_skin.rotation.y, target_angle, rotation_speed * delta)
+	
+	var ground_speed := velocity.length()
+	if ground_speed > 0.2:
+		_skin_character.move()
+	else:
+		_skin_character.idle()
 	

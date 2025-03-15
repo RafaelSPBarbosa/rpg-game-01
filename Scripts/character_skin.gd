@@ -1,4 +1,5 @@
 extends Node
+class_name CharacterSkin
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")

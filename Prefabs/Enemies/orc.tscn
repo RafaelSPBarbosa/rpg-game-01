@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://ci4ftwvou63co"]
+
+[ext_resource type="Script" uid="uid://ddqq2vxmhasn2" path="res://Scripts/Enemies/Enemy.gd" id="1_f0fbn"]
+[ext_resource type="PackedScene" uid="uid://cpswfllu5mpm6" path="res://Prefabs/Skins/character.tscn" id="2_8vw3x"]
+[ext_resource type="Script" uid="uid://xnn6yc5vklyr" path="res://Scripts/character_skin.gd" id="3_gpi1x"]
+[ext_resource type="Material" uid="uid://dhm22716rb3ss" path="res://Sources/Materials/orc_skin.tres" id="4_s5rhj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_choun"]
+radius = 0.64
+
+[node name="Orc" type="Node3D"]
+
+[node name="Body" type="CharacterBody3D" parent="."]
+script = ExtResource("1_f0fbn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_0wfyh")
+
+[node name="Skin" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)
+
+[node name="character" parent="Body/Skin" instance=ExtResource("2_8vw3x")]
+transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
+script = ExtResource("3_gpi1x")
+
+[node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
+bones/1/position = Vector3(0, 0.0166553, 0)
+bones/1/rotation = Quaternion(-0.0272078, 0.0290206, -0.00998372, 0.999159)
+bones/2/position = Vector3(0.00426105, 0.00706382, 0.0106241)
+bones/4/position = Vector3(-0.00426106, 0.00706382, 0.0106241)
+bones/6/position = Vector3(0.00612395, 0.0176079, 0.0106755)
+bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
+bones/8/position = Vector3(-0.00616105, 0.0176079, 0.0106755)
+bones/8/rotation = Quaternion(0.138134, 0.136948, -0.673818, 0.712834)
+bones/10/position = Vector3(0.0133679, 0.000898523, 0.00493495)
+bones/10/rotation = Quaternion(-0.425248, 0.536084, 0.586201, -0.433758)
+bones/12/position = Vector3(-0.0137522, 0.000905058, 0.00469383)
+bones/12/rotation = Quaternion(0.369023, 0.48563, 0.624936, 0.48728)
+bones/14/position = Vector3(6.98492e-11, 0.0204763, 9.31323e-12)
+bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
+bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
+bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
+
+[node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("4_s5rhj")
+
+[node name="Area3D" type="Area3D" parent="Body" groups=["Enemy"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.879536, 0)
+shape = SubResource("CapsuleShape3D_choun")
+
+[editable path="Body/Skin/character"]

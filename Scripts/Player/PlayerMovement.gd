@@ -10,7 +10,7 @@ var _last_movement_direction := Vector3.BACK
 
 @onready var _camera: Camera3D = $"../CameraPivot/SpringArm3D/Camera"
 @onready var _skin = $"Skin"
-@onready var _skin_character = $"Skin/character"
+@onready var _skin_character: CharacterSkin = $"Skin/character"
 	
 func _physics_process(delta):
 	var raw_input := Input.get_vector("move_left","move_right","move_forward","move_backwards")
@@ -20,6 +20,9 @@ func _physics_process(delta):
 	var move_direction := forward * raw_input.y + right * raw_input.x
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
+	
+	if _skin_character.state_machine.get_current_node() == "Attack":
+		move_direction = Vector3.ZERO
 	
 	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
 	move_and_slide()

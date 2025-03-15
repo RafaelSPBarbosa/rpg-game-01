@@ -1,14 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=20 format=3 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://b03io5xk8qkyb" path="res://Scripts/Player/Player.gd" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://ck0jeoayjtnu7" path="res://Scripts/Player/PlayerMovement.gd" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://c1gfibua1ldhh" path="res://Scripts/Player/PlayerCamera.gd" id="4_tefeu"]
-[ext_resource type="Script" uid="uid://xnn6yc5vklyr" path="res://Scripts/Player/character_skin.gd" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://5dbt6htr12sg" path="res://Sources/Meshes/Weapons/Swords/Sword_Basic.fbx" id="7_choun"]
+[ext_resource type="Script" uid="uid://xnn6yc5vklyr" path="res://Scripts/character_skin.gd" id="7_o6xl0"]
+[ext_resource type="Script" uid="uid://c5a22yp7mejn0" path="res://Scripts/Player/PlayerCombat.gd" id="8_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cpswfllu5mpm6" path="res://Prefabs/Skins/character.tscn" id="8_tipki"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
+[ext_resource type="PackedScene" uid="uid://ci4ftwvou63co" path="res://Prefabs/Enemies/orc.tscn" id="9_85g3d"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0wfyh"]
 
@@ -41,27 +42,14 @@ adjustment_saturation = 1.2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_choun"]
+radius = 0.64
+
+[sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
+
 [node name="Root" type="Node3D"]
 
 [node name="World" type="Node3D" parent="."]
-
-[node name="Cube" type="MeshInstance3D" parent="World"]
-transform = Transform3D(0.597303, 0, -0.802015, 0, 1, 0, 0.802015, 0, 0.597303, 0.112009, 0.496524, -3.33898)
-material_override = ExtResource("1_o5qli")
-mesh = SubResource("BoxMesh_sgp6g")
-skeleton = NodePath("../..")
-
-[node name="Cube2" type="MeshInstance3D" parent="World"]
-transform = Transform3D(0.597303, 0, -0.802015, 0, 1, 0, 0.802015, 0, 0.597303, -1.45361, 0.529171, -3.39605)
-material_override = ExtResource("1_o5qli")
-mesh = SubResource("BoxMesh_sgp6g")
-skeleton = NodePath("../..")
-
-[node name="Cube3" type="MeshInstance3D" parent="World"]
-transform = Transform3D(0.597303, 0, -0.802015, 0, 1, 0, 0.802015, 0, 0.597303, -0.257052, 0.514954, -4.92148)
-material_override = ExtResource("1_o5qli")
-mesh = SubResource("BoxMesh_sgp6g")
-skeleton = NodePath("../..")
 
 [node name="Grass" type="MeshInstance3D" parent="World"]
 transform = Transform3D(44.7747, 0, 0, 0, 44.7747, 0, 0, 0, 44.7747, 0, 0, 0)
@@ -99,6 +87,7 @@ spring_length = 4.0
 
 [node name="Body" type="CharacterBody3D" parent="Player"]
 script = ExtResource("4_tbgi4")
+move_speed = 7.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -110,3 +99,61 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 
 [node name="character" parent="Player/Body/Skin" instance=ExtResource("8_tipki")]
 transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
+
+[node name="Skeleton3D" parent="Player/Body/Skin/character/Armature" index="0"]
+bones/1/position = Vector3(0, 0.0166553, 0)
+bones/1/rotation = Quaternion(-0.0301299, 0.09269, -0.0242801, 0.994943)
+bones/2/position = Vector3(0.00426105, 0.00706382, 0.0106241)
+bones/4/position = Vector3(-0.00426106, 0.00706382, 0.0106241)
+bones/6/position = Vector3(0.00612395, 0.0176079, 0.0106755)
+bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
+bones/8/position = Vector3(-0.00616105, 0.0176079, 0.0106755)
+bones/8/rotation = Quaternion(0.138134, 0.136948, -0.673818, 0.712834)
+bones/10/position = Vector3(0.0133562, 0.000899069, 0.00494352)
+bones/10/rotation = Quaternion(-0.4253, 0.536073, 0.586161, -0.433775)
+bones/12/position = Vector3(-0.0134972, 0.000901559, 0.0048552)
+bones/12/rotation = Quaternion(0.412717, 0.524291, 0.59555, 0.447329)
+bones/12/scale = Vector3(1, 1, 1)
+bones/14/position = Vector3(6.98492e-11, 0.0204763, 9.31323e-12)
+bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
+bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
+bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-0.208918, 0.0843928, 0.974285, -0.0072749, -0.996376, 0.0847463, 0.977906, 0.0106172, 0.208775, -0.0123082, -0.00717455, 0.0185509)
+bone_name = "Hand.R"
+bone_idx = 12
+
+[node name="Sword_Basic" parent="Player/Body/Skin/character/Armature/Skeleton3D/BoneAttachment3D" instance=ExtResource("7_choun")]
+transform = Transform3D(0.00121217, 0.00996768, -0.000593378, -0.00888667, 0.000804316, -0.00464286, -0.00455342, 0.00108376, 0.00890324, -0.004, 0, -0.001)
+
+[node name="PlayerCombat" type="Node3D" parent="Player/Body/Skin/character"]
+transform = Transform3D(-2.65252, 0, -2.31891e-07, 0, 2.65252, 0, 2.31891e-07, 0, -2.65252, 0, 0, 0)
+script = ExtResource("8_85g3d")
+
+[node name="Area3D" type="Area3D" parent="Player/Body/Skin/character/PlayerCombat" groups=["PlayerDamageHitbox"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Body/Skin/character/PlayerCombat/Area3D"]
+transform = Transform3D(-0.258819, -0.965926, 0, 0.965926, -0.258819, 0, 0, 0, 1, 0, 0.910638, -1.07622)
+shape = SubResource("CapsuleShape3D_choun")
+
+[node name="Cube" type="MeshInstance3D" parent="Player/Body/Skin/character/PlayerCombat/Area3D/CollisionShape3D"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+visible = false
+material_override = ExtResource("1_o5qli")
+mesh = SubResource("BoxMesh_sgp6g")
+skeleton = NodePath("../..")
+
+[node name="Orc" parent="." instance=ExtResource("9_85g3d")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.26878, 0, -5.61469)
+
+[node name="Orc2" parent="." instance=ExtResource("9_85g3d")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -8.95908, 2.38419e-07, -5.60608)
+
+[node name="Orc3" parent="." instance=ExtResource("9_85g3d")]
+transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -6.87909, 2.38419e-07, -2.4109)
+
+[connection signal="area_entered" from="Player/Body/Skin/character/PlayerCombat/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Player/Body/Skin/character/PlayerCombat/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]
+
+[editable path="Player/Body/Skin/character"]

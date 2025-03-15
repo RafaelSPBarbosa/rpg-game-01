@@ -106,40 +106,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_0wfyh")
 
 [node name="Skin" type="Node3D" parent="Player/Body"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Body" type="MeshInstance3D" parent="Player/Body/Skin"]
-transform = Transform3D(0.684885, 0, 0, 0, 0.684885, 0, 0, 0, 0.684885, 0, 0.997934, 0)
+transform = Transform3D(-0.684885, 0, 5.98746e-08, 0, 0.684885, 0, -5.98746e-08, 0, -0.684885, -0.00495656, 0.997934, -0.0251773)
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
 [node name="HandR" type="MeshInstance3D" parent="Player/Body/Skin"]
-transform = Transform3D(0.287733, 0, 0, 0, 0.287733, 0, 0, 0, 0.287733, 0.51554, 0.728945, -0.224178)
+transform = Transform3D(-0.287733, 0, 2.51544e-08, 0, 0.287733, 0, -2.51544e-08, 0, -0.287733, -0.520497, 0.728945, 0.199001)
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
 [node name="HandL" type="MeshInstance3D" parent="Player/Body/Skin"]
-transform = Transform3D(0.287733, 0, 0, 0, 0.287733, 0, 0, 0, 0.287733, -0.504836, 0.728945, -0.224178)
+transform = Transform3D(-0.287733, 0, 2.51544e-08, 0, 0.287733, 0, -2.51544e-08, 0, -0.287733, 0.499879, 0.728945, 0.199001)
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
 [node name="EyeL" type="MeshInstance3D" parent="Player/Body/Skin"]
-transform = Transform3D(0.150377, 0, 0, 0, 0.290392, 0, 0, 0, 0.0612991, -0.165235, 1.06839, -0.375534)
+transform = Transform3D(-0.150377, 0, 5.35894e-09, 0, 0.290392, 0, -1.31464e-08, 0, -0.0612991, 0.160278, 1.06839, 0.350357)
 material_override = ExtResource("3_sugp2")
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
 [node name="EyeR" type="MeshInstance3D" parent="Player/Body/Skin"]
-transform = Transform3D(0.150377, 0, 0, 0, 0.290392, 0, 0, 0, 0.0612991, 0.137502, 1.06839, -0.375534)
+transform = Transform3D(-0.150377, 0, 5.35894e-09, 0, 0.290392, 0, -1.31464e-08, 0, -0.0612991, -0.142459, 1.06839, 0.350357)
 material_override = ExtResource("3_sugp2")
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
 [node name="FootL" type="MeshInstance3D" parent="Player/Body/Skin"]
-transform = Transform3D(0.186027, 0, 0.14891, 0, 0.224023, 0, -0.104603, 0, 0.264823, -0.346319, 0.113758, -0.0606588)
+transform = Transform3D(-0.186027, 0, -0.14891, 0, 0.224023, 0, 0.104603, 0, -0.264823, 0.341362, 0.113758, 0.0354815)
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")
 
 [node name="FootR" type="MeshInstance3D" parent="Player/Body/Skin"]
-transform = Transform3D(0.186116, 0, -0.148683, 0, 0.224023, 0, 0.104443, 0, 0.264951, 0.346, 0.114, -0.061)
+transform = Transform3D(-0.186116, 0, 0.148683, 0, 0.224023, 0, -0.104443, 0, -0.264951, -0.350957, 0.114, 0.0358226)
 mesh = SubResource("BoxMesh_jyhfs")
 skeleton = NodePath("../..")

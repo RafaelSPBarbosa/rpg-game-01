@@ -101,26 +101,15 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Player/Body/Skin/character/Armature" index="0"]
-bones/1/position = Vector3(0, 0.0166553, 0)
-bones/1/rotation = Quaternion(-0.0301299, 0.09269, -0.0242801, 0.994943)
-bones/2/position = Vector3(0.00426105, 0.00706382, 0.0106241)
-bones/4/position = Vector3(-0.00426106, 0.00706382, 0.0106241)
-bones/6/position = Vector3(0.00612395, 0.0176079, 0.0106755)
-bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/8/position = Vector3(-0.00616105, 0.0176079, 0.0106755)
-bones/8/rotation = Quaternion(0.138134, 0.136948, -0.673818, 0.712834)
-bones/10/position = Vector3(0.0133562, 0.000899069, 0.00494352)
-bones/10/rotation = Quaternion(-0.4253, 0.536073, 0.586161, -0.433775)
-bones/12/position = Vector3(-0.0134972, 0.000901559, 0.0048552)
-bones/12/rotation = Quaternion(0.412717, 0.524291, 0.59555, 0.447329)
+bones/1/rotation = Quaternion(-0.0410319, 0.0792322, -0.0213202, 0.995783)
+bones/10/position = Vector3(0.0133595, 0.000898916, 0.00494112)
+bones/10/rotation = Quaternion(-0.425291, 0.53608, 0.586168, -0.433765)
+bones/12/position = Vector3(-0.0135686, 0.000902539, 0.00481)
+bones/12/rotation = Quaternion(0.400444, 0.513512, 0.604302, 0.459097)
 bones/12/scale = Vector3(1, 1, 1)
-bones/14/position = Vector3(6.98492e-11, 0.0204763, 9.31323e-12)
-bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
-bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
-bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.208918, 0.0843928, 0.974285, -0.0072749, -0.996376, 0.0847463, 0.977906, 0.0106172, 0.208775, -0.0123082, -0.00717455, 0.0185509)
+transform = Transform3D(-0.217548, 0.0141773, 0.975947, 0.0297181, -0.999335, 0.0211415, 0.975597, 0.0336026, 0.216982, -0.0125861, -0.00677395, 0.0185952)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -145,13 +134,13 @@ mesh = SubResource("BoxMesh_sgp6g")
 skeleton = NodePath("../..")
 
 [node name="Orc" parent="." instance=ExtResource("9_85g3d")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.26878, 0, -5.61469)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -13.5202, -4.76837e-07, -17.1463)
 
 [node name="Orc2" parent="." instance=ExtResource("9_85g3d")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -8.95908, 2.38419e-07, -5.60608)
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -17.2105, -2.38419e-07, -17.1377)
 
 [node name="Orc3" parent="." instance=ExtResource("9_85g3d")]
-transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -6.87909, 2.38419e-07, -2.4109)
+transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -15.1305, -2.38419e-07, -13.9425)
 
 [connection signal="area_entered" from="Player/Body/Skin/character/PlayerCombat/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Player/Body/Skin/character/PlayerCombat/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]

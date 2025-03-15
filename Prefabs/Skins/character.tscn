@@ -62,22 +62,22 @@ states/Move/position = Vector2(608, 71)
 states/Talk/node = SubResource("AnimationNodeAnimation_6dnk5")
 states/Talk/position = Vector2(357, -19)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_y14h8"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_uiwr8"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_bndk6"), "Idle", "Talk", SubResource("AnimationNodeStateMachineTransition_huqno"), "Talk", "Idle", SubResource("AnimationNodeStateMachineTransition_dy8od"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_7a5ye"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_4r2sn")]
-graph_offset = Vector2(-141, -26)
+graph_offset = Vector2(-234, 7)
 
 [node name="character" instance=ExtResource("1_uiwr8")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/1/rotation = Quaternion(-0.00864395, -0.105579, 0.0271379, 0.994003)
+bones/1/rotation = Quaternion(0.0128627, 0.10467, -0.0260476, 0.994083)
 bones/2/rotation = Quaternion(0, -0.234415, 0, 0.972137)
 bones/4/rotation = Quaternion(0, 0.234415, 0, 0.972137)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
 bones/6/scale = Vector3(1, 1, 1)
 bones/8/scale = Vector3(1, 1, 1)
-bones/10/position = Vector3(0.0145533, 0.000870215, 0.00407129)
-bones/10/rotation = Quaternion(-0.331698, 0.465864, 0.644026, -0.508112)
+bones/10/position = Vector3(0.0136408, 0.000892365, 0.00473613)
+bones/10/rotation = Quaternion(-0.41832, 0.531406, 0.591224, -0.439398)
 bones/10/scale = Vector3(1, 1, 1)
-bones/12/position = Vector3(-0.0140867, 0.000909647, 0.00448223)
-bones/12/rotation = Quaternion(0.411228, 0.522415, 0.596588, 0.449507)
+bones/12/position = Vector3(-0.013438, 0.000900748, 0.00489261)
+bones/12/rotation = Quaternion(0.42538, 0.535814, 0.586135, 0.434052)
 bones/12/scale = Vector3(1, 1, 1)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)

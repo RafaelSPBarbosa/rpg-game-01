@@ -13,6 +13,9 @@ var _last_movement_direction := Vector3.BACK
 @onready var _skin_character: CharacterSkin = $"Skin/character"
 	
 func _physics_process(delta):
+	if Player.instance.is_alive == false:
+		return
+
 	var raw_input := Input.get_vector("move_left","move_right","move_forward","move_backwards")
 	var forward := _camera.global_basis.z
 	var right := _camera.global_basis.x
@@ -22,6 +25,9 @@ func _physics_process(delta):
 	move_direction = move_direction.normalized()
 	
 	if _skin_character.state_machine.get_current_node() == "Attack":
+		move_direction = Vector3.ZERO
+		
+	if _skin_character.state_machine.get_current_node() == "Take Damage":
 		move_direction = Vector3.ZERO
 	
 	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
@@ -36,5 +42,6 @@ func _physics_process(delta):
 	if ground_speed > 0.2:
 		_skin_character.move()
 	else:
-		_skin_character.idle()
+		if _skin_character.state_machine.get_current_node() != "Take Damage":
+			_skin_character.idle()
 	

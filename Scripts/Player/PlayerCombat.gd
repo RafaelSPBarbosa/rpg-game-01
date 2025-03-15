@@ -11,6 +11,9 @@ var is_on_cooldown = false;
 var hittable_enemy_list = []
 
 func _input(event: InputEvent) -> void:
+	if Player.instance.is_alive == false:
+		return
+		
 	if event.is_action_pressed("attack"):
 		if is_on_cooldown == false:
 			character.attack()

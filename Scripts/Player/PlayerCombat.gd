@@ -10,6 +10,10 @@ var is_on_cooldown = false;
 
 var hittable_enemy_list = []
 
+#sounds
+@onready var sword_swing_sound = $"../../../SwordSwingSound"
+
+
 func _input(event: InputEvent) -> void:
 	if Player.instance.is_alive == false:
 		return
@@ -17,6 +21,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
 		if is_on_cooldown == false:
 			character.attack()
+			sword_swing_sound.play()
 			is_on_cooldown = true
 			await get_tree().create_timer(0.1).timeout
 			if character.state_machine.get_current_node() == "Attack":

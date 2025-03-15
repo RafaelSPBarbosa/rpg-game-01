@@ -11,6 +11,12 @@ class_name Enemy
 @onready var area_3d = $Area3D
 @onready var collision_shape_3d = $CollisionShape3D
 
+#sounds
+@onready var aggro_sound: AudioStreamPlayer3D = $AggroSound
+@onready var death_sound: AudioStreamPlayer3D = $DeathSound
+@onready var hit_sound: AudioStreamPlayer3D= $HitSound
+
+
 enum ai_states {idle, chasing, attacking, waiting_to_strike, dead}
 @onready var state : ai_states = ai_states.idle
 
@@ -28,6 +34,7 @@ func _process(delta):
 		
 		if global_position.distance_to(Player.instance.body.global_position) < 10:
 			state = ai_states.chasing
+			aggro_sound.play()
 			
 	if state == ai_states.waiting_to_strike:
 		if(character.state_machine.get_current_node() != "Idle" && character.state_machine.get_current_node() != "Take Damage"):
@@ -67,6 +74,7 @@ func take_damage(damage: float):
 	if health > 0:
 		health -= damage
 		print(name + " took " + str(damage) + " damage")
+		hit_sound.play()
 		if health <= 0:
 			die()
 		else:
@@ -86,3 +94,4 @@ func die():
 	area_3d.queue_free()
 	collision_shape_3d.queue_free()
 	state = ai_states.dead
+	death_sound.play()

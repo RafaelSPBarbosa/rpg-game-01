@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=22 format=3 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://c5a22yp7mejn0" path="res://Scripts/Player/PlayerCombat.gd" id="8_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cpswfllu5mpm6" path="res://Prefabs/Skins/character.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://ci4ftwvou63co" path="res://Prefabs/Enemies/orc.tscn" id="9_85g3d"]
+[ext_resource type="AudioStream" uid="uid://brha1r07b38pc" path="res://Sources/Audio/sword-swing.mp3" id="10_eb6dy"]
+[ext_resource type="AudioStream" uid="uid://chwjsg23od47w" path="res://Sources/Audio/footstep-grass.mp3" id="11_trceg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0wfyh"]
 
@@ -101,15 +103,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0410319, 0.0792322, -0.0213202, 0.995783)
-bones/10/position = Vector3(0.0133595, 0.000898916, 0.00494112)
-bones/10/rotation = Quaternion(-0.425291, 0.53608, 0.586168, -0.433765)
-bones/12/position = Vector3(-0.0135686, 0.000902539, 0.00481)
-bones/12/rotation = Quaternion(0.400444, 0.513512, 0.604302, 0.459097)
-bones/12/scale = Vector3(1, 1, 1)
+bones/1/rotation = Quaternion(-0.0410829, 0.0591952, -0.0168611, 0.997258)
+bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
+bones/10/position = Vector3(0.0133633, 0.000898739, 0.00493833)
+bones/10/rotation = Quaternion(-0.42528, 0.536089, 0.586177, -0.433753)
+bones/12/position = Vector3(-0.0136515, 0.000903676, 0.00475757)
+bones/12/rotation = Quaternion(0.385275, 0.499635, 0.614487, 0.473639)
+bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
+bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
+bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.217548, 0.0141773, 0.975947, 0.0297181, -0.999335, 0.0211415, 0.975597, 0.0336026, 0.216982, -0.0125861, -0.00677395, 0.0185952)
+transform = Transform3D(-0.224687, -0.0801577, 0.971128, 0.0512867, -0.996202, -0.0703612, 0.97308, 0.0339967, 0.227945, -0.0129538, -0.00622518, 0.0184613)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -132,6 +137,13 @@ visible = false
 material_override = ExtResource("1_o5qli")
 mesh = SubResource("BoxMesh_sgp6g")
 skeleton = NodePath("../..")
+
+[node name="SwordSwingSound" type="AudioStreamPlayer3D" parent="Player/Body"]
+stream = ExtResource("10_eb6dy")
+volume_db = -20.0
+
+[node name="FootstepSound" type="AudioStreamPlayer3D" parent="Player/Body"]
+stream = ExtResource("11_trceg")
 
 [node name="Orc" parent="." instance=ExtResource("9_85g3d")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -13.5202, -4.76837e-07, -17.1463)

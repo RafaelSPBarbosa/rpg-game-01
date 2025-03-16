@@ -14,15 +14,21 @@ class_name Enemy
 #sounds
 @onready var aggro_sound: AudioStreamPlayer3D = $AggroSound
 @onready var death_sound: AudioStreamPlayer3D = $DeathSound
-@onready var hit_sound: AudioStreamPlayer3D= $HitSound
+@onready var hit_sound: AudioStreamPlayer3D = $HitSound
 
+@onready var initial_position: Vector3 = Vector3.ZERO
+@onready var initial_rotation: Vector3 = Vector3.ZERO
 
-enum ai_states {idle, chasing, attacking, waiting_to_strike, dead}
+enum ai_states {idle, chasing, attacking, waiting_to_strike, dead, returning_to_spawn}
 @onready var state : ai_states = ai_states.idle
 
 @export var damage = 25.0
 var attack_timer = 0
 @export var attack_cooldown = 2
+
+func _ready():
+	initial_position = global_position
+	initial_rotation = _skin.global_rotation
 
 func _process(delta):
 	if Player.instance.is_alive == false:
@@ -50,6 +56,9 @@ func _physics_process(delta):
 	if state == ai_states.chasing:
 		attack_timer = 0
 		
+		if global_position.distance_to(initial_position) > 10:
+			state = ai_states.returning_to_spawn
+		
 		if global_position.distance_to(Player.instance.body.global_position) > 2:
 			velocity = (Player.instance.body.global_position - global_position).normalized() * move_speed
 			velocity.y = 0
@@ -70,6 +79,20 @@ func _physics_process(delta):
 		attack_timer += delta
 		if attack_timer >= attack_cooldown:
 			attack()
+		
+	if state == ai_states.returning_to_spawn:
+		velocity = (initial_position - global_position).normalized() * move_speed
+		velocity.y = 0
+		character.move()
+		var target_angle := Vector3.BACK.signed_angle_to(initial_position - global_position, Vector3.UP)
+		_skin.global_rotation.y = lerp_angle(_skin.global_rotation.y, target_angle, 12 * delta)
+		
+		if global_position.distance_to(initial_position) < 0.5:
+			velocity = Vector3.ZERO
+			global_position = initial_position
+			_skin.global_rotation = initial_rotation
+			character.idle()
+			state = ai_states.idle
 		
 	move_and_slide()
 

@@ -22,16 +22,13 @@ func _input(event: InputEvent) -> void:
 		return
 		
 	if event.is_action_pressed("attack"):
-		print("trying to attack")
 		if end_of_attack_delay < Time.get_ticks_msec():
-			print("Starting Attack")
 			end_of_attack_delay = Time.get_ticks_msec() + attack_cooldown * 1000
 			character.attack()
 			is_on_cooldown = true
 			attack_timer.start()
 			await attack_timer.timeout
 			#if character.state_machine.get_current_node() == "Attack":
-			print("attacked")
 			cause_damage();
 			sword_swing_sound.play()
 			

@@ -1,0 +1,10 @@
+[gd_resource type="AnimationLibrary" load_steps=3 format=3 uid="uid://bnn8m8qjxv4a0"]
+
+[ext_resource type="Animation" uid="uid://bd30w8m4o6bgo" path="res://Sources/Meshes/Level/Village/Gate/gate_open.tres" id="1_vweiw"]
+[ext_resource type="Animation" uid="uid://bdsifpamny5m3" path="res://Sources/Meshes/Level/Village/Gate/gate_close.tres" id="2_0scua"]
+
+[resource]
+_data = {
+&"gate_close": ExtResource("2_0scua"),
+&"gate_open": ExtResource("1_vweiw")
+}

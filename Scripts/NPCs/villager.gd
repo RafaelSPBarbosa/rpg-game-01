@@ -14,6 +14,7 @@ class_name Villager
 
 @export var next_villager: Node3D = null
 @export var start_enabled: bool = true
+@export var animatable_structure: Animatable_Structure = null
 
 @export var lines: Array[String] = []
 @onready var cur_line := 0
@@ -72,6 +73,8 @@ func _input(event: InputEvent) -> void:
 				UI.instance.dialog_panel.end()
 				if quest != "":
 					UI.instance.quests.change_quest(quest)
+				if animatable_structure != null:
+					animatable_structure.play()
 				if next_villager != null:
 					next_villager.set_process(true)
 					next_villager.set_physics_process(true)

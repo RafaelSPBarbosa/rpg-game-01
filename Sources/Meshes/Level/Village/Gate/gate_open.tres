@@ -1,0 +1,25 @@
+[gd_resource type="Animation" format=3 uid="uid://bd30w8m4o6bgo"]
+
+[resource]
+length = 3.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.16896, 0, 2.66667, 1, 0, 4.16899, 0, 2.96667, 1, 0, 5.62691, 0)
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Chains")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 100, 100, 123.232, 2.63333, 1, 100, 100, 63.8949, 2.93333, 1, 100, 100, 38.0823)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Door/AnimatableBody3D/CollisionShape3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -4.65661e-10, 0.00706336, 0.0276343, 2.96667, 1, -4.65661e-10, 0.00706336, 0.098473)

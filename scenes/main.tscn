@@ -1,12 +1,16 @@
-[gd_scene load_steps=36 format=3 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=44 format=3 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
 [ext_resource type="AudioStream" uid="uid://d1qrcvspy4gn3" path="res://Sources/Audio/forest-ambience.mp3" id="2_jkv2x"]
 [ext_resource type="AudioStream" uid="uid://cvemset3trwte" path="res://Sources/Music/music-cozy.mp3" id="3_jbj1t"]
 [ext_resource type="Script" uid="uid://b03io5xk8qkyb" path="res://Scripts/Player/Player.gd" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://cdw13eeqsc3qx" path="res://Sources/Meshes/Level/Village/Gate/Gate.fbx" id="4_pm3ni"]
 [ext_resource type="Script" uid="uid://ck0jeoayjtnu7" path="res://Scripts/Player/PlayerMovement.gd" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://c1gfibua1ldhh" path="res://Scripts/Player/PlayerCamera.gd" id="4_tefeu"]
+[ext_resource type="Script" uid="uid://dedqvle1m0htc" path="res://Scripts/Levels/Animatable_Structure.gd" id="5_og1vs"]
+[ext_resource type="AnimationLibrary" uid="uid://bnn8m8qjxv4a0" path="res://Sources/Meshes/Level/Village/Gate/gate_animation_library.tres" id="5_y6deb"]
+[ext_resource type="AudioStream" uid="uid://k0npbjbm383b" path="res://Sources/Audio/gate-open.mp3" id="7_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://5dbt6htr12sg" path="res://Sources/Meshes/Weapons/Swords/Sword_Basic.fbx" id="7_choun"]
 [ext_resource type="Script" uid="uid://xnn6yc5vklyr" path="res://Scripts/character_skin.gd" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://c5a22yp7mejn0" path="res://Scripts/Player/PlayerCombat.gd" id="8_85g3d"]
@@ -27,6 +31,41 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
 size = Vector3(1, 0.001, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
+size = Vector3(0.0606982, 0.0425195, 0.185)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2wyq8"]
+size = Vector3(0.058, 0.00981714, 0.075667)
+
+[sub_resource type="Animation" id="Animation_y6deb"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.16896, 0)
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Chains")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 100, 100, 123.232)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Door/AnimatableBody3D/CollisionShape3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array()
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_og1vs"]
+_data = {
+&"RESET": SubResource("Animation_y6deb")
+}
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
 sun_curve = 0.409812
@@ -112,6 +151,46 @@ panning_strength = 0.0
 playback_type = 1
 parameters/looping = true
 
+[node name="Village" type="Node3D" parent="Game_CanvasLayer/World"]
+
+[node name="Gate" parent="Game_CanvasLayer/World/Village" instance=ExtResource("4_pm3ni")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.298789, -0.176333, -5.06144)
+script = ExtResource("5_og1vs")
+animation_name = "gate_animation_library/gate_open"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Game_CanvasLayer/World/Village/Gate/Structure" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Village/Gate/Structure/StaticBody3D"]
+transform = Transform3D(1, 2.13163e-14, 8.47033e-22, -4.9738e-14, 1, -2.84217e-14, -4.23516e-20, 2.84217e-14, 1, 0.0606705, -0.000971306, 0.0813824)
+shape = SubResource("BoxShape3D_og1vs")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Game_CanvasLayer/World/Village/Gate/Structure/StaticBody3D"]
+transform = Transform3D(1, 2.13163e-14, 8.47033e-22, -4.9738e-14, 1, -2.84217e-14, -4.23516e-20, 2.84217e-14, 1, -0.061, -0.001, 0.081)
+shape = SubResource("BoxShape3D_og1vs")
+
+[node name="Door" parent="Game_CanvasLayer/World/Village/Gate" index="1"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 1.16896, 0)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Game_CanvasLayer/World/Village/Gate/Door" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Village/Gate/Door/AnimatableBody3D"]
+transform = Transform3D(1, 4.9738e-14, 3.11708e-19, -4.9738e-14, 1, -9.23706e-14, -5.72594e-19, 9.23706e-14, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_2wyq8")
+
+[node name="Chains" parent="Game_CanvasLayer/World/Village/Gate" index="2"]
+transform = Transform3D(100, 0, 0, 0, -4.37114e-06, -123.232, 0, 100, -5.38664e-06, -5.96046e-08, 12.0901, -0.830961)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game_CanvasLayer/World/Village/Gate"]
+libraries = {
+&"": SubResource("AnimationLibrary_og1vs"),
+&"gate_animation_library": ExtResource("5_y6deb")
+}
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/World/Village/Gate"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.298789, 0.176333, -5.06144)
+stream = ExtResource("7_2wyq8")
+volume_db = -20.0
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Game_CanvasLayer"]
 environment = SubResource("Environment_0wfyh")
 
@@ -124,6 +203,7 @@ shadow_bias = 0.01
 shadow_blur = 3.136
 
 [node name="Player" type="Node3D" parent="Game_CanvasLayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.83856, 0, 14.4389)
 script = ExtResource("3_jyhfs")
 
 [node name="CameraPivot" type="Node3D" parent="Game_CanvasLayer/Player"]
@@ -153,14 +233,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0365303, 0.059433, -0.0103999, 0.997509)
-bones/10/position = Vector3(0.0141904, 0.000879026, 0.00433575)
-bones/10/rotation = Quaternion(-0.382031, 0.504157, 0.615394, -0.470286)
-bones/12/position = Vector3(-0.0136084, 0.000903085, 0.00478483)
-bones/12/rotation = Quaternion(0.42548, 0.535367, 0.586126, 0.434517)
+bones/1/rotation = Quaternion(0.00692864, 0.00109472, 0.00390694, 0.999968)
+bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
+bones/10/position = Vector3(0.0148849, 0.000862168, 0.00382975)
+bones/10/rotation = Quaternion(-0.343311, 0.474927, 0.637937, -0.499618)
+bones/12/position = Vector3(-0.0137516, 0.000905049, 0.00469427)
+bones/12/rotation = Quaternion(0.425564, 0.534992, 0.586118, 0.434907)
+bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
+bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
+bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.230269, 0.0628684, 0.971094, -0.133387, -0.990531, 0.0324978, 0.963942, -0.122048, 0.236474, -0.012923, -0.00642685, 0.0174244)
+transform = Transform3D(-0.266944, -0.0518435, 0.962317, -0.0474509, -0.996634, -0.0668552, 0.962543, -0.0635093, 0.263585, -0.0137476, -0.00473572, 0.0173876)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -217,7 +301,7 @@ mesh = SubResource("BoxMesh_sgp6g")
 skeleton = NodePath("../..")
 
 [node name="Imp_Camp_01" type="Node3D" parent="Game_CanvasLayer" node_paths=PackedStringArray("villager_to_disable", "villager_to_enable")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.7541, 0, -16.3523)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5838, 0, -25.1238)
 script = ExtResource("16_jscy8")
 quest_on_clear = "Return to Carlos"
 villager_to_disable = NodePath("../Villager_Carlos/Villager_Carlos_02")
@@ -225,35 +309,21 @@ villager_to_enable = NodePath("../Villager_Carlos/Villager_Carlos_03")
 
 [node name="Imp_01" parent="Game_CanvasLayer/Imp_Camp_01" instance=ExtResource("9_85g3d")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.23387, -4.76837e-07, -0.794012)
-health = 100.0
-max_health = 100.0
-move_speed = 5.0
-damage = 25.0
-attack_cooldown = 2
 
 [node name="Imp_02" parent="Game_CanvasLayer/Imp_Camp_01" instance=ExtResource("9_85g3d")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -1.45643, -2.38419e-07, -0.785412)
-health = 100.0
-max_health = 100.0
-move_speed = 5.0
-damage = 25.0
-attack_cooldown = 2
 
 [node name="Imp_03" parent="Game_CanvasLayer/Imp_Camp_01" instance=ExtResource("9_85g3d")]
 transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 0.623571, -2.38419e-07, 2.40979)
-health = 100.0
-max_health = 100.0
-move_speed = 5.0
-damage = 25.0
-attack_cooldown = 2
 
 [node name="Villager_Carlos" type="Node3D" parent="Game_CanvasLayer"]
-transform = Transform3D(-0.714668, 0, 0.699464, 0, 1, 0, -0.699464, 0, -0.714668, -7.89747, 0, 11.8138)
+transform = Transform3D(0.0664826, 0, -0.997788, 0, 1, 0, 0.997788, 0, 0.0664826, -7.89747, 0, 11.8138)
 
-[node name="Villager_Carlos_01" parent="Game_CanvasLayer/Villager_Carlos" node_paths=PackedStringArray("next_villager") instance=ExtResource("17_muem4")]
+[node name="Villager_Carlos_01" parent="Game_CanvasLayer/Villager_Carlos" node_paths=PackedStringArray("next_villager", "animatable_structure") instance=ExtResource("17_muem4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 display_name = "Carlos"
 next_villager = NodePath("../Villager_Carlos_02")
+animatable_structure = NodePath("../../World/Village/Gate")
 lines = Array[String](["Hello adventurer, I would greatly appreciate your help!", "Imps have built a camp near our village...", "Could you do us a favor and clear them out?", "Thank you!"])
 quest = "Clear out the nearby imp camp"
 
@@ -390,4 +460,5 @@ horizontal_alignment = 2
 [connection signal="area_entered" from="Game_CanvasLayer/Player/Body/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Game_CanvasLayer/Player/Body/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]
 
+[editable path="Game_CanvasLayer/World/Village/Gate"]
 [editable path="Game_CanvasLayer/Player/Body/Skin/character"]

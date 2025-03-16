@@ -15,8 +15,9 @@ class_name Villager
 @export var next_villager: Node3D = null
 @export var start_enabled: bool = true
 
-@export var lines : Array[String] = []
+@export var lines: Array[String] = []
 @onready var cur_line := 0
+@export var quest: String = ""
 
 func _ready():
 	interact_tooltip_initial_position = interact_tooltip.global_position
@@ -69,6 +70,8 @@ func _input(event: InputEvent) -> void:
 				camera_3d.current = false
 				print("Player stopped talking to villager " + name)
 				UI.instance.dialog_panel.end()
+				if quest != "":
+					UI.instance.quests.change_quest(quest)
 				if next_villager != null:
 					next_villager.set_process(true)
 					next_villager.set_physics_process(true)

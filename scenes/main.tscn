@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=33 format=3 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -17,6 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://dlkkf0kt41eoh" path="res://Sources/Audio/player-death.mp3" id="12_a8y0u"]
 [ext_resource type="AudioStream" uid="uid://cl7nm2h206xy5" path="res://Sources/Audio/take-damage.mp3" id="13_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://c31n1bcksl7hk" path="res://Prefabs/NPCs/villager.tscn" id="17_muem4"]
+[ext_resource type="Script" uid="uid://dto46lvw6hb0r" path="res://Scripts/UI/UI.gd" id="18_0ld40"]
+[ext_resource type="Texture2D" uid="uid://kqt5j5bx603d" path="res://Sources/UI/DialogBox.png" id="18_dp3eg"]
+[ext_resource type="Script" uid="uid://cvhqunexfryy2" path="res://Scripts/UI/Dialog_Panel.gd" id="20_gqmmt"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0wfyh"]
 
@@ -54,23 +57,37 @@ radius = 0.64
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
 
-[node name="Root" type="Node3D"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dp3eg"]
+texture = ExtResource("18_dp3eg")
 
-[node name="World" type="Node3D" parent="."]
+[sub_resource type="LabelSettings" id="LabelSettings_dp3eg"]
+font_color = Color(0.917626, 0.625403, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.360784)
 
-[node name="Grass" type="MeshInstance3D" parent="World"]
+[sub_resource type="LabelSettings" id="LabelSettings_0ld40"]
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.278431)
+
+[node name="Root" type="Node"]
+
+[node name="Game_CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="World" type="Node3D" parent="Game_CanvasLayer"]
+
+[node name="Grass" type="MeshInstance3D" parent="Game_CanvasLayer/World"]
 transform = Transform3D(44.7747, 0, 0, 0, 44.7747, 0, 0, 0, 44.7747, 0, 0, 0)
 material_override = ExtResource("2_0wfyh")
 mesh = SubResource("PlaneMesh_0wfyh")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Grass"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Game_CanvasLayer/World/Grass"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Grass/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Grass/StaticBody3D"]
 shape = SubResource("BoxShape3D_tefeu")
 
-[node name="Audio" type="Node3D" parent="World"]
+[node name="Audio" type="Node3D" parent="Game_CanvasLayer/World"]
 
-[node name="ForestAmbience" type="AudioStreamPlayer3D" parent="World/Audio"]
+[node name="ForestAmbience" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/World/Audio"]
 stream = ExtResource("2_jkv2x")
 attenuation_model = 3
 volume_db = -17.0
@@ -79,7 +96,7 @@ panning_strength = 0.0
 playback_type = 1
 parameters/looping = true
 
-[node name="MusicCozy" type="AudioStreamPlayer3D" parent="World/Audio"]
+[node name="MusicCozy" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/World/Audio"]
 stream = ExtResource("3_jbj1t")
 attenuation_model = 3
 volume_db = -25.0
@@ -88,10 +105,10 @@ panning_strength = 0.0
 playback_type = 1
 parameters/looping = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Game_CanvasLayer"]
 environment = SubResource("Environment_0wfyh")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Game_CanvasLayer"]
 transform = Transform3D(-0.374366, -0.790887, 0.484096, 0.00317217, 0.520964, 0.853573, -0.927276, 0.321084, -0.192522, 0, 0, 0)
 light_color = Color(0.919434, 0.866889, 0.726006, 1)
 light_energy = 2.0
@@ -99,136 +116,186 @@ shadow_enabled = true
 shadow_bias = 0.01
 shadow_blur = 3.136
 
-[node name="Player" type="Node3D" parent="."]
+[node name="Player" type="Node3D" parent="Game_CanvasLayer"]
 script = ExtResource("3_jyhfs")
 
-[node name="CameraPivot" type="Node3D" parent="Player"]
+[node name="CameraPivot" type="Node3D" parent="Game_CanvasLayer/Player"]
 script = ExtResource("4_tefeu")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="Player/CameraPivot"]
+[node name="SpringArm3D" type="SpringArm3D" parent="Game_CanvasLayer/Player/CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.528, 0)
 shape = SubResource("SphereShape3D_tefeu")
 spring_length = 4.0
 
-[node name="Camera" type="Camera3D" parent="Player/CameraPivot/SpringArm3D"]
+[node name="Camera" type="Camera3D" parent="Game_CanvasLayer/Player/CameraPivot/SpringArm3D"]
+current = true
 
-[node name="Body" type="CharacterBody3D" parent="Player"]
+[node name="Body" type="CharacterBody3D" parent="Game_CanvasLayer/Player"]
 script = ExtResource("4_tbgi4")
 move_speed = 7.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Body"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_0wfyh")
 
-[node name="Skin" type="Node3D" parent="Player/Body"]
+[node name="Skin" type="Node3D" parent="Game_CanvasLayer/Player/Body"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="character" parent="Player/Body/Skin" instance=ExtResource("8_tipki")]
+[node name="character" parent="Game_CanvasLayer/Player/Body/Skin" instance=ExtResource("8_tipki")]
 transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
-[node name="Skeleton3D" parent="Player/Body/Skin/character/Armature" index="0"]
-bones/1/position = Vector3(0, 0.0166553, 0)
-bones/1/rotation = Quaternion(-0.0117681, -0.103697, 0.0266792, 0.994181)
-bones/2/position = Vector3(0.00426105, 0.00706382, 0.0106241)
-bones/4/position = Vector3(-0.00426106, 0.00706382, 0.0106241)
-bones/6/position = Vector3(0.00612395, 0.0176079, 0.0106755)
-bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/8/position = Vector3(-0.00616105, 0.0176079, 0.0106755)
-bones/8/rotation = Quaternion(0.138134, 0.136948, -0.673818, 0.712834)
-bones/10/position = Vector3(0.0145824, 0.00086951, 0.00405012)
-bones/10/rotation = Quaternion(-0.328567, 0.463578, 0.645687, -0.510125)
-bones/12/position = Vector3(-0.0140712, 0.000909434, 0.00449208)
-bones/12/rotation = Quaternion(0.413434, 0.524285, 0.59498, 0.447433)
-bones/14/position = Vector3(6.98492e-11, 0.0204763, 9.31323e-12)
-bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
-bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
-bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
+[node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
+bones/1/rotation = Quaternion(-0.0146321, 0.0077784, -0.00500154, 0.99985)
+bones/10/position = Vector3(0.0134102, 0.000897471, 0.00490414)
+bones/10/rotation = Quaternion(-0.423209, 0.534505, 0.587678, -0.435698)
+bones/12/position = Vector3(-0.0138167, 0.000905942, 0.00465306)
+bones/12/rotation = Quaternion(0.363591, 0.480758, 0.628259, 0.491899)
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.305442, -0.299664, 0.903829, 0.0586203, -0.953307, -0.296259, 0.950404, -0.0375072, 0.308746, -0.0147236, -0.00147546, 0.0168627)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-0.242426, -0.253861, 0.936367, 0.0406129, -0.966967, -0.251643, 0.969319, -0.0229762, 0.244728, -0.0137324, -0.00483681, 0.017838)
 bone_name = "Hand.R"
 bone_idx = 12
 
-[node name="Sword_Basic" parent="Player/Body/Skin/character/Armature/Skeleton3D/BoneAttachment3D" instance=ExtResource("7_choun")]
+[node name="Sword_Basic" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D/BoneAttachment3D" instance=ExtResource("7_choun")]
 transform = Transform3D(0.00121217, 0.00996768, -0.000593378, -0.00888667, 0.000804316, -0.00464286, -0.00455342, 0.00108376, 0.00890324, -0.004, 0, -0.001)
 
-[node name="PlayerCombat" type="Node3D" parent="Player/Body/Skin/character"]
+[node name="PlayerCombat" type="Node3D" parent="Game_CanvasLayer/Player/Body/Skin/character"]
 transform = Transform3D(-2.65252, 0, -2.31891e-07, 0, 2.65252, 0, 2.31891e-07, 0, -2.65252, 0, 0, 0)
 script = ExtResource("8_85g3d")
 
-[node name="Area3D" type="Area3D" parent="Player/Body/Skin/character/PlayerCombat" groups=["PlayerDamageHitbox"]]
+[node name="Area3D" type="Area3D" parent="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" groups=["PlayerDamageHitbox"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Body/Skin/character/PlayerCombat/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat/Area3D"]
 transform = Transform3D(-0.258819, -0.965926, 0, 0.965926, -0.258819, 0, 0, 0, 1, 0, 0.910638, -1.07622)
 shape = SubResource("CapsuleShape3D_choun")
 
-[node name="Cube" type="MeshInstance3D" parent="Player/Body/Skin/character/PlayerCombat/Area3D/CollisionShape3D"]
+[node name="Cube" type="MeshInstance3D" parent="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat/Area3D/CollisionShape3D"]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
 visible = false
 material_override = ExtResource("1_o5qli")
 mesh = SubResource("BoxMesh_sgp6g")
 skeleton = NodePath("../..")
 
-[node name="AttackTimer" type="Timer" parent="Player/Body/Skin/character/PlayerCombat"]
+[node name="AttackTimer" type="Timer" parent="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat"]
 wait_time = 0.1
 one_shot = true
 
-[node name="SwordSwingSound" type="AudioStreamPlayer3D" parent="Player/Body"]
+[node name="SwordSwingSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Player/Body"]
 stream = ExtResource("10_eb6dy")
 volume_db = -30.0
 
-[node name="FootstepSound" type="AudioStreamPlayer3D" parent="Player/Body"]
+[node name="FootstepSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Player/Body"]
 stream = ExtResource("11_trceg")
 volume_db = -20.0
 
-[node name="DeathSound" type="AudioStreamPlayer3D" parent="Player/Body"]
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Player/Body"]
 stream = ExtResource("12_a8y0u")
 volume_db = -20.0
 
-[node name="HitSound" type="AudioStreamPlayer3D" parent="Player/Body"]
+[node name="HitSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Player/Body"]
 stream = ExtResource("13_jkv2x")
 
-[node name="Area3D" type="Area3D" parent="Player/Body" groups=["Player"]]
+[node name="Area3D" type="Area3D" parent="Game_CanvasLayer/Player/Body" groups=["Player"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Body/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/Player/Body/Area3D"]
 transform = Transform3D(-0.258819, -0.965926, 0, 0.965926, -0.258819, 0, 0, 0, 1, 0, 0.871469, 0)
 shape = SubResource("CapsuleShape3D_choun")
 
-[node name="Cube" type="MeshInstance3D" parent="Player/Body/Area3D/CollisionShape3D"]
+[node name="Cube" type="MeshInstance3D" parent="Game_CanvasLayer/Player/Body/Area3D/CollisionShape3D"]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
 visible = false
 material_override = ExtResource("1_o5qli")
 mesh = SubResource("BoxMesh_sgp6g")
 skeleton = NodePath("../..")
 
-[node name="Orc" parent="." instance=ExtResource("9_85g3d")]
+[node name="Orc" parent="Game_CanvasLayer" instance=ExtResource("9_85g3d")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -13.5202, -4.76837e-07, -17.1463)
 
-[node name="Orc2" parent="." instance=ExtResource("9_85g3d")]
+[node name="Orc2" parent="Game_CanvasLayer" instance=ExtResource("9_85g3d")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -17.2105, -2.38419e-07, -17.1377)
 
-[node name="Orc3" parent="." instance=ExtResource("9_85g3d")]
+[node name="Orc3" parent="Game_CanvasLayer" instance=ExtResource("9_85g3d")]
 transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -15.1305, -2.38419e-07, -13.9425)
 
-[node name="Villager_Carlos_01" parent="." node_paths=PackedStringArray("next_villager") instance=ExtResource("17_muem4")]
+[node name="Villager_Carlos_01" parent="Game_CanvasLayer" node_paths=PackedStringArray("next_villager") instance=ExtResource("17_muem4")]
 transform = Transform3D(-0.714668, 0, 0.699464, 0, 1, 0, -0.699464, 0, -0.714668, -7.89747, 0, 11.8138)
+display_name = "Carlos"
 next_villager = NodePath("../Villager_Carlos_02")
 
-[node name="Villager_Carlos_02" parent="." instance=ExtResource("17_muem4")]
+[node name="Villager_Carlos_02" parent="Game_CanvasLayer" instance=ExtResource("17_muem4")]
 transform = Transform3D(-0.714668, 0, 0.699464, 0, 1, 0, -0.699464, 0, -0.714668, -7.89747, 0, 11.8138)
+display_name = "Carlos"
 start_enabled = false
 lines = Array[String](["Have you finished your task?"])
 
-[node name="UI" type="Control" parent="."]
+[node name="UI_CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="UI" type="Control" parent="UI_CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("18_0ld40")
 
-[connection signal="area_entered" from="Player/Body/Skin/character/PlayerCombat/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="Player/Body/Skin/character/PlayerCombat/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]
-[connection signal="area_entered" from="Player/Body/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="Player/Body/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]
+[node name="Dialog_Panel" type="Panel" parent="UI_CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -257.0
+offset_right = 256.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_dp3eg")
+script = ExtResource("20_gqmmt")
 
-[editable path="Player/Body/Skin/character"]
+[node name="Character_Name" type="Label" parent="UI_CanvasLayer/UI/Dialog_Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -113.0
+offset_right = 172.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NAME"
+label_settings = SubResource("LabelSettings_dp3eg")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Message" type="Label" parent="UI_CanvasLayer/UI/Dialog_Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -68.0
+offset_right = 172.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Message"
+label_settings = SubResource("LabelSettings_0ld40")
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]
+[connection signal="area_entered" from="Game_CanvasLayer/Player/Body/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Game_CanvasLayer/Player/Body/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]
+
+[editable path="Game_CanvasLayer/Player/Body/Skin/character"]

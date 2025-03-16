@@ -10,6 +10,8 @@ class_name Villager
 @onready var interact_tooltip = $InteractTooltip
 @onready var interact_tooltip_initial_position := Vector3.ZERO
 
+@export var display_name: String
+
 @export var next_villager: Node3D = null
 @export var start_enabled: bool = true
 
@@ -17,7 +19,6 @@ class_name Villager
 @onready var cur_line := 0
 
 func _ready():
-	
 	interact_tooltip_initial_position = interact_tooltip.global_position
 	interact_tooltip.global_position.y -= 0.5
 	interact_tooltip.modulate.a = 0.0
@@ -46,7 +47,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		if is_player_in_range == true:
 			if is_talking_to_player == false:
-				print("Player started talking to villager " + get_parent().get_parent().name)
+				print("Player started talking to villager " + name)
 				is_talking_to_player = true
 				Player.instance.is_busy = true
 				Player.instance.body.global_position = player_talk_position.global_position
@@ -63,16 +64,19 @@ func _input(event: InputEvent) -> void:
 				say_line(lines[cur_line])
 			else:
 				is_talking_to_player = false
+				cur_line = 0
 				Player.instance.is_busy = false
 				camera_3d.current = false
-				print("Player stopped talking to villager " + get_parent().get_parent().name)
+				print("Player stopped talking to villager " + name)
+				UI.instance.dialog_panel.end()
 				if next_villager != null:
 					next_villager.set_process(true)
 					next_villager.set_physics_process(true)
 					next_villager.set_process_input(true)
 					queue_free()
-					print("Replacing " + get_parent().get_parent().name + " with " + next_villager.name)
+					print("Replacing " + name + " with " + next_villager.name)
 			return
 
 func say_line(line: String):
-	print(line)
+	UI.instance.dialog_panel.start_or_write(display_name, line)
+	print("Dialog with " + display_name + ": " + line)

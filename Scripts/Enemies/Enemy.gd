@@ -1,20 +1,24 @@
-extends CharacterBody3D
+extends Node3D
 class_name Enemy
 
+@export_group("Stats")
 @export var health: float = 100
 @export var max_health: float = 100
 @export var move_speed = 5.0
 
-@onready var character : CharacterSkin = $Skin/character
-@onready var _skin = $"Skin"
+var group: Enemy_Group = null
 
-@onready var area_3d = $Area3D
-@onready var collision_shape_3d = $CollisionShape3D
+@onready var body = $Body
+@onready var character : CharacterSkin = $Body/Skin/character
+@onready var _skin = $"Body/Skin"
+
+@onready var area_3d = $Body/Area3D
+@onready var collision_shape_3d = $Body/CollisionShape3D
 
 #sounds
-@onready var aggro_sound: AudioStreamPlayer3D = $AggroSound
-@onready var death_sound: AudioStreamPlayer3D = $DeathSound
-@onready var hit_sound: AudioStreamPlayer3D = $HitSound
+@onready var aggro_sound: AudioStreamPlayer3D = $Body/AggroSound
+@onready var death_sound: AudioStreamPlayer3D = $Body/DeathSound
+@onready var hit_sound: AudioStreamPlayer3D = $Body/HitSound
 
 @onready var initial_position: Vector3 = Vector3.ZERO
 @onready var initial_rotation: Vector3 = Vector3.ZERO
@@ -27,8 +31,11 @@ var attack_timer = 0
 @export var attack_cooldown = 2
 
 func _ready():
-	initial_position = global_position
+	initial_position = body.global_position
 	initial_rotation = _skin.global_rotation
+	group = get_parent()
+	await get_tree().create_timer(0.1).timeout
+	group.register_enemy(self)
 
 func _process(delta):
 	if Player.instance.is_alive == false:
@@ -38,14 +45,14 @@ func _process(delta):
 	if state == ai_states.idle:
 		attack_timer = 0
 		
-		if global_position.distance_to(Player.instance.body.global_position) < 10:
+		if body.global_position.distance_to(Player.instance.body.global_position) < 10:
 			state = ai_states.chasing
 			aggro_sound.play()
 			
 	if state == ai_states.waiting_to_strike:
 		if(character.state_machine.get_current_node() != "Idle" && character.state_machine.get_current_node() != "Take Damage"):
 			character.idle()
-		if global_position.distance_to(Player.instance.body.global_position) > 2:
+		if body.global_position.distance_to(Player.instance.body.global_position) > 2:
 			state = ai_states.chasing
 
 
@@ -56,24 +63,24 @@ func _physics_process(delta):
 	if state == ai_states.chasing:
 		attack_timer = 0
 		
-		if global_position.distance_to(initial_position) > 10:
+		if body.global_position.distance_to(initial_position) > 10:
 			state = ai_states.returning_to_spawn
 		
-		if global_position.distance_to(Player.instance.body.global_position) > 2:
-			velocity = (Player.instance.body.global_position - global_position).normalized() * move_speed
-			velocity.y = 0
+		if body.global_position.distance_to(Player.instance.body.global_position) > 2:
+			body.velocity = (Player.instance.body.global_position - body.global_position).normalized() * move_speed
+			body.velocity.y = 0
 			character.move()
 			
-			var target_angle := Vector3.BACK.signed_angle_to(velocity, Vector3.UP)
+			var target_angle := Vector3.BACK.signed_angle_to(body.velocity, Vector3.UP)
 			_skin.global_rotation.y = lerp_angle(_skin.global_rotation.y, target_angle, 12 * delta)
 		else:
-			velocity = Vector3.ZERO
+			body.velocity = Vector3.ZERO
 			if(character.state_machine.get_current_node() != "Idle" && character.state_machine.get_current_node() != "Take Damage"):
 				character.idle()
 				state = ai_states.waiting_to_strike
 				
 	if state == ai_states.waiting_to_strike:
-		var target_angle := Vector3.BACK.signed_angle_to(Player.instance.body.global_position - global_position, Vector3.UP)
+		var target_angle := Vector3.BACK.signed_angle_to(Player.instance.body.global_position - body.global_position, Vector3.UP)
 		_skin.global_rotation.y = lerp_angle(_skin.global_rotation.y, target_angle, 12 * delta)
 		
 		attack_timer += delta
@@ -81,20 +88,20 @@ func _physics_process(delta):
 			attack()
 		
 	if state == ai_states.returning_to_spawn:
-		velocity = (initial_position - global_position).normalized() * move_speed
-		velocity.y = 0
+		body.velocity = (initial_position - body.global_position).normalized() * move_speed
+		body.velocity.y = 0
 		character.move()
-		var target_angle := Vector3.BACK.signed_angle_to(initial_position - global_position, Vector3.UP)
+		var target_angle := Vector3.BACK.signed_angle_to(initial_position - body.global_position, Vector3.UP)
 		_skin.global_rotation.y = lerp_angle(_skin.global_rotation.y, target_angle, 12 * delta)
 		
-		if global_position.distance_to(initial_position) < 0.5:
-			velocity = Vector3.ZERO
-			global_position = initial_position
+		if body.global_position.distance_to(initial_position) < 0.5:
+			body.velocity = Vector3.ZERO
+			body.global_position = initial_position
 			_skin.global_rotation = initial_rotation
 			character.idle()
 			state = ai_states.idle
 		
-	move_and_slide()
+	body.move_and_slide()
 
 func take_damage(damage: float):
 	if health > 0:
@@ -121,3 +128,4 @@ func die():
 	collision_shape_3d.queue_free()
 	state = ai_states.dead
 	death_sound.play()
+	group.enemy_died(self)

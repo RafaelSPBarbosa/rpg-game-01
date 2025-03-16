@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=36 format=3 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://chwjsg23od47w" path="res://Sources/Audio/footstep-grass.mp3" id="11_trceg"]
 [ext_resource type="AudioStream" uid="uid://dlkkf0kt41eoh" path="res://Sources/Audio/player-death.mp3" id="12_a8y0u"]
 [ext_resource type="AudioStream" uid="uid://cl7nm2h206xy5" path="res://Sources/Audio/take-damage.mp3" id="13_jkv2x"]
+[ext_resource type="Script" uid="uid://b3ddjfm4fh5h6" path="res://Scripts/Enemies/Enemy_Group.gd" id="16_jscy8"]
 [ext_resource type="PackedScene" uid="uid://c31n1bcksl7hk" path="res://Prefabs/NPCs/villager.tscn" id="17_muem4"]
 [ext_resource type="Script" uid="uid://dto46lvw6hb0r" path="res://Scripts/UI/UI.gd" id="18_0ld40"]
 [ext_resource type="Texture2D" uid="uid://kqt5j5bx603d" path="res://Sources/UI/DialogBox.png" id="18_dp3eg"]
@@ -152,14 +153,14 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0201783, 0.0231428, -0.00114067, 0.999528)
-bones/10/position = Vector3(0.0146322, 0.000868301, 0.00401385)
-bones/10/rotation = Quaternion(-0.357062, 0.48524, 0.630253, -0.489725)
-bones/12/position = Vector3(-0.0136995, 0.000904335, 0.00472721)
-bones/12/rotation = Quaternion(0.425534, 0.535128, 0.586121, 0.434765)
+bones/1/rotation = Quaternion(0.0365303, 0.059433, -0.0103999, 0.997509)
+bones/10/position = Vector3(0.0141904, 0.000879026, 0.00433575)
+bones/10/rotation = Quaternion(-0.382031, 0.504157, 0.615394, -0.470286)
+bones/12/position = Vector3(-0.0136084, 0.000903085, 0.00478483)
+bones/12/rotation = Quaternion(0.42548, 0.535367, 0.586126, 0.434517)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.25487, -0.00822609, 0.96694, -0.0843638, -0.995962, -0.0307098, 0.963288, -0.0894019, 0.253147, -0.0134634, -0.00538915, 0.0173864)
+transform = Transform3D(-0.230269, 0.0628684, 0.971094, -0.133387, -0.990531, 0.0324978, 0.963942, -0.122048, 0.236474, -0.012923, -0.00642685, 0.0174244)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -215,30 +216,66 @@ material_override = ExtResource("1_o5qli")
 mesh = SubResource("BoxMesh_sgp6g")
 skeleton = NodePath("../..")
 
-[node name="Orc_Camp" type="Node3D" parent="Game_CanvasLayer"]
+[node name="Imp_Camp_01" type="Node3D" parent="Game_CanvasLayer" node_paths=PackedStringArray("villager_to_disable", "villager_to_enable")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.7541, 0, -16.3523)
+script = ExtResource("16_jscy8")
+quest_on_clear = "Return to Carlos"
+villager_to_disable = NodePath("../Villager_Carlos/Villager_Carlos_02")
+villager_to_enable = NodePath("../Villager_Carlos/Villager_Carlos_03")
 
-[node name="Orc" parent="Game_CanvasLayer/Orc_Camp" instance=ExtResource("9_85g3d")]
+[node name="Imp_01" parent="Game_CanvasLayer/Imp_Camp_01" instance=ExtResource("9_85g3d")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.23387, -4.76837e-07, -0.794012)
+health = 100.0
+max_health = 100.0
+move_speed = 5.0
+damage = 25.0
+attack_cooldown = 2
 
-[node name="Orc2" parent="Game_CanvasLayer/Orc_Camp" instance=ExtResource("9_85g3d")]
+[node name="Imp_02" parent="Game_CanvasLayer/Imp_Camp_01" instance=ExtResource("9_85g3d")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -1.45643, -2.38419e-07, -0.785412)
+health = 100.0
+max_health = 100.0
+move_speed = 5.0
+damage = 25.0
+attack_cooldown = 2
 
-[node name="Orc3" parent="Game_CanvasLayer/Orc_Camp" instance=ExtResource("9_85g3d")]
+[node name="Imp_03" parent="Game_CanvasLayer/Imp_Camp_01" instance=ExtResource("9_85g3d")]
 transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 0.623571, -2.38419e-07, 2.40979)
+health = 100.0
+max_health = 100.0
+move_speed = 5.0
+damage = 25.0
+attack_cooldown = 2
 
-[node name="Villager_Carlos_01" parent="Game_CanvasLayer" node_paths=PackedStringArray("next_villager") instance=ExtResource("17_muem4")]
+[node name="Villager_Carlos" type="Node3D" parent="Game_CanvasLayer"]
 transform = Transform3D(-0.714668, 0, 0.699464, 0, 1, 0, -0.699464, 0, -0.714668, -7.89747, 0, 11.8138)
+
+[node name="Villager_Carlos_01" parent="Game_CanvasLayer/Villager_Carlos" node_paths=PackedStringArray("next_villager") instance=ExtResource("17_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 display_name = "Carlos"
 next_villager = NodePath("../Villager_Carlos_02")
 lines = Array[String](["Hello adventurer, I would greatly appreciate your help!", "Imps have built a camp near our village...", "Could you do us a favor and clear them out?", "Thank you!"])
 quest = "Clear out the nearby imp camp"
 
-[node name="Villager_Carlos_02" parent="Game_CanvasLayer" instance=ExtResource("17_muem4")]
-transform = Transform3D(-0.714668, 0, 0.699464, 0, 1, 0, -0.699464, 0, -0.714668, -7.89747, 0, 11.8138)
+[node name="Villager_Carlos_02" parent="Game_CanvasLayer/Villager_Carlos" instance=ExtResource("17_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 display_name = "Carlos"
 start_enabled = false
 lines = Array[String](["Have you cleared out the imp camp yet?"])
+
+[node name="Villager_Carlos_03" parent="Game_CanvasLayer/Villager_Carlos" node_paths=PackedStringArray("next_villager") instance=ExtResource("17_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+display_name = "Carlos"
+next_villager = NodePath("../Villager_Carlos_04")
+start_enabled = false
+lines = Array[String](["Great job!", "Our village is immensely grateful!", "I'm glad I was able to help you on your personal GROWTH!"])
+quest = "Find someone else to help"
+
+[node name="Villager_Carlos_04" parent="Game_CanvasLayer/Villager_Carlos" instance=ExtResource("17_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+display_name = "Carlos"
+start_enabled = false
+lines = Array[String](["Howdy adventurer!", "Everything has been great since we last talked", "Maybe try seeing if someone else needs help?"])
 
 [node name="UI_CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2

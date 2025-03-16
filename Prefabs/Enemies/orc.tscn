@@ -14,9 +14,9 @@
 radius = 0.64
 
 [node name="Orc" type="Node3D"]
+script = ExtResource("1_f0fbn")
 
 [node name="Body" type="CharacterBody3D" parent="."]
-script = ExtResource("1_f0fbn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -30,11 +30,11 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("3_gpi1x")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0116191, 0.10543, -0.0263661, 0.994009)
-bones/10/position = Vector3(0.0136221, 0.00089282, 0.00474978)
-bones/10/rotation = Quaternion(-0.419126, 0.531984, 0.590647, -0.438705)
-bones/12/position = Vector3(-0.0134322, 0.000900669, 0.00489628)
-bones/12/rotation = Quaternion(0.425376, 0.535829, 0.586135, 0.434036)
+bones/1/rotation = Quaternion(-0.0296518, 0.0929734, -0.0243417, 0.994929)
+bones/10/position = Vector3(0.0133561, 0.000899073, 0.00494358)
+bones/10/rotation = Quaternion(-0.425301, 0.536073, 0.58616, -0.433776)
+bones/12/position = Vector3(-0.0134951, 0.000901531, 0.00485649)
+bones/12/rotation = Quaternion(0.412997, 0.524536, 0.595346, 0.447055)
 
 [node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("4_s5rhj")

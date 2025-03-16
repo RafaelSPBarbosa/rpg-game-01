@@ -43,14 +43,14 @@ func cause_damage():
 
 func _on_area_3d_area_entered(area):
 	if area.is_in_group("Enemy"):
-		var enemy = area.get_parent()
+		var enemy = area.get_parent().get_parent()
 		var index = hittable_enemy_list.rfind(enemy)
 		if index == -1:
 			hittable_enemy_list.append(enemy)
 
 func _on_area_3d_area_exited(area):
 	if area.is_in_group("Enemy"):
-		var enemy = area.get_parent()
+		var enemy = area.get_parent().get_parent()
 		var index = hittable_enemy_list.rfind(enemy)
 		if index > -1:
 			hittable_enemy_list.remove_at(index)

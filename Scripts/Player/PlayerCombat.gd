@@ -21,11 +21,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
 		if is_on_cooldown == false:
 			character.attack()
-			sword_swing_sound.play()
 			is_on_cooldown = true
 			await get_tree().create_timer(0.1).timeout
 			if character.state_machine.get_current_node() == "Attack":
 				cause_damage();
+				sword_swing_sound.play()
 			await get_tree().create_timer(attack_cooldown).timeout
 			is_on_cooldown = false
 			

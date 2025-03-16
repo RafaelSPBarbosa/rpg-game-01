@@ -1,7 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=26 format=3 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
+[ext_resource type="AudioStream" uid="uid://d1qrcvspy4gn3" path="res://Sources/Audio/forest-ambience.mp3" id="2_jkv2x"]
+[ext_resource type="AudioStream" uid="uid://cvemset3trwte" path="res://Sources/Music/music-cozy.mp3" id="3_jbj1t"]
 [ext_resource type="Script" uid="uid://b03io5xk8qkyb" path="res://Scripts/Player/Player.gd" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://ck0jeoayjtnu7" path="res://Scripts/Player/PlayerMovement.gd" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://c1gfibua1ldhh" path="res://Scripts/Player/PlayerCamera.gd" id="4_tefeu"]
@@ -12,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://ci4ftwvou63co" path="res://Prefabs/Enemies/orc.tscn" id="9_85g3d"]
 [ext_resource type="AudioStream" uid="uid://brha1r07b38pc" path="res://Sources/Audio/sword-swing.mp3" id="10_eb6dy"]
 [ext_resource type="AudioStream" uid="uid://chwjsg23od47w" path="res://Sources/Audio/footstep-grass.mp3" id="11_trceg"]
+[ext_resource type="AudioStream" uid="uid://dlkkf0kt41eoh" path="res://Sources/Audio/player-death.mp3" id="12_a8y0u"]
+[ext_resource type="AudioStream" uid="uid://cl7nm2h206xy5" path="res://Sources/Audio/take-damage.mp3" id="13_jkv2x"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0wfyh"]
 
@@ -63,6 +67,26 @@ mesh = SubResource("PlaneMesh_0wfyh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Grass/StaticBody3D"]
 shape = SubResource("BoxShape3D_tefeu")
 
+[node name="Audio" type="Node3D" parent="World"]
+
+[node name="ForestAmbience" type="AudioStreamPlayer3D" parent="World/Audio"]
+stream = ExtResource("2_jkv2x")
+attenuation_model = 3
+volume_db = -17.0
+autoplay = true
+panning_strength = 0.0
+playback_type = 1
+parameters/looping = true
+
+[node name="MusicCozy" type="AudioStreamPlayer3D" parent="World/Audio"]
+stream = ExtResource("3_jbj1t")
+attenuation_model = 3
+volume_db = -25.0
+autoplay = true
+panning_strength = 0.0
+playback_type = 1
+parameters/looping = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0wfyh")
 
@@ -103,18 +127,14 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0410829, 0.0591952, -0.0168611, 0.997258)
-bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0133633, 0.000898739, 0.00493833)
-bones/10/rotation = Quaternion(-0.42528, 0.536089, 0.586177, -0.433753)
-bones/12/position = Vector3(-0.0136515, 0.000903676, 0.00475757)
-bones/12/rotation = Quaternion(0.385275, 0.499635, 0.614487, 0.473639)
-bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
-bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
-bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
+bones/1/rotation = Quaternion(0.0180284, -0.0656648, 0.014014, 0.99758)
+bones/10/position = Vector3(0.0140295, 0.000882828, 0.00445292)
+bones/10/rotation = Quaternion(-0.394079, 0.512197, 0.607553, -0.461773)
+bones/12/position = Vector3(-0.0140457, 0.000909084, 0.00450821)
+bones/12/rotation = Quaternion(0.373419, 0.488769, 0.622021, 0.484512)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.224687, -0.0801577, 0.971128, 0.0512867, -0.996202, -0.0703612, 0.97308, 0.0339967, 0.227945, -0.0129538, -0.00622518, 0.0184613)
+transform = Transform3D(-0.277509, -0.360559, 0.890498, 0.00905724, -0.927844, -0.372858, 0.96068, -0.0954058, 0.26075, -0.0145349, -0.00265018, 0.0170335)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -140,10 +160,18 @@ skeleton = NodePath("../..")
 
 [node name="SwordSwingSound" type="AudioStreamPlayer3D" parent="Player/Body"]
 stream = ExtResource("10_eb6dy")
-volume_db = -20.0
+volume_db = -30.0
 
 [node name="FootstepSound" type="AudioStreamPlayer3D" parent="Player/Body"]
 stream = ExtResource("11_trceg")
+volume_db = -20.0
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="Player/Body"]
+stream = ExtResource("12_a8y0u")
+volume_db = -20.0
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="Player/Body"]
+stream = ExtResource("13_jkv2x")
 
 [node name="Orc" parent="." instance=ExtResource("9_85g3d")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -13.5202, -4.76837e-07, -17.1463)

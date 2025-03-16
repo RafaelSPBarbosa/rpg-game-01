@@ -64,6 +64,9 @@ func _physics_process(delta):
 				state = ai_states.waiting_to_strike
 				
 	if state == ai_states.waiting_to_strike:
+		var target_angle := Vector3.BACK.signed_angle_to(Player.instance.body.global_position - global_position, Vector3.UP)
+		_skin.global_rotation.y = lerp_angle(_skin.global_rotation.y, target_angle, 12 * delta)
+		
 		attack_timer += delta
 		if attack_timer >= attack_cooldown:
 			attack()

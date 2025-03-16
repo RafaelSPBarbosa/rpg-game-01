@@ -11,6 +11,10 @@ var _last_movement_direction := Vector3.BACK
 @onready var _camera: Camera3D = $"../CameraPivot/SpringArm3D/Camera"
 @onready var _skin = $"Skin"
 @onready var _skin_character: CharacterSkin = $"Skin/character"
+
+var time_between_footsteps := 0.2
+var cur_time_between_footsteps := 0.0
+@onready var footstep_sound : AudioStreamPlayer3D = $FootstepSound
 	
 func _physics_process(delta):
 	if Player.instance.is_alive == false:
@@ -35,6 +39,14 @@ func _physics_process(delta):
 	
 	if move_direction.length() > 0.2:
 		_last_movement_direction = move_direction	
+		cur_time_between_footsteps += delta
+		if(cur_time_between_footsteps >= time_between_footsteps):
+			footstep_sound.pitch_scale = randf_range(0.75, 1.25)
+			footstep_sound.play()
+			cur_time_between_footsteps = 0
+	else:
+		cur_time_between_footsteps = 0
+		
 	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
 	_skin.global_rotation.y = lerp_angle(_skin.rotation.y, target_angle, rotation_speed * delta)
 	

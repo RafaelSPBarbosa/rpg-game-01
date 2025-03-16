@@ -21,6 +21,9 @@ func _input(event: InputEvent) -> void:
 	if Player.instance.is_alive == false:
 		return
 		
+	if Player.instance.is_busy == true:
+		return
+		
 	if event.is_action_pressed("attack"):
 		if end_of_attack_delay < Time.get_ticks_msec():
 			end_of_attack_delay = Time.get_ticks_msec() + attack_cooldown * 1000

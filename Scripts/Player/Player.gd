@@ -6,11 +6,14 @@ func _init() -> void: instance = self
 
 var is_alive := true
 
+@onready var is_busy := false
+
 @onready var health := 100
 @onready var max_health := 100
 
 @onready var character = $Body/Skin/character
 @onready var body = $Body
+@onready var skin = $Body/Skin
 
 @onready var death_sound : AudioStreamPlayer3D = $Body/DeathSound
 @onready var hit_sound : AudioStreamPlayer3D = $Body/HitSound

@@ -8,9 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://ia61or0tt22w" path="res://Sources/Audio/orc-death.mp3" id="6_gpi1x"]
 [ext_resource type="AudioStream" uid="uid://cl7nm2h206xy5" path="res://Sources/Audio/take-damage.mp3" id="7_s5rhj"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wfyh"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y6deb"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_choun"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_og1vs"]
 radius = 0.64
 
 [node name="Orc" type="Node3D"]
@@ -20,7 +20,7 @@ script = ExtResource("1_f0fbn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_0wfyh")
+shape = SubResource("CapsuleShape3D_y6deb")
 
 [node name="Skin" type="Node3D" parent="Body"]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)
@@ -57,7 +57,7 @@ surface_material_override/0 = ExtResource("4_s5rhj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.879536, 0)
-shape = SubResource("CapsuleShape3D_choun")
+shape = SubResource("CapsuleShape3D_og1vs")
 
 [node name="AggroSound" type="AudioStreamPlayer3D" parent="Body"]
 stream = ExtResource("5_8vw3x")

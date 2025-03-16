@@ -23,9 +23,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		_camera_input_direction = event.screen_relative * mouse_sensitivity
 		
 func _process(delta):
+	if Player.instance.is_busy == true:
+		return
+		
 	_camera_pivot.position = _body.position
 
 func _physics_process(delta: float) -> void:
+	if Player.instance.is_busy == true:
+		return
+	
 	_camera_pivot.rotation.x -= _camera_input_direction.y * delta
 	_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, -PI / 6.0, PI / 3.0)
 	_camera_pivot.rotation.y -= _camera_input_direction.x * delta

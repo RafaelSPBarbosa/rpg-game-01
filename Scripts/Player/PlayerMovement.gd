@@ -19,6 +19,9 @@ var cur_time_between_footsteps := 0.0
 func _physics_process(delta):
 	if Player.instance.is_alive == false:
 		return
+		
+	if Player.instance.is_busy == true:
+		return
 
 	var raw_input := Input.get_vector("move_left","move_right","move_forward","move_backwards")
 	var forward := _camera.global_basis.z

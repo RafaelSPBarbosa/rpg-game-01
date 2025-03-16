@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=27 format=3 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -16,10 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://chwjsg23od47w" path="res://Sources/Audio/footstep-grass.mp3" id="11_trceg"]
 [ext_resource type="AudioStream" uid="uid://dlkkf0kt41eoh" path="res://Sources/Audio/player-death.mp3" id="12_a8y0u"]
 [ext_resource type="AudioStream" uid="uid://cl7nm2h206xy5" path="res://Sources/Audio/take-damage.mp3" id="13_jkv2x"]
-[ext_resource type="Script" uid="uid://b1buy25je4b2q" path="res://Scripts/NPCs/villager.gd" id="17_gqmmt"]
-[ext_resource type="Material" uid="uid://c63uxwpwjp8yx" path="res://Sources/Materials/villager_skin.tres" id="18_yc10j"]
-[ext_resource type="AudioStream" uid="uid://btdj1w6go4uig" path="res://Sources/Audio/orc-aggroed.mp3" id="19_jscy8"]
-[ext_resource type="AudioStream" uid="uid://ia61or0tt22w" path="res://Sources/Audio/orc-death.mp3" id="20_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://c31n1bcksl7hk" path="res://Prefabs/NPCs/villager.tscn" id="17_muem4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0wfyh"]
 
@@ -56,11 +53,6 @@ adjustment_saturation = 1.2
 radius = 0.64
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y6deb"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_gqmmt"]
-radius = 4.46
 
 [node name="Root" type="Node3D"]
 
@@ -137,27 +129,24 @@ script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Player/Body/Skin/character/Armature" index="0"]
 bones/1/position = Vector3(0, 0.0166553, 0)
-bones/1/rotation = Quaternion(0.0333747, 0.0504011, -0.00795885, 0.99814)
+bones/1/rotation = Quaternion(-0.0117681, -0.103697, 0.0266792, 0.994181)
 bones/2/position = Vector3(0.00426105, 0.00706382, 0.0106241)
-bones/2/scale = Vector3(1, 1, 1)
 bones/4/position = Vector3(-0.00426106, 0.00706382, 0.0106241)
 bones/6/position = Vector3(0.00612395, 0.0176079, 0.0106755)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
 bones/8/position = Vector3(-0.00616105, 0.0176079, 0.0106755)
 bones/8/rotation = Quaternion(0.138134, 0.136948, -0.673818, 0.712834)
-bones/10/position = Vector3(0.0143048, 0.000876249, 0.0042524)
-bones/10/rotation = Quaternion(-0.375592, 0.499293, 0.619351, -0.475438)
-bones/12/position = Vector3(-0.013632, 0.000903409, 0.0047699)
-bones/12/rotation = Quaternion(0.425494, 0.535305, 0.586125, 0.434581)
+bones/10/position = Vector3(0.0145824, 0.00086951, 0.00405012)
+bones/10/rotation = Quaternion(-0.328567, 0.463578, 0.645687, -0.510125)
+bones/12/position = Vector3(-0.0140712, 0.000909434, 0.00449208)
+bones/12/rotation = Quaternion(0.413434, 0.524285, 0.59498, 0.447433)
 bones/14/position = Vector3(6.98492e-11, 0.0204763, 9.31323e-12)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
-bones/16/position = Vector3(0.00636407, 0.00267968, -0.00164982)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
-bones/18/position = Vector3(-0.00636407, 0.00267968, -0.00164982)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.2369, 0.0452517, 0.97048, -0.123107, -0.992261, 0.016216, 0.963702, -0.115632, 0.240638, -0.0130662, -0.00617333, 0.0174057)
+transform = Transform3D(-0.305442, -0.299664, 0.903829, 0.0586203, -0.953307, -0.296259, 0.950404, -0.0375072, 0.308746, -0.0147236, -0.00147546, 0.0168627)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -200,6 +189,19 @@ volume_db = -20.0
 [node name="HitSound" type="AudioStreamPlayer3D" parent="Player/Body"]
 stream = ExtResource("13_jkv2x")
 
+[node name="Area3D" type="Area3D" parent="Player/Body" groups=["Player"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Body/Area3D"]
+transform = Transform3D(-0.258819, -0.965926, 0, 0.965926, -0.258819, 0, 0, 0, 1, 0, 0.871469, 0)
+shape = SubResource("CapsuleShape3D_choun")
+
+[node name="Cube" type="MeshInstance3D" parent="Player/Body/Area3D/CollisionShape3D"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+visible = false
+material_override = ExtResource("1_o5qli")
+mesh = SubResource("BoxMesh_sgp6g")
+skeleton = NodePath("../..")
+
 [node name="Orc" parent="." instance=ExtResource("9_85g3d")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -13.5202, -4.76837e-07, -17.1463)
 
@@ -209,75 +211,24 @@ transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -17.2105, 
 [node name="Orc3" parent="." instance=ExtResource("9_85g3d")]
 transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, -15.1305, -2.38419e-07, -13.9425)
 
-[node name="Villager1" type="Node3D" parent="."]
-transform = Transform3D(-0.714668, 0, 0.699464, 0, 1, 0, -0.699464, 0, -0.714668, -6.6574, 2.38418e-07, 9.26067)
+[node name="Villager_Carlos_01" parent="." node_paths=PackedStringArray("next_villager") instance=ExtResource("17_muem4")]
+transform = Transform3D(-0.714668, 0, 0.699464, 0, 1, 0, -0.699464, 0, -0.714668, -7.89747, 0, 11.8138)
+next_villager = NodePath("../Villager_Carlos_02")
 
-[node name="Body" type="CharacterBody3D" parent="Villager1"]
-script = ExtResource("17_gqmmt")
-lines = Array[String](["FALA 1", "FALA 2", "FALA 3", "TCHAU!!"])
+[node name="Villager_Carlos_02" parent="." instance=ExtResource("17_muem4")]
+transform = Transform3D(-0.714668, 0, 0.699464, 0, 1, 0, -0.699464, 0, -0.714668, -7.89747, 0, 11.8138)
+start_enabled = false
+lines = Array[String](["Have you finished your task?"])
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Villager1/Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_y6deb")
-
-[node name="Skin" type="Node3D" parent="Villager1/Body"]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)
-
-[node name="character" parent="Villager1/Body/Skin" instance=ExtResource("8_tipki")]
-transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
-script = ExtResource("7_o6xl0")
-
-[node name="Skeleton3D" parent="Villager1/Body/Skin/character/Armature" index="0"]
-bones/1/position = Vector3(0, 0.0166553, 0)
-bones/1/rotation = Quaternion(0.0333747, 0.0504011, -0.00795885, 0.99814)
-bones/2/position = Vector3(0.00426105, 0.00706382, 0.0106241)
-bones/2/scale = Vector3(1, 1, 1)
-bones/4/position = Vector3(-0.00426106, 0.00706382, 0.0106241)
-bones/6/position = Vector3(0.00612395, 0.0176079, 0.0106755)
-bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/8/position = Vector3(-0.00616105, 0.0176079, 0.0106755)
-bones/8/rotation = Quaternion(0.138134, 0.136948, -0.673818, 0.712834)
-bones/10/position = Vector3(0.0143048, 0.000876249, 0.0042524)
-bones/10/rotation = Quaternion(-0.375592, 0.499293, 0.619351, -0.475438)
-bones/12/position = Vector3(-0.013632, 0.000903409, 0.0047699)
-bones/12/rotation = Quaternion(0.425494, 0.535305, 0.586125, 0.434581)
-bones/14/position = Vector3(6.98492e-11, 0.0204763, 9.31323e-12)
-bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
-bones/16/position = Vector3(0.00636407, 0.00267968, -0.00164982)
-bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
-bones/18/position = Vector3(-0.00636407, 0.00267968, -0.00164982)
-bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
-
-[node name="Cube" parent="Villager1/Body/Skin/character/Armature/Skeleton3D" index="0"]
-surface_material_override/0 = ExtResource("18_yc10j")
-
-[node name="Area3D" type="Area3D" parent="Villager1/Body" groups=["Villager"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Villager1/Body/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.879536, 0)
-shape = SubResource("SphereShape3D_gqmmt")
-
-[node name="AggroSound" type="AudioStreamPlayer3D" parent="Villager1/Body"]
-stream = ExtResource("19_jscy8")
-
-[node name="DeathSound" type="AudioStreamPlayer3D" parent="Villager1/Body"]
-stream = ExtResource("20_pm3ni")
-volume_db = -20.0
-
-[node name="HitSound" type="AudioStreamPlayer3D" parent="Villager1/Body"]
-stream = ExtResource("13_jkv2x")
-
-[node name="PlayerTalkPosition" type="Node3D" parent="Villager1/Body"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 2.57947)
-
-[node name="Camera3D" type="Camera3D" parent="Villager1/Body"]
-transform = Transform3D(0.630716, 0, 0.776013, 0, 1, 0, -0.776013, 0, 0.630716, 1.50943, 0.849414, 2.47858)
-fov = 50.3
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="area_entered" from="Player/Body/Skin/character/PlayerCombat/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Player/Body/Skin/character/PlayerCombat/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]
-[connection signal="area_entered" from="Villager1/Body/Area3D" to="Villager1/Body" method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="Villager1/Body/Area3D" to="Villager1/Body" method="_on_area_3d_area_exited"]
+[connection signal="area_entered" from="Player/Body/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Player/Body/Area3D" to="Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]
 
 [editable path="Player/Body/Skin/character"]
-[editable path="Villager1/Body/Skin/character"]

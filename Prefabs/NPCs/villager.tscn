@@ -1,0 +1,119 @@
+[gd_scene load_steps=13 format=3 uid="uid://c31n1bcksl7hk"]
+
+[ext_resource type="Script" uid="uid://b1buy25je4b2q" path="res://Scripts/NPCs/villager.gd" id="1_d6gm7"]
+[ext_resource type="PackedScene" uid="uid://cpswfllu5mpm6" path="res://Prefabs/Skins/character.tscn" id="2_lau5n"]
+[ext_resource type="Script" uid="uid://xnn6yc5vklyr" path="res://Scripts/character_skin.gd" id="3_28pq3"]
+[ext_resource type="Material" uid="uid://c63uxwpwjp8yx" path="res://Sources/Materials/villager_skin.tres" id="4_6j0di"]
+[ext_resource type="AudioStream" uid="uid://btdj1w6go4uig" path="res://Sources/Audio/orc-aggroed.mp3" id="5_nx278"]
+[ext_resource type="AudioStream" uid="uid://ia61or0tt22w" path="res://Sources/Audio/orc-death.mp3" id="6_yx62h"]
+[ext_resource type="AudioStream" uid="uid://cl7nm2h206xy5" path="res://Sources/Audio/take-damage.mp3" id="7_hxbeh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y6deb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gqmmt"]
+radius = 4.46
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d6gm7"]
+viewport_path = NodePath("InteractTooltip/SubViewport")
+
+[sub_resource type="FontVariation" id="FontVariation_lau5n"]
+variation_embolden = -0.75
+
+[sub_resource type="LabelSettings" id="LabelSettings_28pq3"]
+font = SubResource("FontVariation_lau5n")
+font_size = 61
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.396078)
+
+[node name="Villager" type="Node3D"]
+transform = Transform3D(-0.714668, 0, 0.699464, 0, 1, 0, -0.699464, 0, -0.714668, 0, 0, 0)
+script = ExtResource("1_d6gm7")
+lines = Array[String](["LINE 1", "Line 2", "line 3", "BYE!"])
+
+[node name="Body" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_y6deb")
+
+[node name="Skin" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)
+
+[node name="character" parent="Body/Skin" instance=ExtResource("2_lau5n")]
+transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
+script = ExtResource("3_28pq3")
+
+[node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
+bones/1/position = Vector3(0, 0.0166553, 0)
+bones/1/rotation = Quaternion(0.0295006, 0.0911021, -0.0207166, 0.995189)
+bones/2/position = Vector3(0.00426105, 0.00706382, 0.0106241)
+bones/4/position = Vector3(-0.00426106, 0.00706382, 0.0106241)
+bones/6/position = Vector3(0.00612395, 0.0176079, 0.0106755)
+bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
+bones/8/position = Vector3(-0.00616105, 0.0176079, 0.0106755)
+bones/8/rotation = Quaternion(0.138134, 0.136948, -0.673818, 0.712834)
+bones/10/position = Vector3(0.0138678, 0.000886855, 0.00457075)
+bones/10/rotation = Quaternion(-0.406056, 0.522492, 0.599789, -0.44986)
+bones/12/position = Vector3(-0.0135084, 0.000901714, 0.00484809)
+bones/12/rotation = Quaternion(0.425421, 0.535629, 0.586131, 0.434244)
+bones/14/position = Vector3(6.98492e-11, 0.0204763, 9.31323e-12)
+bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
+bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
+bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
+
+[node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("4_6j0di")
+
+[node name="Area3D" type="Area3D" parent="Body" groups=["Villager"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.879536, 0)
+shape = SubResource("SphereShape3D_gqmmt")
+
+[node name="AggroSound" type="AudioStreamPlayer3D" parent="Body"]
+stream = ExtResource("5_nx278")
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="Body"]
+stream = ExtResource("6_yx62h")
+volume_db = -20.0
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="Body"]
+stream = ExtResource("7_hxbeh")
+
+[node name="PlayerTalkPosition" type="Node3D" parent="Body"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 2.57947)
+
+[node name="Camera3D" type="Camera3D" parent="Body"]
+transform = Transform3D(0.630716, 0, 0.776013, 0, 1, 0, -0.776013, 0, 0.630716, 1.50943, 0.849414, 2.47858)
+fov = 50.3
+
+[node name="InteractTooltip" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18676, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_d6gm7")
+
+[node name="SubViewport" type="SubViewport" parent="InteractTooltip"]
+transparent_bg = true
+size = Vector2i(64, 64)
+
+[node name="Label" type="Label" parent="InteractTooltip/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_right = 40.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "E"
+label_settings = SubResource("LabelSettings_28pq3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="Body/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Body/Area3D" to="." method="_on_area_3d_area_exited"]
+
+[editable path="Body/Skin/character"]

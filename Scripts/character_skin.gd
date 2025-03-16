@@ -11,7 +11,7 @@ func move():
 	state_machine.travel("Move")
 	
 func attack():
-	state_machine.travel("Attack")
+	state_machine.start("Attack")
 	
 func take_damage():
 	state_machine.travel("Take Damage")

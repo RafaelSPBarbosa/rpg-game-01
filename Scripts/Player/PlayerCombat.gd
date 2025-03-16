@@ -10,6 +10,9 @@ var is_on_cooldown = false;
 
 var hittable_enemy_list = []
 
+@onready var attack_timer : Timer = $AttackTimer
+var end_of_attack_delay:= 0
+
 #sounds
 @onready var sword_swing_sound = $"../../../SwordSwingSound"
 
@@ -19,16 +22,20 @@ func _input(event: InputEvent) -> void:
 		return
 		
 	if event.is_action_pressed("attack"):
-		if is_on_cooldown == false:
+		print("trying to attack")
+		if end_of_attack_delay < Time.get_ticks_msec():
+			print("Starting Attack")
+			end_of_attack_delay = Time.get_ticks_msec() + attack_cooldown * 1000
 			character.attack()
 			is_on_cooldown = true
-			await get_tree().create_timer(0.1).timeout
-			if character.state_machine.get_current_node() == "Attack":
-				cause_damage();
-				sword_swing_sound.play()
-			await get_tree().create_timer(attack_cooldown).timeout
-			is_on_cooldown = false
+			attack_timer.start()
+			await attack_timer.timeout
+			#if character.state_machine.get_current_node() == "Attack":
+			print("attacked")
+			cause_damage();
+			sword_swing_sound.play()
 			
+						
 func cause_damage():
 	for i in hittable_enemy_list:
 		i.take_damage(50)

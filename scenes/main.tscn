@@ -127,14 +127,23 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0180284, -0.0656648, 0.014014, 0.99758)
-bones/10/position = Vector3(0.0140295, 0.000882828, 0.00445292)
-bones/10/rotation = Quaternion(-0.394079, 0.512197, 0.607553, -0.461773)
-bones/12/position = Vector3(-0.0140457, 0.000909084, 0.00450821)
-bones/12/rotation = Quaternion(0.373419, 0.488769, 0.622021, 0.484512)
+bones/1/position = Vector3(0, 0.0166553, 0)
+bones/1/rotation = Quaternion(0.0313478, 0.0888196, -0.01988, 0.995356)
+bones/2/position = Vector3(0.00426105, 0.00706382, 0.0106241)
+bones/4/position = Vector3(-0.00426106, 0.00706382, 0.0106241)
+bones/6/position = Vector3(0.00612395, 0.0176079, 0.0106755)
+bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
+bones/8/position = Vector3(-0.00616105, 0.0176079, 0.0106755)
+bones/8/rotation = Quaternion(0.138134, 0.136948, -0.673818, 0.712834)
+bones/10/position = Vector3(0.0138955, 0.000886183, 0.00455056)
+bones/10/rotation = Quaternion(-0.4042, 0.521133, 0.601053, -0.451418)
+bones/12/position = Vector3(-0.013517, 0.000901832, 0.00484266)
+bones/12/rotation = Quaternion(0.425426, 0.535607, 0.586131, 0.434268)
+bones/14/position = Vector3(6.98492e-11, 0.0204763, 9.31323e-12)
+bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.277509, -0.360559, 0.890498, 0.00905724, -0.927844, -0.372858, 0.96068, -0.0954058, 0.26075, -0.0145349, -0.00265018, 0.0170335)
+transform = Transform3D(-0.207087, 0.120422, 0.970883, -0.13617, -0.986283, 0.0932872, 0.968799, -0.112887, 0.220644, -0.0124021, -0.00721667, 0.017695)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -157,6 +166,10 @@ visible = false
 material_override = ExtResource("1_o5qli")
 mesh = SubResource("BoxMesh_sgp6g")
 skeleton = NodePath("../..")
+
+[node name="AttackTimer" type="Timer" parent="Player/Body/Skin/character/PlayerCombat"]
+wait_time = 0.1
+one_shot = true
 
 [node name="SwordSwingSound" type="AudioStreamPlayer3D" parent="Player/Body"]
 stream = ExtResource("10_eb6dy")

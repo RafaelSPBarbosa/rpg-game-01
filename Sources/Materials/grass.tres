@@ -12,8 +12,8 @@ domain_warp_fractal_lacunarity = 7.53
 domain_warp_fractal_gain = 11.155
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gsc0q"]
-width = 1024
-height = 1024
+width = 4096
+height = 4096
 generate_mipmaps = false
 seamless = true
 noise = SubResource("FastNoiseLite_3gcan")

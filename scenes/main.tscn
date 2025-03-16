@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=54 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://cgkox6ui0qisc" path="res://Prefabs/Level/Village/village_wall_tower.tscn" id="28_yq6so"]
 [ext_resource type="PackedScene" uid="uid://cc32m13ioqhd5" path="res://Prefabs/Level/Nature/hill_01.tscn" id="30_fv21b"]
 [ext_resource type="PackedScene" uid="uid://cbgubjbna1ptd" path="res://Prefabs/Props/imp_tent.tscn" id="32_qkpxi"]
+[ext_resource type="PackedScene" uid="uid://daq3ue3huv0hl" path="res://Prefabs/Level/Village/house_01.tscn" id="33_5q0nq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
 size = Vector3(0.0606982, 0.0425195, 0.185)
@@ -280,6 +281,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.736, -0.181409, 41.4997)
 
 [node name="VillageWallTower8" parent="Game_CanvasLayer/World/Village" instance=ExtResource("28_yq6so")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.736, -0.181409, 18.3232)
+
+[node name="House_01" parent="Game_CanvasLayer/World/Village" instance=ExtResource("33_5q0nq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -23.8089, -0.0683271, 15.9362)
+
+[node name="House_02" parent="Game_CanvasLayer/World/Village" instance=ExtResource("33_5q0nq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21.6076, -0.0683271, 7.76208)
+
+[node name="House_03" parent="Game_CanvasLayer/World/Village" instance=ExtResource("33_5q0nq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.7781, -0.0683271, 0.087184)
+
+[node name="House_04" parent="Game_CanvasLayer/World/Village" instance=ExtResource("33_5q0nq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25.5354, -0.0683271, 23.3456)
+
+[node name="House_05" parent="Game_CanvasLayer/World/Village" instance=ExtResource("33_5q0nq")]
+transform = Transform3D(-6.46428e-08, 0, 1.19063, 0, 1, 0, -1.47886, 0, -5.20443e-08, -21.7525, -0.0683281, 33.3002)
+
+[node name="House_06" parent="Game_CanvasLayer/World/Village" instance=ExtResource("33_5q0nq")]
+transform = Transform3D(1.93929e-07, 0, -1.19063, 0, 1, 0, 1.47886, 0, 1.56133e-07, 11.3745, -0.0683281, 28.7035)
+
+[node name="House_07" parent="Game_CanvasLayer/World/Village" instance=ExtResource("33_5q0nq")]
+transform = Transform3D(1.41899e-07, 0, -1.19063, 0, 1, 0, 1.08209, 0, 1.56133e-07, 22.1738, -0.0683281, 18.706)
+
+[node name="House_08" parent="Game_CanvasLayer/World/Village" instance=ExtResource("33_5q0nq")]
+transform = Transform3D(1.41899e-07, 0, -1.19063, 0, 1, 0, 1.08209, 0, 1.56133e-07, 24.7391, -0.068329, 10.0096)
+
+[node name="House_09" parent="Game_CanvasLayer/World/Village" instance=ExtResource("33_5q0nq")]
+transform = Transform3D(1.41899e-07, 0, -1.19063, 0, 1, 0, 1.08209, 0, 1.56133e-07, 23.1899, -0.068329, 1.15756)
 
 [node name="Nature" type="Node3D" parent="Game_CanvasLayer/World"]
 
@@ -888,18 +916,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0152599, 0.103203, -0.0254334, 0.994218)
+bones/1/rotation = Quaternion(0.016743, 0.102296, -0.0250534, 0.994298)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0136769, 0.000891488, 0.00470981)
-bones/10/rotation = Quaternion(-0.416762, 0.530289, 0.592333, -0.440732)
-bones/12/position = Vector3(-0.0134492, 0.000900902, 0.00488552)
-bones/12/rotation = Quaternion(0.425386, 0.535784, 0.586134, 0.434083)
+bones/10/position = Vector3(0.0136993, 0.000890945, 0.00469352)
+bones/10/rotation = Quaternion(-0.415797, 0.529596, 0.593018, -0.441556)
+bones/12/position = Vector3(-0.0134562, 0.000900997, 0.00488114)
+bones/12/rotation = Quaternion(0.42539, 0.535766, 0.586134, 0.434102)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.196656, 0.149437, 0.969018, -0.110808, -0.985372, 0.129472, 0.974191, -0.0819135, 0.210339, -0.0120982, -0.00757219, 0.0180186)
+transform = Transform3D(-0.197246, 0.147559, 0.969185, -0.113326, -0.985412, 0.126966, 0.973782, -0.08479, 0.211091, -0.0121208, -0.00755023, 0.0179915)
 bone_name = "Hand.R"
 bone_idx = 12
 

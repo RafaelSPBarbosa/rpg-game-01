@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=4 uid="uid://cc32m13ioqhd5"]
+
+[ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="1_ny7l8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7p7t"]
+resource_name = "Hill_01"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.366012, 0.738624, 0.305365, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wsqwo"]
+resource_name = "Hill_02"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.659084, 0.404394, 0.317493, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_v2nar"]
+_surfaces = [{
+"aabb": AABB(-0.0473773, -0.0473773, 0.019948, 0.0947547, 0.0947547, 0.00988808),
+"format": 34359742465,
+"index_count": 54,
+"index_data": PackedByteArray("AAABAAIAAQAAAAMAAwAEAAEAAgAFAAAABQACAAYABwAGAAQABgAHAAUABAADAAcAAAAFAAgABwADAAkAAwAAAAoACAAKAAAACgAJAAMACwAIAAUACgAIAAsABQAHAAsACwAJAAoACQALAAcA"),
+"name": "Hill_01",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("vw5Cvb8OQr3taaM8vBw3vbwcN73taaM8vBw3vbwcNz3taaM8vw5CPb8OQr3taaM8vBw3PbwcN73taaM8vw5Cvb8OQj3taaM8vBw3PbwcNz3taaM8vw5CPb8OQj3taaM8vw5Cvb8OQj26avQ8vw5CPb8OQr26avQ8vw5Cvb8OQr26avQ8vw5CPb8OQj26avQ8")
+}, {
+"aabb": AABB(-0.0447051, -0.0447051, -0.000502306, 0.0894103, 0.0894103, 0.0204503),
+"format": 34359742465,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwACAAEAAgAEAAAAAQAFAAMABgAAAAQABwADAAUABQAGAAcABAAHAAYA"),
+"name": "Hill_02",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("vBw3PbwcNz3taaM8vBw3vbwcNz3taaM8vBw3vbwcNz0prQO6vBw3vbwcN70prQO6vBw3PbwcNz0prQO6vBw3vbwcN73taaM8vBw3PbwcN73taaM8vBw3PbwcN70prQO6")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_46x67"]
+resource_name = "Cube"
+_surfaces = [{
+"aabb": AABB(-0.0473773, -0.0473773, 0.019948, 0.0947547, 0.0947547, 0.00988808),
+"attribute_data": PackedByteArray("aHoOPwAAgD9oeg4/AACAP2h6Dj8AAEA/aHoOPwAAQD9oeg4/AAAAP2h6Dj8AAAA/aHoOPwAAgD5oeg4/AACAPmh6Dj8AAAAAaHoOPwAAAAAAAGA/AACAPgAAYD8AAAA/AAAgPwAAAD8AACA/AACAPgAAID8AAAAAAAAgPwAAgD5oeg4/AACAPmh6Dj8AAAAAAAAgPwAAQD8AACA/AACAP2h6Dj8AAIA/aHoOPwAAQD8AACA/AACAPgAAID8AAAA/aHoOPwAAAD9oeg4/AACAPgAAID8AAAA/AAAgPwAAQD9oeg4/AABAP2h6Dj8AAAA/"),
+"format": 34359742487,
+"index_count": 54,
+"index_data": PackedByteArray("AAABAAIAAgADAAAAAwACAAQABAAFAAMABQAEAAYABgAHAAUABwAGAAgACAAJAAcACgALAAwADAANAAoADgAPABAAEAARAA4AEgATABQAFAAVABIAFgAXABgAGAAZABYAGgAbABwAHAAdABoA"),
+"material": SubResource("StandardMaterial3D_j7p7t"),
+"name": "Hill_01",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("vw5Cvb8OQr3taaM8vBw3vbwcN73taaM8vBw3vbwcNz3taaM8vw5Cvb8OQj3taaM8vBw3PbwcNz3taaM8vw5CPb8OQj3taaM8vBw3PbwcN73taaM8vw5CPb8OQr3taaM8vBw3vbwcN73taaM8vw5Cvb8OQr3taaM8vw5Cvb8OQr26avQ8vw5Cvb8OQj26avQ8vw5CPb8OQj26avQ8vw5CPb8OQr26avQ8vw5Cvb8OQr26avQ8vw5CPb8OQr26avQ8vw5CPb8OQr3taaM8vw5Cvb8OQr3taaM8vw5Cvb8OQj26avQ8vw5Cvb8OQr26avQ8vw5Cvb8OQr3taaM8vw5Cvb8OQj3taaM8vw5CPb8OQr26avQ8vw5CPb8OQj26avQ8vw5CPb8OQj3taaM8vw5CPb8OQr3taaM8vw5CPb8OQj26avQ8vw5Cvb8OQj26avQ8vw5Cvb8OQj3taaM8vw5CPb8OQj3taaM8/////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//f/9/AAD/v/9//38AAP+//3//fwAA/7//f/9/AAD/v/9/AAD/f/+//38AAP9//7//fwAA/3//v/9/AAD/f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//7////9//3//v////3//f/+/////f/9//7////9//3//v/9/////f/+//3////9//7//f////3//v/9/////f/+/")
+}, {
+"aabb": AABB(-0.0447051, -0.0447051, -0.000502306, 0.0894103, 0.0894103, 0.0204503),
+"attribute_data": PackedByteArray("aHoOPwAAAD9oeg4/AABAPwAAwD4AAEA/AADAPgAAAD9oeg4/AACAPmh6Dj8AAAA/AADAPgAAAD8AAMA+AACAPmh6Dj8AAEA/aHoOPwAAgD8AAMA+AACAPwAAwD4AAEA/aHoOPwAAAABoeg4/AACAPgAAwD4AAIA+AADAPgAAAAA="),
+"format": 34359742487,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwA"),
+"material": SubResource("StandardMaterial3D_wsqwo"),
+"name": "Hill_02",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("vBw3PbwcNz3taaM8vBw3vbwcNz3taaM8vBw3vbwcNz0prQO6vBw3PbwcNz0prQO6vBw3PbwcN73taaM8vBw3PbwcNz3taaM8vBw3PbwcNz0prQO6vBw3PbwcN70prQO6vBw3vbwcNz3taaM8vBw3vbwcN73taaM8vBw3vbwcN70prQO6vBw3vbwcNz0prQO6vBw3vbwcN73taaM8vBw3PbwcN73taaM8vBw3PbwcN70prQO6vBw3vbwcN70prQO6/3////9//7//f////3//v/9/////f/+//3////9//7////9//3//v////3//f/+/////f/9//7////9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+//38AAP9//7//fwAA/3//v/9/AAD/f/+//38AAP9//78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_v2nar")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q0r8n"]
+size = Vector3(9.49194, 3.16528, 9.50592)
+
+[node name="Hill_01" type="Node3D"]
+transform = Transform3D(2.01052, 0, 0, 0, 2.01052, 0, 0, 0, 2.01052, 0, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+mesh = SubResource("ArrayMesh_46x67")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_ny7l8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0032959, 1.41785, -0.0370159)
+shape = SubResource("BoxShape3D_q0r8n")

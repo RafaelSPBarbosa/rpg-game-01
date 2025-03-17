@@ -8,13 +8,12 @@ class_name Enemy_Group
 @export var villager_to_enable: Villager = null
 
 func register_enemy(enemy: Enemy):
-	print (enemy)
-	enemy_dictionary.assign({enemy.name: true})
+	enemy_dictionary[enemy.name] = true
 	
 func enemy_died(enemy: Enemy):
 	if enemy_dictionary.has(enemy.name):
 		enemy_dictionary[enemy.name] = false
-	
+		
 	check_if_cleared()
 
 func check_if_cleared():

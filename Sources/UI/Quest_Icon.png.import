@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kqt5j5bx603d"
-path="res://.godot/imported/DialogBox.png-be81c69d02bf0e25e34d8b472c490287.ctex"
+uid="uid://bpp32vr06qeye"
+path="res://.godot/imported/Quest_Icon.png-658685bbb0e0ea2bcc940bd950ec60e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sources/UI/DialogBox.png"
-dest_files=["res://.godot/imported/DialogBox.png-be81c69d02bf0e25e34d8b472c490287.ctex"]
+source_file="res://Sources/UI/Quest_Icon.png"
+dest_files=["res://.godot/imported/Quest_Icon.png-658685bbb0e0ea2bcc940bd950ec60e5.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

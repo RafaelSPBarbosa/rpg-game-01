@@ -22,6 +22,12 @@ window/size/viewport_height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[importer_defaults]
+
+texture={
+&"mipmaps/limit": 0
+}
+
 [input]
 
 move_forward={

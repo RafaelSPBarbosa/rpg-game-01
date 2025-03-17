@@ -1,4 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://dmqv1xp8rh0jy"]
+[gd_scene load_steps=12 format=4 uid="uid://dmqv1xp8rh0jy"]
+
+[ext_resource type="AudioStream" uid="uid://dlqp066wtp28u" path="res://Sources/Audio/campfire.mp3" id="1_l0ppn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8s7mv"]
 resource_name = "Campfire_01"
@@ -119,3 +121,8 @@ shape = SubResource("BoxShape3D_fv21b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.480546, -0.00596046)
 process_material = SubResource("ParticleProcessMaterial_5q0nq")
 draw_pass_1 = SubResource("BoxMesh_j8jky")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_l0ppn")
+autoplay = true
+max_distance = 10.0

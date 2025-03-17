@@ -9,8 +9,8 @@ var is_alive := true
 @onready var is_busy := false
 
 #stats
-@onready var health := 100
-@onready var max_health := 100
+@onready var health := 100.0
+@onready var max_health := 100.0
 @onready var xp := 0
 @onready var xp_by_levels: Array[int] = [
 	10,
@@ -22,7 +22,7 @@ var is_alive := true
 @onready var skill_points = 5
 
 #Attributes
-@onready var endurance := 1
+@onready var endurance := 5
 @onready var agility := 1
 @onready var speed := 1
 @onready var luck := 1
@@ -38,20 +38,19 @@ var is_alive := true
 @onready var hit_sound : AudioStreamPlayer3D = $Body/HitSound
 
 func _ready():
-	time_to_regain_health = Time.get_ticks_msec() + get_health_regen_rate()
+	time_to_regain_health = Time.get_ticks_msec() + 1000
 
 func _physics_process(delta):
 	if Time.get_ticks_msec() >= time_to_regain_health:
-		time_to_regain_health = Time.get_ticks_msec() + get_health_regen_rate()
+		time_to_regain_health = Time.get_ticks_msec() + 1000
 		regenerate_health()
 		
 func regenerate_health():
-	health += max_health / 100
+	health += 1.0 * endurance
 	if health > max_health:
 		health = max_health
-	
-func get_health_regen_rate():
-	return 1000.0 / (endurance / 5)
+		
+	UI.instance.health.update_bar()
 
 func take_damage(damage: float):
 	if health > 0:
@@ -59,10 +58,13 @@ func take_damage(damage: float):
 		hit_sound.play()
 		print("Player took " + str(damage) + " damage")
 		if health <= 0:
+			health = 0
 			die()
 		else:
 			character.take_damage()
 			
+		UI.instance.health.update_bar()
+
 func die():
 	character.die()
 	death_sound.play()

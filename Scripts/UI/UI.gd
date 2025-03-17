@@ -6,3 +6,4 @@ func _init() -> void: instance = self
 
 @onready var dialog_panel: Dialog_Panel = $Dialog_Panel
 @onready var quests: Quest_System = $Quests
+@onready var health: Health_Bar = $Health

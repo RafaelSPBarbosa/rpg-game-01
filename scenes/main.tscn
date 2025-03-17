@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=61 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -35,6 +35,8 @@
 [ext_resource type="PackedScene" uid="uid://daq3ue3huv0hl" path="res://Prefabs/Level/Village/house_01.tscn" id="33_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://bpp32vr06qeye" path="res://Sources/UI/Quest_Icon.png" id="34_dgi5k"]
 [ext_resource type="AudioStream" uid="uid://bc6dpd5hxr4ro" path="res://Sources/Audio/quest_complete.mp3" id="35_j8jky"]
+[ext_resource type="Script" uid="uid://cb1htk68hch5i" path="res://Scripts/UI/Health_Bar.gd" id="36_kmb1v"]
+[ext_resource type="Texture2D" uid="uid://br65clfq65l8m" path="res://Sources/UI/Health_Bar_Shadow.png" id="37_fuf3a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
 size = Vector3(0.0606982, 0.0425195, 0.185)
@@ -171,6 +173,19 @@ shadow_color = Color(0, 0, 0, 0.388235)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j8jky"]
 texture = ExtResource("34_dgi5k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pibwh"]
+texture = ExtResource("37_fuf3a")
+modulate_color = Color(1, 1, 1, 0.184314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8jky"]
+bg_color = Color(0.554446, 0.809195, 0.269738, 1)
+border_color = Color(0.340503, 0.240601, 0.243, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 1
 
 [node name="Root" type="Node"]
 
@@ -923,18 +938,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0159322, 0.102792, -0.0252612, 0.994254)
+bones/1/rotation = Quaternion(0.0180534, -0.0658393, 0.0140636, 0.997568)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0136871, 0.000891242, 0.00470243)
-bones/10/rotation = Quaternion(-0.416325, 0.529975, 0.592644, -0.441105)
-bones/12/position = Vector3(-0.0134524, 0.000900945, 0.00488354)
-bones/12/rotation = Quaternion(0.425388, 0.535776, 0.586134, 0.434091)
+bones/10/position = Vector3(0.0140312, 0.00088279, 0.00445173)
+bones/10/rotation = Quaternion(-0.393972, 0.512115, 0.607623, -0.461864)
+bones/12/position = Vector3(-0.0140463, 0.000909092, 0.00450782)
+bones/12/rotation = Quaternion(0.373474, 0.48882, 0.621987, 0.484463)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.196923, 0.148586, 0.969094, -0.11195, -0.985392, 0.128336, 0.974006, -0.0832174, 0.21068, -0.0121084, -0.00756225, 0.0180063)
+transform = Transform3D(-0.277617, -0.360698, 0.890408, 0.00906804, -0.927782, -0.373011, 0.960649, -0.0954801, 0.260839, -0.0145365, -0.00264464, 0.017032)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -1160,6 +1175,69 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_j8jky")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="UI_CanvasLayer/UI/Quests"]
 stream = ExtResource("35_j8jky")
 volume_db = -10.0
+
+[node name="Health" type="Control" parent="UI_CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -301.0
+offset_top = -76.0
+offset_right = 301.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(300, 20)
+script = ExtResource("36_kmb1v")
+
+[node name="Shadow" type="Panel" parent="UI_CanvasLayer/UI/Health"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -121.0
+offset_right = 258.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 2.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_pibwh")
+
+[node name="BG" type="Panel" parent="UI_CanvasLayer/UI/Health"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -47.0
+offset_right = 149.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 2.5)
+
+[node name="Bar" type="Panel" parent="UI_CanvasLayer/UI/Health"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -45.0
+offset_right = 148.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(148, 2.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_j8jky")
 
 [connection signal="area_entered" from="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]

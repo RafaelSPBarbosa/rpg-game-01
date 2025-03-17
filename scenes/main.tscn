@@ -334,7 +334,7 @@ transform = Transform3D(1.41899e-07, 0, -1.19063, 0, 1, 0, 1.08209, 0, 1.56133e-
 [node name="Nature" type="Node3D" parent="Game_CanvasLayer/World"]
 
 [node name="Grass" type="MeshInstance3D" parent="Game_CanvasLayer/World/Nature"]
-transform = Transform3D(553.14, 0, 0, 0, 44.7747, 0, 0, 0, 553.14, 0, 0, 0)
+transform = Transform3D(173.171, 0, 0, 0, 44.7747, 0, 0, 0, 173.171, 0, 0, 0)
 material_override = ExtResource("2_0wfyh")
 mesh = SubResource("PlaneMesh_0wfyh")
 skeleton = NodePath("../..")
@@ -343,6 +343,12 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Nature/Grass/StaticBody3D"]
 shape = SubResource("BoxShape3D_tefeu")
+
+[node name="LowRes" type="MeshInstance3D" parent="Game_CanvasLayer/World/Nature"]
+transform = Transform3D(553.14, 0, 0, 0, 44.7747, 0, 0, 0, 553.14, 0, -0.163865, 0)
+material_override = ExtResource("2_0wfyh")
+mesh = SubResource("PlaneMesh_0wfyh")
+skeleton = NodePath("../..")
 
 [node name="MountainHills" type="Node3D" parent="Game_CanvasLayer/World/Nature"]
 transform = Transform3D(11.3348, 0, 0, 0, 11.3348, 0, 0, 0, 11.3348, -180.017, -13.9851, -559.941)
@@ -938,14 +944,14 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0223291, -0.0514564, 0.0150733, 0.998312)
-bones/10/position = Vector3(0.0149395, 0.000860841, 0.00378991)
-bones/10/rotation = Quaternion(-0.318738, 0.456597, 0.650888, -0.516014)
-bones/12/position = Vector3(-0.0138798, 0.000906808, 0.00461315)
-bones/12/rotation = Quaternion(0.425639, 0.534656, 0.58611, 0.435257)
+bones/1/rotation = Quaternion(0.00279916, -0.0220173, 0.00230578, 0.999751)
+bones/10/position = Vector3(0.0136502, 0.000891798, 0.00472931)
+bones/10/rotation = Quaternion(-0.415616, 0.528656, 0.593076, -0.442772)
+bones/12/position = Vector3(-0.0139054, 0.00090716, 0.00459693)
+bones/12/rotation = Quaternion(0.363587, 0.480177, 0.628115, 0.492653)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.287578, -0.156516, 0.944882, 0.0376399, -0.987641, -0.152143, 0.957017, -0.0081875, 0.289915, -0.0143022, -0.00312564, 0.0173097)
+transform = Transform3D(-0.253812, -0.31151, 0.915719, 0.0220538, -0.948338, -0.316494, 0.967002, -0.060135, 0.24757, -0.0140984, -0.00398505, 0.0174739)
 bone_name = "Hand.R"
 bone_idx = 12
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c31n1bcksl7hk"]
+[gd_scene load_steps=14 format=3 uid="uid://c31n1bcksl7hk"]
 
 [ext_resource type="Script" uid="uid://b1buy25je4b2q" path="res://Scripts/NPCs/villager.gd" id="1_d6gm7"]
 [ext_resource type="PackedScene" uid="uid://cpswfllu5mpm6" path="res://Prefabs/Skins/character.tscn" id="2_lau5n"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://btdj1w6go4uig" path="res://Sources/Audio/orc-aggroed.mp3" id="5_nx278"]
 [ext_resource type="AudioStream" uid="uid://ia61or0tt22w" path="res://Sources/Audio/orc-death.mp3" id="6_yx62h"]
 [ext_resource type="AudioStream" uid="uid://cl7nm2h206xy5" path="res://Sources/Audio/take-damage.mp3" id="7_hxbeh"]
+[ext_resource type="AudioStream" uid="uid://b6aurt5twdh1q" path="res://Sources/Audio/NPC_Talk.mp3" id="8_lau5n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y6deb"]
 
@@ -44,15 +45,11 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("3_28pq3")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.00869472, -0.105548, 0.0271305, 0.994006)
-bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0145538, 0.000870204, 0.00407095)
-bones/10/rotation = Quaternion(-0.331647, 0.465827, 0.644053, -0.508144)
-bones/12/position = Vector3(-0.0140865, 0.000909644, 0.00448239)
-bones/12/rotation = Quaternion(0.411264, 0.522446, 0.596562, 0.449473)
-bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
-bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
-bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
+bones/1/rotation = Quaternion(-0.0270513, -0.0793471, 0.0210423, 0.996258)
+bones/10/position = Vector3(0.0147874, 0.000864534, 0.00390076)
+bones/10/rotation = Quaternion(-0.316036, 0.454501, 0.652217, -0.517845)
+bones/12/position = Vector3(-0.0139613, 0.000907927, 0.00456158)
+bones/12/rotation = Quaternion(0.424529, 0.533792, 0.586704, 0.436601)
 
 [node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("4_6j0di")
@@ -72,6 +69,10 @@ volume_db = -20.0
 
 [node name="HitSound" type="AudioStreamPlayer3D" parent="Body"]
 stream = ExtResource("7_hxbeh")
+
+[node name="TalkSound" type="AudioStreamPlayer3D" parent="Body"]
+stream = ExtResource("8_lau5n")
+volume_db = -5.0
 
 [node name="PlayerTalkPosition" type="Node3D" parent="Body"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 2.57947)

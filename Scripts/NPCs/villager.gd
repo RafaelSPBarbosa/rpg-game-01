@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 class_name Villager
 
 @onready var is_player_in_range = false
@@ -16,6 +16,10 @@ class_name Villager
 @export var start_enabled: bool = true
 @export var animatable_structure: Animatable_Structure = null
 
+@onready var talk_sound = $Body/TalkSound
+
+@onready var character = $Body/Skin/character
+
 @export var lines: Array[String] = []
 @onready var cur_line := 0
 @export var quest: String = ""
@@ -29,6 +33,7 @@ func _ready():
 		set_process(false)
 		set_physics_process(false)
 		set_process_input(false)
+		visible = false
 
 func _on_area_3d_area_entered(area):
 	if area.is_in_group("Player"):
@@ -79,10 +84,13 @@ func _input(event: InputEvent) -> void:
 					next_villager.set_process(true)
 					next_villager.set_physics_process(true)
 					next_villager.set_process_input(true)
+					next_villager.visible = true
 					queue_free()
 					print("Replacing " + name + " with " + next_villager.name)
 			return
 
 func say_line(line: String):
 	UI.instance.dialog_panel.start_or_write(display_name, line)
+	character.talk()
+	talk_sound.play()
 	print("Dialog with " + display_name + ": " + line)

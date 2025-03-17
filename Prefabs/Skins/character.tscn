@@ -39,6 +39,8 @@ xfade_time = 0.2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dy8od"]
 xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7a5ye"]
 switch_mode = 2
@@ -74,22 +76,22 @@ states/Move/position = Vector2(608, 71)
 states/Talk/node = SubResource("AnimationNodeAnimation_6dnk5")
 states/Talk/position = Vector2(357, -19)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_y14h8"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_uiwr8"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_bndk6"), "Idle", "Talk", SubResource("AnimationNodeStateMachineTransition_huqno"), "Talk", "Idle", SubResource("AnimationNodeStateMachineTransition_dy8od"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_7a5ye"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_4r2sn"), "Take Damage", "Move", SubResource("AnimationNodeStateMachineTransition_6dnk5"), "Take Damage", "Idle", SubResource("AnimationNodeStateMachineTransition_yyk3a"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_ipit1"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_aap87")]
-graph_offset = Vector2(-167, -51)
+graph_offset = Vector2(-179, -44)
 
 [node name="character" instance=ExtResource("1_uiwr8")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/1/rotation = Quaternion(0.0140311, -0.0951593, 0.0232494, 0.995092)
+bones/1/rotation = Quaternion(0.0164326, -0.0545424, 0.0108541, 0.998317)
 bones/2/rotation = Quaternion(0, -0.234415, 0, 0.972137)
 bones/4/rotation = Quaternion(0, 0.234415, 0, 0.972137)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
 bones/6/scale = Vector3(1, 1, 1)
 bones/8/scale = Vector3(1, 1, 1)
-bones/10/position = Vector3(0.014284, 0.000876752, 0.0042675)
-bones/10/rotation = Quaternion(-0.368891, 0.493328, 0.623152, -0.481901)
+bones/10/position = Vector3(0.0139256, 0.000885287, 0.00452867)
+bones/10/rotation = Quaternion(-0.400898, 0.517375, 0.603094, -0.45594)
 bones/10/scale = Vector3(1, 1, 1)
-bones/12/position = Vector3(-0.0141729, 0.00091083, 0.0044277)
-bones/12/rotation = Quaternion(0.387605, 0.501742, 0.612959, 0.471486)
+bones/12/position = Vector3(-0.0140072, 0.000908556, 0.00453252)
+bones/12/rotation = Quaternion(0.369935, 0.485555, 0.624164, 0.487652)
 bones/12/scale = Vector3(1, 1, 1)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)

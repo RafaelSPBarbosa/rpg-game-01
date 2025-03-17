@@ -20,4 +20,4 @@ func die():
 	state_machine.travel("Die")
 	
 func talk():
-	state_machine.travel("Talk")
+	state_machine.start("Talk")

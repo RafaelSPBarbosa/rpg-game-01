@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=77 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://kqt5j5bx603d" path="res://Sources/UI/DialogBox.png" id="18_dp3eg"]
 [ext_resource type="Script" uid="uid://cvhqunexfryy2" path="res://Scripts/UI/Dialog_Panel.gd" id="20_gqmmt"]
 [ext_resource type="Script" uid="uid://bcd307r6nycf7" path="res://Scripts/QuestSystem/Quest_System.gd" id="21_yc10j"]
+[ext_resource type="AudioStream" uid="uid://cv5kyjfky101x" path="res://Sources/Audio/player_level_up.mp3" id="25_cjqg0"]
 [ext_resource type="PackedScene" uid="uid://yyvhg3ae5ebv" path="res://Prefabs/Level/Village/village_wall.tscn" id="27_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://cgkox6ui0qisc" path="res://Prefabs/Level/Village/village_wall_tower.tscn" id="28_yq6so"]
 [ext_resource type="PackedScene" uid="uid://cc32m13ioqhd5" path="res://Prefabs/Level/Nature/hill_01.tscn" id="30_fv21b"]
@@ -39,9 +40,11 @@
 [ext_resource type="Texture2D" uid="uid://br65clfq65l8m" path="res://Sources/UI/Health_Bar_Shadow.png" id="37_fuf3a"]
 [ext_resource type="Texture2D" uid="uid://ddyolwvg4c7hx" path="res://Sources/UI/Button_HUD.png" id="38_c6pm6"]
 [ext_resource type="Texture2D" uid="uid://cu71pkvtfd776" path="res://Sources/UI/strong.png" id="39_5he1u"]
+[ext_resource type="Script" uid="uid://cd4c5mgagthmm" path="res://Scripts/UI/XP_Bar.gd" id="39_vchkt"]
 [ext_resource type="Texture2D" uid="uid://ckbd308lukl5f" path="res://Sources/UI/Keybind_Icon.png" id="40_5he1u"]
 [ext_resource type="Script" uid="uid://b60x8lv6wp68a" path="res://Scripts/UI/Character_Stats_Screen.gd" id="41_5poiv"]
 [ext_resource type="Script" uid="uid://dh1l0dsrui5e5" path="res://Scripts/UI/Attribute_UI.gd" id="42_2cjbq"]
+[ext_resource type="AudioStream" uid="uid://dm6i2ga2jyve5" path="res://Sources/Audio/player_spend_skill_point.mp3" id="43_chjal"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
 size = Vector3(0.0606982, 0.0425195, 0.185)
@@ -188,6 +191,15 @@ modulate_color = Color(1, 1, 1, 0.184314)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8jky"]
 bg_color = Color(0.554446, 0.809195, 0.269738, 1)
+border_color = Color(0.340503, 0.240601, 0.243, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txyw0"]
+bg_color = Color(0.686792, 6.78644e-05, 0.561627, 1)
 border_color = Color(0.340503, 0.240601, 0.243, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
@@ -970,14 +982,14 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0365885, 0.0598548, -0.0105256, 0.997481)
-bones/10/position = Vector3(0.0141865, 0.000879119, 0.00433855)
-bones/10/rotation = Quaternion(-0.382342, 0.504396, 0.615201, -0.470028)
-bones/12/position = Vector3(-0.0136072, 0.000903069, 0.00478559)
-bones/12/rotation = Quaternion(0.42548, 0.53537, 0.586126, 0.434514)
+bones/1/rotation = Quaternion(-0.0400436, 0.0821795, -0.0219721, 0.99557)
+bones/10/position = Vector3(0.0133588, 0.000898945, 0.00494157)
+bones/10/rotation = Quaternion(-0.425293, 0.536079, 0.586167, -0.433767)
+bones/12/position = Vector3(-0.0135551, 0.000902353, 0.00481857)
+bones/12/rotation = Quaternion(0.402896, 0.515747, 0.602594, 0.456684)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.229942, 0.0636912, 0.971118, -0.133692, -0.990463, 0.0333043, 0.963978, -0.122172, 0.236264, -0.012916, -0.00643856, 0.0174266)
+transform = Transform3D(-0.216191, 0.02892, 0.975923, 0.0244516, -0.999087, 0.0350231, 0.976045, 0.0314346, 0.215286, -0.0125284, -0.00685701, 0.0186029)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -1012,6 +1024,10 @@ volume_db = -30.0
 [node name="FootstepSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Player/Body"]
 stream = ExtResource("11_trceg")
 volume_db = -20.0
+
+[node name="LevelUpSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Player/Body"]
+stream = ExtResource("25_cjqg0")
+volume_db = -5.0
 
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Player/Body"]
 stream = ExtResource("12_a8y0u")
@@ -1282,7 +1298,88 @@ grow_vertical = 2
 pivot_offset = Vector2(148, 2.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_j8jky")
 
+[node name="XPBar" type="Control" parent="UI_CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -301.0
+offset_top = -76.0
+offset_right = 301.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(300, 20)
+script = ExtResource("39_vchkt")
+
+[node name="Shadow" type="Panel" parent="UI_CanvasLayer/UI/XPBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -100.0
+offset_right = 258.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 2.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_pibwh")
+
+[node name="BG" type="Panel" parent="UI_CanvasLayer/UI/XPBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -26.0
+offset_right = 149.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 2.5)
+
+[node name="Bar" type="Panel" parent="UI_CanvasLayer/UI/XPBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -24.0
+offset_right = 148.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(148, 2.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_txyw0")
+
+[node name="Label" type="Label" parent="UI_CanvasLayer/UI/XPBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 20.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Lvl 1"
+
 [node name="Buttons" type="Control" parent="UI_CanvasLayer/UI"]
+visible = false
 anchors_preset = 0
 offset_left = 46.0
 offset_top = 48.0
@@ -1337,6 +1434,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Character_Stats_Screen" type="Control" parent="UI_CanvasLayer/UI"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -1723,6 +1821,10 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="spend_skill_point_Audio" type="AudioStreamPlayer3D" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel"]
+stream = ExtResource("43_chjal")
+volume_db = -5.0
 
 [connection signal="area_entered" from="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]

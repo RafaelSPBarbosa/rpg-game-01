@@ -19,10 +19,11 @@ var is_alive := true
 	80,
 	160
 ]
+@onready var level = 1
 @onready var skill_points = 5
 
 #Attributes
-@onready var endurance := 5
+@onready var endurance := 1
 @onready var agility := 1
 @onready var speed := 1
 @onready var luck := 1
@@ -36,6 +37,7 @@ var is_alive := true
 
 @onready var death_sound : AudioStreamPlayer3D = $Body/DeathSound
 @onready var hit_sound : AudioStreamPlayer3D = $Body/HitSound
+@onready var level_up_sound = $Body/LevelUpSound
 
 func _ready():
 	time_to_regain_health = Time.get_ticks_msec() + 1000
@@ -69,3 +71,16 @@ func die():
 	character.die()
 	death_sound.play()
 	is_alive = false
+
+func gain_xp(amount: int):
+	xp += amount
+	if(xp >= xp_by_levels[level - 1]):
+		level_up()
+		
+	UI.instance.xp_bar.update_bar()
+		
+func level_up():
+	xp -= xp_by_levels[level - 1]
+	level += 1
+	level_up_sound.play()
+	print("Player leveled up to level " + str(level))

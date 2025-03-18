@@ -9,6 +9,7 @@ func _init() -> void: instance = self
 @onready var health: Health_Bar = $Health
 @onready var buttons: Control = $Buttons
 @onready var character_stats_screen: Character_Stats_Screen = $Character_Stats_Screen
+@onready var xp_bar: XP_Bar = $XPBar
 
 func hide_ui():
 	var tween = get_tree().create_tween()

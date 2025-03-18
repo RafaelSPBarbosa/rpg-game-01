@@ -129,3 +129,4 @@ func die():
 	state = ai_states.dead
 	death_sound.play()
 	group.enemy_died(self)
+	Player.instance.gain_xp(5)

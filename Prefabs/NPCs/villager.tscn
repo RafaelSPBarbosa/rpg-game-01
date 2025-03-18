@@ -45,11 +45,11 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("3_28pq3")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0372518, 0.0857986, -0.0227685, 0.995355)
-bones/10/position = Vector3(0.013358, 0.000898986, 0.00494221)
-bones/10/rotation = Quaternion(-0.425295, 0.536077, 0.586165, -0.43377)
-bones/12/position = Vector3(-0.0135361, 0.000902093, 0.00483057)
-bones/12/rotation = Quaternion(0.406183, 0.518643, 0.600269, 0.453544)
+bones/1/rotation = Quaternion(0.0182376, -0.0709496, 0.0155701, 0.997192)
+bones/10/position = Vector3(0.014082, 0.000881588, 0.00441471)
+bones/10/rotation = Quaternion(-0.390476, 0.509472, 0.609867, -0.464789)
+bones/12/position = Vector3(-0.0140651, 0.00090935, 0.00449594)
+bones/12/rotation = Quaternion(0.375343, 0.490529, 0.620822, 0.482782)
 
 [node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("4_6j0di")
@@ -72,7 +72,7 @@ stream = ExtResource("7_hxbeh")
 
 [node name="TalkSound" type="AudioStreamPlayer3D" parent="Body"]
 stream = ExtResource("8_lau5n")
-volume_db = -10.0
+volume_db = -15.0
 
 [node name="PlayerTalkPosition" type="Node3D" parent="Body"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 2.57947)

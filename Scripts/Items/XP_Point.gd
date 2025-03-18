@@ -6,7 +6,7 @@ class_name XP_Point
 @onready var max_speed : float = 20.0
 @onready var acceleration : float = 30.0
 
-@export var worth := 5.0
+@export var worth := 1.0
 
 func _physics_process(delta):
 	if is_close_to_player:

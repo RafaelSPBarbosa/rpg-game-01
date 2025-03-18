@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=93 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -34,10 +34,13 @@
 [ext_resource type="PackedScene" uid="uid://cgkox6ui0qisc" path="res://Prefabs/Level/Village/village_wall_tower.tscn" id="28_yq6so"]
 [ext_resource type="AudioStream" uid="uid://bab5p5ehekdjd" path="res://Sources/Audio/collect_xp_point.mp3" id="29_nvyfr"]
 [ext_resource type="PackedScene" uid="uid://cc32m13ioqhd5" path="res://Prefabs/Level/Nature/hill_01.tscn" id="30_fv21b"]
+[ext_resource type="Script" uid="uid://k3qjc85urciu" path="res://Scripts/Enemies/Boss.gd" id="32_bjg73"]
 [ext_resource type="PackedScene" uid="uid://cbgubjbna1ptd" path="res://Prefabs/Props/imp_tent.tscn" id="32_qkpxi"]
 [ext_resource type="PackedScene" uid="uid://b3d1wdg8asj0k" path="res://Prefabs/Items/xp_point.tscn" id="32_vc5cj"]
 [ext_resource type="PackedScene" uid="uid://daq3ue3huv0hl" path="res://Prefabs/Level/Village/house_01.tscn" id="33_5q0nq"]
+[ext_resource type="AudioStream" uid="uid://btdj1w6go4uig" path="res://Sources/Audio/orc-aggroed.mp3" id="34_0loja"]
 [ext_resource type="Texture2D" uid="uid://bpp32vr06qeye" path="res://Sources/UI/Quest_Icon.png" id="34_dgi5k"]
+[ext_resource type="AudioStream" uid="uid://ia61or0tt22w" path="res://Sources/Audio/orc-death.mp3" id="35_ids8r"]
 [ext_resource type="AudioStream" uid="uid://bc6dpd5hxr4ro" path="res://Sources/Audio/quest_complete.mp3" id="35_j8jky"]
 [ext_resource type="Script" uid="uid://cb1htk68hch5i" path="res://Scripts/UI/Health_Bar.gd" id="36_kmb1v"]
 [ext_resource type="Texture2D" uid="uid://br65clfq65l8m" path="res://Sources/UI/Health_Bar_Shadow.png" id="37_fuf3a"]
@@ -162,6 +165,51 @@ adjustment_saturation = 1.2
 radius = 0.64
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bjg73"]
+radius = 1.041
+height = 3.743
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu4jf"]
+albedo_color = Color(1, 0.28527, 0.790448, 1)
+emission = Color(0.368239, 3.60981e-07, 0.214718, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_og1vs"]
+radius = 0.64
+
+[sub_resource type="Curve" id="Curve_bjg73"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.192568, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qkpxi"]
+curve = SubResource("Curve_bjg73")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bu4jf"]
+emission_shape = 3
+emission_box_extents = Vector3(0.3, 0.2, 0.3)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_qkpxi")
+turbulence_noise_strength = 6.99
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o7ddy"]
+albedo_color = Color(1, 0.315817, 0.758644, 1)
+emission_enabled = true
+emission = Color(0.828153, 5.93933e-05, 0.639473, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_0loja"]
+material = SubResource("StandardMaterial3D_o7ddy")
+
+[sub_resource type="BoxMesh" id="BoxMesh_o7ddy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjg73"]
+albedo_color = Color(0.850257, 1.79046e-05, 0.584947, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dp3eg"]
 texture = ExtResource("18_dp3eg")
@@ -985,14 +1033,14 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0376929, 0.0853633, -0.022673, 0.995378)
-bones/10/position = Vector3(0.0133581, 0.000898981, 0.00494213)
-bones/10/rotation = Quaternion(-0.425295, 0.536077, 0.586165, -0.433769)
-bones/12/position = Vector3(-0.0135385, 0.000902126, 0.00482903)
-bones/12/rotation = Quaternion(0.40577, 0.518284, 0.600564, 0.453933)
+bones/1/rotation = Quaternion(0.0259609, 0.0337537, -0.00369086, 0.999086)
+bones/10/position = Vector3(0.0145079, 0.000871319, 0.00410441)
+bones/10/rotation = Quaternion(-0.364072, 0.490535, 0.626206, -0.484451)
+bones/12/position = Vector3(-0.0136739, 0.000903984, 0.00474342)
+bones/12/rotation = Quaternion(0.425519, 0.535196, 0.586122, 0.434695)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.214286, 0.0454473, 0.975713, 0.0161552, -0.998615, 0.0500621, 0.976637, 0.0264904, 0.213255, -0.0124635, -0.00695131, 0.0185958)
+transform = Transform3D(-0.248285, 0.0126518, 0.968604, -0.100799, -0.994824, -0.0128438, 0.963428, -0.100823, 0.248275, -0.0133151, -0.00569775, 0.0173877)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -1076,6 +1124,95 @@ transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -1.45643, 
 [node name="Imp_03" parent="Game_CanvasLayer/Imp_Camp_01" instance=ExtResource("9_85g3d")]
 transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 0.623571, -2.38419e-07, 2.40979)
 
+[node name="Boss" type="Node3D" parent="Game_CanvasLayer"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 9.03372, -2.38419e-07, -63.3928)
+script = ExtResource("32_bjg73")
+move_speed = 3.0
+
+[node name="Body" type="CharacterBody3D" parent="Game_CanvasLayer/Boss"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/Boss/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84456, 0)
+shape = SubResource("CapsuleShape3D_bjg73")
+
+[node name="Skin" type="Node3D" parent="Game_CanvasLayer/Boss/Body"]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)
+
+[node name="character" parent="Game_CanvasLayer/Boss/Body/Skin" instance=ExtResource("8_tipki")]
+transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
+script = ExtResource("7_o6xl0")
+
+[node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
+bones/1/rotation = Quaternion(0.0259609, 0.0337537, -0.00369086, 0.999086)
+bones/10/position = Vector3(0.0145079, 0.000871319, 0.00410441)
+bones/10/rotation = Quaternion(-0.364072, 0.490535, 0.626206, -0.484451)
+bones/12/position = Vector3(-0.0136739, 0.000903984, 0.00474342)
+bones/12/rotation = Quaternion(0.425519, 0.535196, 0.586122, 0.434695)
+
+[node name="Cube" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bu4jf")
+
+[node name="Area3D" type="Area3D" parent="Game_CanvasLayer/Boss/Body" groups=["Enemy"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/Boss/Body/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.879536, 0)
+shape = SubResource("CapsuleShape3D_og1vs")
+
+[node name="AggroSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Boss/Body"]
+stream = ExtResource("34_0loja")
+volume_db = 20.0
+pitch_scale = 0.2
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Boss/Body"]
+stream = ExtResource("35_ids8r")
+volume_db = -20.0
+pitch_scale = 0.2
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Boss/Body"]
+stream = ExtResource("13_jkv2x")
+pitch_scale = 0.6
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
+transform = Transform3D(93.305, 0.853611, 6.28963, -0.525813, 93.3921, -4.87462, -6.32547, 4.82802, 93.1815, 0, 1.55762, 0)
+bone_name = "Head"
+bone_idx = 1
+use_external_skeleton = true
+external_skeleton = NodePath("../Skin/character/Armature/Skeleton3D")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Game_CanvasLayer/Boss/Body/BoneAttachment3D"]
+transform = Transform3D(0.014514, -0.000781217, -0.00422567, 0.000649792, 0.0151124, -0.000562039, 0.00424787, 0.000357515, 0.0145241, 0, 0.021, 0)
+process_material = SubResource("ParticleProcessMaterial_bu4jf")
+draw_pass_1 = SubResource("BoxMesh_0loja")
+
+[node name="Horns" type="Node3D" parent="Game_CanvasLayer/Boss/Body/BoneAttachment3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.18323e-11, 0.0210396, 0.00933324)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Game_CanvasLayer/Boss/Body/BoneAttachment3D/Horns"]
+transform = Transform3D(0.00344242, 1.37087e-10, -6.94355e-11, -2.18279e-11, 0.00800646, -0.00177071, 0, 0.0048024, 0.00295209, -0.00609618, 2.56123e-11, 5.12961e-11)
+mesh = SubResource("BoxMesh_o7ddy")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Game_CanvasLayer/Boss/Body/BoneAttachment3D/Horns"]
+transform = Transform3D(0.0065585, -0.00184193, -1.96906e-10, 0.00324841, 0.00371821, 2.45469e-05, -4.24673e-05, -4.86099e-05, 0.00187764, 0.00403129, -0.00525319, 0.00143022)
+material_override = SubResource("StandardMaterial3D_bjg73")
+mesh = SubResource("BoxMesh_o7ddy")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Game_CanvasLayer/Boss/Body/BoneAttachment3D/Horns"]
+transform = Transform3D(0.00655572, 0.00184511, 0, -0.00325405, 0.00371667, 2.29411e-05, 3.97577e-05, -4.541e-05, 0.00187766, -0.004, -0.005, 0.001)
+material_override = SubResource("StandardMaterial3D_bjg73")
+mesh = SubResource("BoxMesh_o7ddy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Game_CanvasLayer/Boss/Body/BoneAttachment3D/Horns"]
+transform = Transform3D(0.00344242, 1.37087e-10, -6.94355e-11, -2.18279e-11, 0.00800646, -0.00177071, 0, 0.0048024, 0.00295209, 0.00544963, -3.02077e-11, -1.53888e-10)
+mesh = SubResource("BoxMesh_o7ddy")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Game_CanvasLayer/Boss/Body/BoneAttachment3D/Horns"]
+transform = Transform3D(0.002, 3.73938e-11, -2.33651e-12, -1.26817e-11, 0.00589728, -0.000368486, -6.66134e-19, 0.00110546, 0.00196576, -0.00609618, 0.00619893, 0.00278779)
+mesh = SubResource("BoxMesh_o7ddy")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Game_CanvasLayer/Boss/Body/BoneAttachment3D/Horns"]
+transform = Transform3D(0.002, 3.73938e-11, -2.33651e-12, -1.26817e-11, 0.00589728, -0.000368486, -6.66134e-19, 0.00110546, 0.00196576, 0.00544963, 0.00619893, 0.00278779)
+mesh = SubResource("BoxMesh_o7ddy")
+
 [node name="Villager_Carlos" type="Node3D" parent="Game_CanvasLayer"]
 transform = Transform3D(0.0664826, 0, -0.997788, 0, 1, 0, 0.997788, 0, 0.0664826, -7.89747, 0, 11.8138)
 
@@ -1135,6 +1272,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.1448, 1.74891, 26.6742)
 
 [node name="XP_Point9" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8516, 1.74891, 26.6433)
+
+[node name="XP_Point10" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.3885, 1.74891, -25.675)
+
+[node name="XP_Point11" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.7014, 2.23803, -26.2564)
+
+[node name="XP_Point12" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7731, 2.23803, -35.8821)
+
+[node name="XP_Point13" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4228, 1.70334, -35.0414)
+
+[node name="XP_Point14" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.6157, 0.942401, -35.9995)
+
+[node name="XP_Point15" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6973, 1.97739, -8.68246)
+
+[node name="XP_Point16" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9309, 0.981151, -9.45824)
 
 [node name="UI_CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -1877,3 +2035,4 @@ volume_db = -5.0
 
 [editable path="Game_CanvasLayer/World/Village/Gate"]
 [editable path="Game_CanvasLayer/Player/Body/Skin/character"]
+[editable path="Game_CanvasLayer/Boss/Body/Skin/character"]

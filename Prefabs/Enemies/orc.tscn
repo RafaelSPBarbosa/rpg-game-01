@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ci4ftwvou63co"]
+[gd_scene load_steps=15 format=3 uid="uid://ci4ftwvou63co"]
 
 [ext_resource type="Script" uid="uid://ddqq2vxmhasn2" path="res://Scripts/Enemies/Enemy.gd" id="1_f0fbn"]
 [ext_resource type="PackedScene" uid="uid://cpswfllu5mpm6" path="res://Prefabs/Skins/character.tscn" id="2_8vw3x"]
@@ -12,6 +12,35 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_og1vs"]
 radius = 0.64
+
+[sub_resource type="Curve" id="Curve_s5rhj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.192568, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_s5rhj"]
+curve = SubResource("Curve_s5rhj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_myui4"]
+emission_shape = 3
+emission_box_extents = Vector3(0.3, 0.2, 0.3)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_s5rhj")
+turbulence_noise_strength = 6.99
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_myui4"]
+albedo_color = Color(0.828931, 0.574326, 0, 1)
+emission_enabled = true
+emission = Color(0.803833, 0.582396, 7.70092e-07, 1)
+emission_energy_multiplier = 2.95
+
+[sub_resource type="BoxMesh" id="BoxMesh_gcgu5"]
+material = SubResource("StandardMaterial3D_myui4")
 
 [node name="Orc" type="Node3D"]
 script = ExtResource("1_f0fbn")
@@ -30,11 +59,11 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("3_gpi1x")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.00313687, -0.107182, 0.0274296, 0.993856)
-bones/10/position = Vector3(0.0144371, 0.000873036, 0.00415595)
-bones/10/rotation = Quaternion(-0.346554, 0.476764, 0.635959, -0.49815)
-bones/12/position = Vector3(-0.014149, 0.000910501, 0.00444284)
-bones/12/rotation = Quaternion(0.401293, 0.514044, 0.603685, 0.458571)
+bones/1/rotation = Quaternion(-0.00427328, -0.0169947, 0.0078286, 0.999816)
+bones/10/position = Vector3(0.0150915, 0.000857152, 0.0036792)
+bones/10/rotation = Quaternion(-0.333194, 0.467374, 0.643386, -0.506554)
+bones/12/position = Vector3(-0.0137941, 0.000905634, 0.00466732)
+bones/12/rotation = Quaternion(0.425589, 0.53488, 0.586115, 0.435024)
 
 [node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("4_s5rhj")
@@ -54,5 +83,17 @@ volume_db = -20.0
 
 [node name="HitSound" type="AudioStreamPlayer3D" parent="Body"]
 stream = ExtResource("7_s5rhj")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Body"]
+transform = Transform3D(37.6736, -0.584692, -1.28369, 0.595643, 37.694, 0.312114, 1.27865, -0.332177, 37.6768, 8.47033e-22, 0.627906, -7.10543e-15)
+bone_name = "Head"
+bone_idx = 1
+use_external_skeleton = true
+external_skeleton = NodePath("../Skin/character/Armature/Skeleton3D")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Body/BoneAttachment3D"]
+transform = Transform3D(0.014514, -0.000781217, -0.00422567, 0.000649792, 0.0151124, -0.000562039, 0.00424787, 0.000357515, 0.0145241, 0.00037987, 0.0206175, -0.00294744)
+process_material = SubResource("ParticleProcessMaterial_myui4")
+draw_pass_1 = SubResource("BoxMesh_gcgu5")
 
 [editable path="Body/Skin/character"]

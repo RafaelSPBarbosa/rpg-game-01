@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3d1wdg8asj0k"]
+
+[ext_resource type="Script" uid="uid://dbg1loqm2pg6b" path="res://Scripts/Items/XP_Point.gd" id="1_drjb8"]
+[ext_resource type="Texture2D" uid="uid://bp1cnetqg6k34" path="res://Sources/Particles/XP/XP.png" id="1_oc1cp"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oc1cp"]
+viewport_path = NodePath("Glow/SubViewport")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x7krg"]
+texture = ExtResource("1_oc1cp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25ln1"]
+emission_enabled = true
+emission = Color(5.0056e-06, 0.777817, 0.870091, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="Curve" id="Curve_2xf5k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.489865, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_66ap5"]
+curve = SubResource("Curve_2xf5k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yklgc"]
+emission_shape = 1
+emission_sphere_radius = 0.3
+gravity = Vector3(0, 0.5, 0)
+scale_min = 0.01
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_66ap5")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ufmp4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x7krg"]
+radius = 3.0
+
+[node name="XP_Point" type="Node3D"]
+script = ExtResource("1_drjb8")
+
+[node name="Glow" type="Sprite3D" parent="."]
+billboard = 1
+texture = SubResource("ViewportTexture_oc1cp")
+
+[node name="SubViewport" type="SubViewport" parent="Glow"]
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="Panel" type="Panel" parent="Glow/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_x7krg")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Glow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00453568, 0)
+material_override = SubResource("StandardMaterial3D_25ln1")
+cast_shadow = 0
+amount = 4
+randomness = 0.18
+process_material = SubResource("ParticleProcessMaterial_yklgc")
+draw_pass_1 = SubResource("BoxMesh_ufmp4")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_x7krg")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

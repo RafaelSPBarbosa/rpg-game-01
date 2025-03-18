@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=80 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -32,8 +32,10 @@
 [ext_resource type="PackedScene" uid="uid://yyvhg3ae5ebv" path="res://Prefabs/Level/Village/village_wall.tscn" id="27_2f3dj"]
 [ext_resource type="AudioStream" uid="uid://1g34gsaex7kl" path="res://Sources/Audio/Critical Hit.mp3" id="28_txyw0"]
 [ext_resource type="PackedScene" uid="uid://cgkox6ui0qisc" path="res://Prefabs/Level/Village/village_wall_tower.tscn" id="28_yq6so"]
+[ext_resource type="AudioStream" uid="uid://bab5p5ehekdjd" path="res://Sources/Audio/collect_xp_point.mp3" id="29_nvyfr"]
 [ext_resource type="PackedScene" uid="uid://cc32m13ioqhd5" path="res://Prefabs/Level/Nature/hill_01.tscn" id="30_fv21b"]
 [ext_resource type="PackedScene" uid="uid://cbgubjbna1ptd" path="res://Prefabs/Props/imp_tent.tscn" id="32_qkpxi"]
+[ext_resource type="PackedScene" uid="uid://b3d1wdg8asj0k" path="res://Prefabs/Items/xp_point.tscn" id="32_vc5cj"]
 [ext_resource type="PackedScene" uid="uid://daq3ue3huv0hl" path="res://Prefabs/Level/Village/house_01.tscn" id="33_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://bpp32vr06qeye" path="res://Sources/UI/Quest_Icon.png" id="34_dgi5k"]
 [ext_resource type="AudioStream" uid="uid://bc6dpd5hxr4ro" path="res://Sources/Audio/quest_complete.mp3" id="35_j8jky"]
@@ -983,14 +985,14 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.00600537, 0.10854, -0.0277021, 0.993688)
-bones/10/position = Vector3(0.0134625, 0.000896694, 0.00486606)
-bones/10/rotation = Quaternion(-0.42404, 0.535381, 0.587091, -0.434605)
-bones/12/position = Vector3(-0.0133828, 0.00089999, 0.00492759)
-bones/12/rotation = Quaternion(0.425347, 0.535959, 0.586138, 0.433901)
+bones/1/rotation = Quaternion(-0.0376929, 0.0853633, -0.022673, 0.995378)
+bones/10/position = Vector3(0.0133581, 0.000898981, 0.00494213)
+bones/10/rotation = Quaternion(-0.425295, 0.536077, 0.586165, -0.433769)
+bones/12/position = Vector3(-0.0135385, 0.000902126, 0.00482903)
+bones/12/rotation = Quaternion(0.40577, 0.518284, 0.600564, 0.453933)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.193472, 0.160667, 0.967861, -0.0949579, -0.984935, 0.14452, 0.9765, -0.0639456, 0.205814, -0.0119349, -0.00770769, 0.0181848)
+transform = Transform3D(-0.214286, 0.0454473, 0.975713, 0.0161552, -0.998615, 0.0500621, 0.976637, 0.0264904, 0.213255, -0.0124635, -0.00695131, 0.0185958)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -1039,6 +1041,10 @@ stream = ExtResource("13_jkv2x")
 
 [node name="CriticalSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Player/Body"]
 stream = ExtResource("28_txyw0")
+volume_db = -10.0
+
+[node name="Collect_XP_Point_Sound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Player/Body"]
+stream = ExtResource("29_nvyfr")
 volume_db = -10.0
 
 [node name="Area3D" type="Area3D" parent="Game_CanvasLayer/Player/Body" groups=["Player"]]
@@ -1100,6 +1106,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 display_name = "Carlos"
 start_enabled = false
 lines = Array[String](["Howdy adventurer!", "Everything has been great since we last talked", "Maybe try seeing if someone else needs help?"])
+
+[node name="XP_Points" type="Node3D" parent="Game_CanvasLayer"]
+
+[node name="XP_Point" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5696, 1.74891, 28.3932)
+
+[node name="XP_Point2" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.507, 1.74891, 27.8392)
+
+[node name="XP_Point3" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.8143, 1.74891, 29.7206)
+
+[node name="XP_Point4" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.2088, 1.74891, 29.8938)
+
+[node name="XP_Point5" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3187, 1.74891, 30.4685)
+
+[node name="XP_Point6" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.74, 1.74891, 29.7945)
+
+[node name="XP_Point7" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.74, 1.74891, 27.7945)
+
+[node name="XP_Point8" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.1448, 1.74891, 26.6742)
+
+[node name="XP_Point9" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8516, 1.74891, 26.6433)
 
 [node name="UI_CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2

@@ -2,8 +2,8 @@ extends CharacterBody3D
 class_name PlayerMovement
 
 @export_group("Movement")
-@export var move_speed := 5.0
-@export var acceleration := 40.0
+@export var move_speed := 0.0
+@export var acceleration := 0.0
 @export var rotation_speed := 12.0
 
 var _last_movement_direction := Vector3.BACK
@@ -15,6 +15,9 @@ var _last_movement_direction := Vector3.BACK
 var time_between_footsteps := 0.2
 var cur_time_between_footsteps := 0.0
 @onready var footstep_sound : AudioStreamPlayer3D = $FootstepSound
+
+func _ready():
+	update_move_speed()
 	
 func _physics_process(delta):
 	if Player.instance.is_alive == false:
@@ -60,3 +63,7 @@ func _physics_process(delta):
 		if _skin_character.state_machine.get_current_node() != "Take Damage":
 			_skin_character.idle()
 	
+func update_move_speed():
+	move_speed = 6.0 * (1.0 + (float(Player.instance.speed) / 10))
+	acceleration = 40 * (1.0 + (float(Player.instance.speed) / 10))
+	#Player.instance.character.animation_tree.get_node("Move").

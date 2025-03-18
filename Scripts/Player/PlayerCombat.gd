@@ -15,6 +15,7 @@ var end_of_attack_delay:= 0
 
 #sounds
 @onready var sword_swing_sound = $"../../../SwordSwingSound"
+@onready var critical_sound = $"../../../CriticalSound"
 
 
 func _input(event: InputEvent) -> void:
@@ -37,8 +38,18 @@ func _input(event: InputEvent) -> void:
 			
 						
 func cause_damage():
+	var damage = 50 * (1.0 + (float(Player.instance.strength) / 10))
+	
 	for i in hittable_enemy_list:
-		i.take_damage(50)
+		var is_critical = false
+		if randi_range(0, 100) <= 20 * (1.0 + (float(Player.instance.agility) / 20)):
+			is_critical = true
+			
+		if is_critical == true:
+			damage = damage * 1.5
+			critical_sound.play()
+
+		i.take_damage(damage)
 
 
 func _on_area_3d_area_entered(area):

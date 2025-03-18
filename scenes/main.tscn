@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=78 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://bcd307r6nycf7" path="res://Scripts/QuestSystem/Quest_System.gd" id="21_yc10j"]
 [ext_resource type="AudioStream" uid="uid://cv5kyjfky101x" path="res://Sources/Audio/player_level_up.mp3" id="25_cjqg0"]
 [ext_resource type="PackedScene" uid="uid://yyvhg3ae5ebv" path="res://Prefabs/Level/Village/village_wall.tscn" id="27_2f3dj"]
+[ext_resource type="AudioStream" uid="uid://1g34gsaex7kl" path="res://Sources/Audio/Critical Hit.mp3" id="28_txyw0"]
 [ext_resource type="PackedScene" uid="uid://cgkox6ui0qisc" path="res://Prefabs/Level/Village/village_wall_tower.tscn" id="28_yq6so"]
 [ext_resource type="PackedScene" uid="uid://cc32m13ioqhd5" path="res://Prefabs/Level/Nature/hill_01.tscn" id="30_fv21b"]
 [ext_resource type="PackedScene" uid="uid://cbgubjbna1ptd" path="res://Prefabs/Props/imp_tent.tscn" id="32_qkpxi"]
@@ -982,14 +983,14 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0400436, 0.0821795, -0.0219721, 0.99557)
-bones/10/position = Vector3(0.0133588, 0.000898945, 0.00494157)
-bones/10/rotation = Quaternion(-0.425293, 0.536079, 0.586167, -0.433767)
-bones/12/position = Vector3(-0.0135551, 0.000902353, 0.00481857)
-bones/12/rotation = Quaternion(0.402896, 0.515747, 0.602594, 0.456684)
+bones/1/rotation = Quaternion(0.00600537, 0.10854, -0.0277021, 0.993688)
+bones/10/position = Vector3(0.0134625, 0.000896694, 0.00486606)
+bones/10/rotation = Quaternion(-0.42404, 0.535381, 0.587091, -0.434605)
+bones/12/position = Vector3(-0.0133828, 0.00089999, 0.00492759)
+bones/12/rotation = Quaternion(0.425347, 0.535959, 0.586138, 0.433901)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.216191, 0.02892, 0.975923, 0.0244516, -0.999087, 0.0350231, 0.976045, 0.0314346, 0.215286, -0.0125284, -0.00685701, 0.0186029)
+transform = Transform3D(-0.193472, 0.160667, 0.967861, -0.0949579, -0.984935, 0.14452, 0.9765, -0.0639456, 0.205814, -0.0119349, -0.00770769, 0.0181848)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -1035,6 +1036,10 @@ volume_db = -20.0
 
 [node name="HitSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Player/Body"]
 stream = ExtResource("13_jkv2x")
+
+[node name="CriticalSound" type="AudioStreamPlayer3D" parent="Game_CanvasLayer/Player/Body"]
+stream = ExtResource("28_txyw0")
+volume_db = -10.0
 
 [node name="Area3D" type="Area3D" parent="Game_CanvasLayer/Player/Body" groups=["Player"]]
 
@@ -1306,9 +1311,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -301.0
-offset_top = -76.0
+offset_top = -84.0
 offset_right = 301.0
-offset_bottom = -36.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(300, 20)
@@ -1379,7 +1384,6 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Lvl 1"
 
 [node name="Buttons" type="Control" parent="UI_CanvasLayer/UI"]
-visible = false
 anchors_preset = 0
 offset_left = 46.0
 offset_top = 48.0
@@ -1434,7 +1438,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Character_Stats_Screen" type="Control" parent="UI_CanvasLayer/UI"]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15

@@ -18,6 +18,8 @@ func hide_ui():
 	tween2.tween_property(quests, "modulate:a", 0.0, 0.5).set_ease(Tween.EASE_IN_OUT)
 	var tween3 = get_tree().create_tween()
 	tween3.tween_property(health, "modulate:a", 0.0, 0.5).set_ease(Tween.EASE_IN_OUT)
+	var tween4 = get_tree().create_tween()
+	tween4.tween_property(xp_bar, "modulate:a", 0.0, 0.5).set_ease(Tween.EASE_IN_OUT)
 	
 	
 func show_ui():
@@ -27,3 +29,5 @@ func show_ui():
 	tween2.tween_property(quests, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_IN_OUT)
 	var tween3 = get_tree().create_tween()
 	tween3.tween_property(health, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_IN_OUT)
+	var tween4 = get_tree().create_tween()
+	tween4.tween_property(xp_bar, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_IN_OUT)

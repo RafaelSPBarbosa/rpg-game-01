@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=73 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -37,6 +37,11 @@
 [ext_resource type="AudioStream" uid="uid://bc6dpd5hxr4ro" path="res://Sources/Audio/quest_complete.mp3" id="35_j8jky"]
 [ext_resource type="Script" uid="uid://cb1htk68hch5i" path="res://Scripts/UI/Health_Bar.gd" id="36_kmb1v"]
 [ext_resource type="Texture2D" uid="uid://br65clfq65l8m" path="res://Sources/UI/Health_Bar_Shadow.png" id="37_fuf3a"]
+[ext_resource type="Texture2D" uid="uid://ddyolwvg4c7hx" path="res://Sources/UI/Button_HUD.png" id="38_c6pm6"]
+[ext_resource type="Texture2D" uid="uid://cu71pkvtfd776" path="res://Sources/UI/strong.png" id="39_5he1u"]
+[ext_resource type="Texture2D" uid="uid://ckbd308lukl5f" path="res://Sources/UI/Keybind_Icon.png" id="40_5he1u"]
+[ext_resource type="Script" uid="uid://b60x8lv6wp68a" path="res://Scripts/UI/Character_Stats_Screen.gd" id="41_5poiv"]
+[ext_resource type="Script" uid="uid://dh1l0dsrui5e5" path="res://Scripts/UI/Attribute_UI.gd" id="42_2cjbq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
 size = Vector3(0.0606982, 0.0425195, 0.185)
@@ -166,6 +171,9 @@ font_size = 18
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.278431)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_chjal"]
+texture = ExtResource("18_dp3eg")
+
 [sub_resource type="LabelSettings" id="LabelSettings_gqmmt"]
 font_color = Color(1, 0.75624, 0.227137, 1)
 shadow_size = 3
@@ -186,6 +194,24 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 corner_detail = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5poiv"]
+texture = ExtResource("38_c6pm6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2cjbq"]
+texture = ExtResource("39_5he1u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjqg0"]
+texture = ExtResource("40_5he1u")
+
+[sub_resource type="FontVariation" id="FontVariation_vchkt"]
+variation_embolden = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5he1u"]
+bg_color = Color(0, 0, 0, 0.639216)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5he1u"]
+texture = ExtResource("39_5he1u")
 
 [node name="Root" type="Node"]
 
@@ -944,14 +970,14 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.00279916, -0.0220173, 0.00230578, 0.999751)
-bones/10/position = Vector3(0.0136502, 0.000891798, 0.00472931)
-bones/10/rotation = Quaternion(-0.415616, 0.528656, 0.593076, -0.442772)
-bones/12/position = Vector3(-0.0139054, 0.00090716, 0.00459693)
-bones/12/rotation = Quaternion(0.363587, 0.480177, 0.628115, 0.492653)
+bones/1/rotation = Quaternion(0.0365885, 0.0598548, -0.0105256, 0.997481)
+bones/10/position = Vector3(0.0141865, 0.000879119, 0.00433855)
+bones/10/rotation = Quaternion(-0.382342, 0.504396, 0.615201, -0.470028)
+bones/12/position = Vector3(-0.0136072, 0.000903069, 0.00478559)
+bones/12/rotation = Quaternion(0.42548, 0.53537, 0.586126, 0.434514)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.253812, -0.31151, 0.915719, 0.0220538, -0.948338, -0.316494, 0.967002, -0.060135, 0.24757, -0.0140984, -0.00398505, 0.0174739)
+transform = Transform3D(-0.229942, 0.0636912, 0.971118, -0.133692, -0.990463, 0.0333043, 0.963978, -0.122172, 0.236264, -0.012916, -0.00643856, 0.0174266)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -1127,6 +1153,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("21_yc10j")
 
+[node name="Panel" type="Panel" parent="UI_CanvasLayer/UI/Quests"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -389.0
+offset_top = -219.0
+offset_right = -5.0
+offset_bottom = -42.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_chjal")
+
 [node name="Title" type="Label" parent="UI_CanvasLayer/UI/Quests"]
 layout_mode = 1
 anchors_preset = 6
@@ -1134,10 +1175,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -207.0
-offset_top = -211.0
-offset_right = -24.0
-offset_bottom = -188.0
+offset_left = -292.0
+offset_top = -209.0
+offset_right = -109.0
+offset_bottom = -186.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "Quests"
@@ -1241,10 +1282,458 @@ grow_vertical = 2
 pivot_offset = Vector2(148, 2.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_j8jky")
 
+[node name="Buttons" type="Control" parent="UI_CanvasLayer/UI"]
+anchors_preset = 0
+offset_left = 46.0
+offset_top = 48.0
+offset_right = 627.0
+offset_bottom = 224.0
+
+[node name="CharacterStatsButton" type="Panel" parent="UI_CanvasLayer/UI/Buttons"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 20.0
+offset_right = 166.0
+offset_bottom = 150.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_5poiv")
+
+[node name="Icon" type="Panel" parent="UI_CanvasLayer/UI/Buttons/CharacterStatsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 28.0
+offset_right = -28.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_2cjbq")
+
+[node name="Keybind" type="Panel" parent="UI_CanvasLayer/UI/Buttons/CharacterStatsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 71.0
+offset_top = 70.0
+offset_right = 15.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cjqg0")
+
+[node name="Label" type="Label" parent="UI_CanvasLayer/UI/Buttons/CharacterStatsButton/Keybind"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 14.0
+offset_right = 50.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.277528, 0.277528, 0.277528, 1)
+theme_override_fonts/font = SubResource("FontVariation_vchkt")
+theme_override_font_sizes/font_size = 22
+text = "C"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Character_Stats_Screen" type="Control" parent="UI_CanvasLayer/UI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("41_5poiv")
+
+[node name="Panel" type="Panel" parent="UI_CanvasLayer/UI/Character_Stats_Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5he1u")
+
+[node name="Close_button" type="Button" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -125.0
+offset_top = 57.0
+offset_right = -57.0
+offset_bottom = 125.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 31
+text = "X"
+
+[node name="Icon" type="Panel" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -369.0
+offset_right = 70.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5he1u")
+
+[node name="Title_Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.5
+offset_top = -183.0
+offset_right = 213.5
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.97967, 0.701306, 0.0369147, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "Character Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Subtitle_Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.5
+offset_top = -118.0
+offset_right = 213.5
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Here's where you GROW your skills!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Available_Points_Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -37.0
+offset_right = 144.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Available Points: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="endurance_Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = 34.0
+offset_right = 31.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Endurance"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("42_2cjbq")
+attribute = "endurance"
+
+[node name="Button" type="Button" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/endurance_Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -15.5
+offset_right = 88.0
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "+"
+
+[node name="Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/endurance_Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -11.5
+offset_right = 44.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Agility_Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = 106.0
+offset_right = 31.0
+offset_bottom = 173.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Agility"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("42_2cjbq")
+attribute = "agility"
+
+[node name="Button" type="Button" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Agility_Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -15.5
+offset_right = 88.0
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "+"
+
+[node name="Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Agility_Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -11.5
+offset_right = 44.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed_Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = 178.0
+offset_right = 31.0
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Speed"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("42_2cjbq")
+attribute = "speed"
+
+[node name="Button" type="Button" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Speed_Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -15.5
+offset_right = 88.0
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "+"
+
+[node name="Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Speed_Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -11.5
+offset_right = 44.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Luck_Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = 250.0
+offset_right = 31.0
+offset_bottom = 317.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "luck"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("42_2cjbq")
+attribute = "luck"
+
+[node name="Button" type="Button" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Luck_Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -15.5
+offset_right = 88.0
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "+"
+
+[node name="Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Luck_Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -11.5
+offset_right = 44.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Strength_Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = 322.0
+offset_right = 31.0
+offset_bottom = 389.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Strength"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("42_2cjbq")
+attribute = "strength"
+
+[node name="Button" type="Button" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Strength_Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -15.5
+offset_right = 88.0
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "+"
+
+[node name="Label" type="Label" parent="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Strength_Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -11.5
+offset_right = 44.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="area_entered" from="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]
 [connection signal="area_entered" from="Game_CanvasLayer/Player/Body/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Game_CanvasLayer/Player/Body/Area3D" to="Game_CanvasLayer/Player/Body/Skin/character/PlayerCombat" method="_on_area_3d_area_exited"]
+[connection signal="button_down" from="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Close_button" to="UI_CanvasLayer/UI/Character_Stats_Screen" method="_on_close_button_button_down"]
+[connection signal="button_down" from="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/endurance_Label/Button" to="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/endurance_Label" method="_on_button_button_down"]
+[connection signal="button_down" from="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Agility_Label/Button" to="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Agility_Label" method="_on_button_button_down"]
+[connection signal="button_down" from="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Speed_Label/Button" to="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Speed_Label" method="_on_button_button_down"]
+[connection signal="button_down" from="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Luck_Label/Button" to="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Luck_Label" method="_on_button_button_down"]
+[connection signal="button_down" from="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Strength_Label/Button" to="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Strength_Label" method="_on_button_button_down"]
 
 [editable path="Game_CanvasLayer/World/Village/Gate"]
 [editable path="Game_CanvasLayer/Player/Body/Skin/character"]

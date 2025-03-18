@@ -13,6 +13,7 @@ func start(name: String, message: String):
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate:a", 1.0, .25).set_ease(Tween.EASE_OUT)
 	is_visible = true
+	UI.instance.hide_ui()
 	write(name,message)
 
 func start_or_write(name: String, message: String):
@@ -29,4 +30,5 @@ func end():
 	is_visible = false
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, .25).set_ease(Tween.EASE_OUT)
+	UI.instance.show_ui()
 	write("","")

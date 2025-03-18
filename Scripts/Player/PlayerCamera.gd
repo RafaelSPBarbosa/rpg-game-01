@@ -9,6 +9,9 @@ var _camera_input_direction := Vector2.ZERO
 @onready var _body: Node3D = $"../Body"
 
 func _input(event: InputEvent) -> void:
+	if(Player.instance.is_busy):
+		return
+		
 	if event.is_action_pressed("left_click"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event.is_action_pressed("ui_cancel"):

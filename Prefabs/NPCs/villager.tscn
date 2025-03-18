@@ -45,11 +45,11 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("3_28pq3")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0270513, -0.0793471, 0.0210423, 0.996258)
-bones/10/position = Vector3(0.0147874, 0.000864534, 0.00390076)
-bones/10/rotation = Quaternion(-0.316036, 0.454501, 0.652217, -0.517845)
-bones/12/position = Vector3(-0.0139613, 0.000907927, 0.00456158)
-bones/12/rotation = Quaternion(0.424529, 0.533792, 0.586704, 0.436601)
+bones/1/rotation = Quaternion(-0.0378562, 0.0852021, -0.0226376, 0.995387)
+bones/10/position = Vector3(0.0133581, 0.000898979, 0.0049421)
+bones/10/rotation = Quaternion(-0.425295, 0.536077, 0.586165, -0.433769)
+bones/12/position = Vector3(-0.0135394, 0.000902139, 0.00482846)
+bones/12/rotation = Quaternion(0.405616, 0.518152, 0.600673, 0.454077)
 
 [node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("4_6j0di")

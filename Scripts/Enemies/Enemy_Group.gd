@@ -30,6 +30,7 @@ func check_if_cleared():
 			villager_to_enable.set_process(true)
 			villager_to_enable.set_physics_process(true)
 			villager_to_enable.set_process_input(true)
+			villager_to_enable.visible = true
 		if villager_to_disable != null:
 			print("Disabling " + villager_to_disable.name)
 			villager_to_disable.queue_free()

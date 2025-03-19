@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=96 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -33,6 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://1g34gsaex7kl" path="res://Sources/Audio/Critical Hit.mp3" id="28_txyw0"]
 [ext_resource type="PackedScene" uid="uid://cgkox6ui0qisc" path="res://Prefabs/Level/Village/village_wall_tower.tscn" id="28_yq6so"]
 [ext_resource type="AudioStream" uid="uid://bab5p5ehekdjd" path="res://Sources/Audio/collect_xp_point.mp3" id="29_nvyfr"]
+[ext_resource type="Texture2D" uid="uid://c00x64c31kaad" path="res://Sources/UI/Critical_Strike_Icon.png" id="30_bu4jf"]
 [ext_resource type="PackedScene" uid="uid://cc32m13ioqhd5" path="res://Prefabs/Level/Nature/hill_01.tscn" id="30_fv21b"]
 [ext_resource type="Script" uid="uid://k3qjc85urciu" path="res://Scripts/Enemies/Boss.gd" id="32_bjg73"]
 [ext_resource type="PackedScene" uid="uid://cbgubjbna1ptd" path="res://Prefabs/Props/imp_tent.tscn" id="32_qkpxi"]
@@ -165,6 +166,12 @@ adjustment_saturation = 1.2
 radius = 0.64
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bu4jf"]
+viewport_path = NodePath("Game_CanvasLayer/Boss/Critical_Strike_Icon/SubViewport")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o7ddy"]
+texture = ExtResource("30_bu4jf")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bjg73"]
 radius = 1.041
@@ -1033,14 +1040,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0259609, 0.0337537, -0.00369086, 0.999086)
-bones/10/position = Vector3(0.0145079, 0.000871319, 0.00410441)
-bones/10/rotation = Quaternion(-0.364072, 0.490535, 0.626206, -0.484451)
-bones/12/position = Vector3(-0.0136739, 0.000903984, 0.00474342)
-bones/12/rotation = Quaternion(0.425519, 0.535196, 0.586122, 0.434695)
+bones/1/rotation = Quaternion(0.0212951, 0.0987797, -0.0236566, 0.9946)
+bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
+bones/10/position = Vector3(0.0137582, 0.000889516, 0.00465062)
+bones/10/rotation = Quaternion(-0.412622, 0.527288, 0.59525, -0.444282)
+bones/12/position = Vector3(-0.0134744, 0.000901247, 0.00486959)
+bones/12/rotation = Quaternion(0.425401, 0.535718, 0.586133, 0.434151)
+bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
+bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
+bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.248285, 0.0126518, 0.968604, -0.100799, -0.994824, -0.0128438, 0.963428, -0.100823, 0.248275, -0.0133151, -0.00569775, 0.0173877)
+transform = Transform3D(-0.199696, 0.140406, 0.969746, -0.120757, -0.985662, 0.117843, 0.972388, -0.0935704, 0.213788, -0.0121983, -0.00746531, 0.0179031)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -1129,6 +1140,24 @@ transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 
 script = ExtResource("32_bjg73")
 move_speed = 3.0
 
+[node name="Critical_Strike_Icon" type="Sprite3D" parent="Game_CanvasLayer/Boss"]
+transform = Transform3D(1.23192, 0, 2.98023e-08, 0, 1.23192, 0, -2.98023e-08, 0, 1.23192, 0, 4.02883, 0)
+modulate = Color(1, 1, 1, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_bu4jf")
+
+[node name="SubViewport" type="SubViewport" parent="Game_CanvasLayer/Boss/Critical_Strike_Icon"]
+transparent_bg = true
+size = Vector2i(512, 256)
+
+[node name="Panel" type="Panel" parent="Game_CanvasLayer/Boss/Critical_Strike_Icon/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_o7ddy")
+
 [node name="Body" type="CharacterBody3D" parent="Game_CanvasLayer/Boss"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/Boss/Body"]
@@ -1143,11 +1172,15 @@ transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0259609, 0.0337537, -0.00369086, 0.999086)
-bones/10/position = Vector3(0.0145079, 0.000871319, 0.00410441)
-bones/10/rotation = Quaternion(-0.364072, 0.490535, 0.626206, -0.484451)
-bones/12/position = Vector3(-0.0136739, 0.000903984, 0.00474342)
-bones/12/rotation = Quaternion(0.425519, 0.535196, 0.586122, 0.434695)
+bones/1/rotation = Quaternion(0.0212951, 0.0987797, -0.0236566, 0.9946)
+bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
+bones/10/position = Vector3(0.0137582, 0.000889516, 0.00465062)
+bones/10/rotation = Quaternion(-0.412622, 0.527288, 0.59525, -0.444282)
+bones/12/position = Vector3(-0.0134744, 0.000901247, 0.00486959)
+bones/12/rotation = Quaternion(0.425401, 0.535718, 0.586133, 0.434151)
+bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
+bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
+bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="Cube" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_bu4jf")
@@ -1173,7 +1206,7 @@ stream = ExtResource("13_jkv2x")
 pitch_scale = 0.6
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
-transform = Transform3D(93.305, 0.853611, 6.28963, -0.525813, 93.3921, -4.87462, -6.32547, 4.82802, 93.1815, 0, 1.55762, 0)
+transform = Transform3D(91.591, 4.79431, 18.2819, -4.00742, 93.3312, -4.39864, -18.4703, 3.52449, 91.6108, 0, 1.55762, 0)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true

@@ -20,7 +20,7 @@ var is_alive := true
 	160
 ]
 @onready var level = 1
-@onready var skill_points = 5
+@onready var skill_points = 50
 
 #Attributes
 @onready var endurance := 1
@@ -78,10 +78,11 @@ func gain_xp(amount: int):
 	
 	var has_levels_to_gain = true
 	while has_levels_to_gain:
-		if(xp >= xp_by_levels[level - 1]):
-			level_up()
-		else:
-			has_levels_to_gain = false
+		if(xp_by_levels.size() > level):		
+			if(xp >= xp_by_levels[level - 1]):
+				level_up()
+			else:
+				has_levels_to_gain = false
 		
 	UI.instance.xp_bar.update_bar()
 		

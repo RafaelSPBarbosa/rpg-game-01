@@ -49,7 +49,7 @@ func cause_damage():
 			damage = damage * 1.5
 			critical_sound.play()
 
-		i.take_damage(damage)
+		i.take_damage(damage, is_critical)
 
 
 func _on_area_3d_area_entered(area):

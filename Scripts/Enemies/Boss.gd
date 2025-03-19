@@ -13,6 +13,8 @@ class_name Boss
 @onready var area_3d = $Body/Area3D
 @onready var collision_shape_3d = $Body/CollisionShape3D
 
+@onready var critical_strike_icon = $Critical_Strike_Icon
+
 #sounds
 @onready var aggro_sound: AudioStreamPlayer3D = $Body/AggroSound
 @onready var death_sound: AudioStreamPlayer3D = $Body/DeathSound
@@ -98,11 +100,21 @@ func _physics_process(delta):
 		
 	body.move_and_slide()
 
-func take_damage(damage: float):
+func take_damage(damage: float, is_critical: bool = false):
 	if health > 0:
 		health -= damage
 		print(name + " took " + str(damage) + " damage")
 		hit_sound.play()
+		
+		if is_critical:
+			var initial_critical_icon_pos = body.global_position + Vector3(0,3,0)
+			critical_strike_icon.global_position = initial_critical_icon_pos
+			critical_strike_icon.modulate.a = 1.0
+			var tween = get_tree().create_tween()
+			tween.tween_property(critical_strike_icon, "global_position:y", initial_critical_icon_pos.y + 2.0, 1.0).set_ease(Tween.EASE_OUT)
+			var tween2 = get_tree().create_tween()
+			tween2.tween_property(critical_strike_icon, "modulate:a", 0.0, 1.0).set_ease(Tween.EASE_OUT)
+		
 		if health <= 0:
 			die()
 		else:

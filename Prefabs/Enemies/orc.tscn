@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ci4ftwvou63co"]
+[gd_scene load_steps=18 format=3 uid="uid://ci4ftwvou63co"]
 
 [ext_resource type="Script" uid="uid://ddqq2vxmhasn2" path="res://Scripts/Enemies/Enemy.gd" id="1_f0fbn"]
 [ext_resource type="PackedScene" uid="uid://cpswfllu5mpm6" path="res://Prefabs/Skins/character.tscn" id="2_8vw3x"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://btdj1w6go4uig" path="res://Sources/Audio/orc-aggroed.mp3" id="5_8vw3x"]
 [ext_resource type="AudioStream" uid="uid://ia61or0tt22w" path="res://Sources/Audio/orc-death.mp3" id="6_gpi1x"]
 [ext_resource type="AudioStream" uid="uid://cl7nm2h206xy5" path="res://Sources/Audio/take-damage.mp3" id="7_s5rhj"]
+[ext_resource type="Texture2D" uid="uid://c00x64c31kaad" path="res://Sources/UI/Critical_Strike_Icon.png" id="8_myui4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y6deb"]
 
@@ -42,6 +43,12 @@ emission_energy_multiplier = 2.95
 [sub_resource type="BoxMesh" id="BoxMesh_gcgu5"]
 material = SubResource("StandardMaterial3D_myui4")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_myui4"]
+viewport_path = NodePath("Critical_Strike_Icon/SubViewport")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ictq"]
+texture = ExtResource("8_myui4")
+
 [node name="Orc" type="Node3D"]
 script = ExtResource("1_f0fbn")
 
@@ -59,11 +66,15 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("3_gpi1x")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.00427328, -0.0169947, 0.0078286, 0.999816)
-bones/10/position = Vector3(0.0150915, 0.000857152, 0.0036792)
-bones/10/rotation = Quaternion(-0.333194, 0.467374, 0.643386, -0.506554)
-bones/12/position = Vector3(-0.0137941, 0.000905634, 0.00466732)
-bones/12/rotation = Quaternion(0.425589, 0.53488, 0.586115, 0.435024)
+bones/1/rotation = Quaternion(-0.0375842, 0.0501929, -0.0148273, 0.997922)
+bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
+bones/10/position = Vector3(0.0133647, 0.000898672, 0.00493728)
+bones/10/rotation = Quaternion(-0.425276, 0.536092, 0.58618, -0.433749)
+bones/12/position = Vector3(-0.0136829, 0.000904106, 0.00473772)
+bones/12/rotation = Quaternion(0.379726, 0.494874, 0.618123, 0.478363)
+bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
+bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
+bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("4_s5rhj")
@@ -85,7 +96,7 @@ volume_db = -20.0
 stream = ExtResource("7_s5rhj")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Body"]
-transform = Transform3D(37.6736, -0.584692, -1.28369, 0.595643, 37.694, 0.312114, 1.27865, -0.332177, 37.6768, 8.47033e-22, 0.627906, -7.10543e-15)
+transform = Transform3D(37.4935, 0.973418, 3.81869, -1.25789, 37.5769, 2.77184, -3.73465, -2.88407, 37.4035, 8.47033e-22, 0.627906, -7.10543e-15)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true
@@ -95,5 +106,23 @@ external_skeleton = NodePath("../Skin/character/Armature/Skeleton3D")
 transform = Transform3D(0.014514, -0.000781217, -0.00422567, 0.000649792, 0.0151124, -0.000562039, 0.00424787, 0.000357515, 0.0145241, 0.00037987, 0.0206175, -0.00294744)
 process_material = SubResource("ParticleProcessMaterial_myui4")
 draw_pass_1 = SubResource("BoxMesh_gcgu5")
+
+[node name="Critical_Strike_Icon" type="Sprite3D" parent="."]
+transform = Transform3D(0.648794, 0, 0, 0, 0.648794, 0, 0, 0, 0.648794, 0, 2.18676, 0)
+modulate = Color(1, 1, 1, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_myui4")
+
+[node name="SubViewport" type="SubViewport" parent="Critical_Strike_Icon"]
+transparent_bg = true
+size = Vector2i(512, 256)
+
+[node name="Panel" type="Panel" parent="Critical_Strike_Icon/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3ictq")
 
 [editable path="Body/Skin/character"]

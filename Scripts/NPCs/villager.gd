@@ -12,9 +12,11 @@ class_name Villager
 
 @export var display_name: String
 
-@export var next_villager: Node3D = null
+@export var next_villagers: Array[Node3D] = []
+@export var disable_villagers: Array[Node3D] = []
 @export var start_enabled: bool = true
 @export var animatable_structure: Animatable_Structure = null
+@export var special_event := ""
 
 @onready var talk_sound : Array [AudioStreamPlayer3D] = [$Body/Villager_Talk_Sounds/TalkSound_01, $Body/Villager_Talk_Sounds/TalkSound_02, $Body/Villager_Talk_Sounds/TalkSound_03, $Body/Villager_Talk_Sounds/TalkSound_04, $Body/Villager_Talk_Sounds/TalkSound_05, $Body/Villager_Talk_Sounds/TalkSound_06, $Body/Villager_Talk_Sounds/TalkSound_07]
 
@@ -76,17 +78,22 @@ func _input(event: InputEvent) -> void:
 				camera_3d.current = false
 				print("Player stopped talking to villager " + name)
 				UI.instance.dialog_panel.end()
+				if special_event == "sword_basic_enable":
+					Player.instance.sword_basic.visible = true
+					Player.instance.equip_sword_sound.play()
 				if quest != "":
 					UI.instance.quests.change_quest(quest)
 				if animatable_structure != null:
 					animatable_structure.play()
-				if next_villager != null:
-					next_villager.set_process(true)
-					next_villager.set_physics_process(true)
-					next_villager.set_process_input(true)
-					next_villager.visible = true
+				for villager in disable_villagers:
+					villager.queue_free()
+				for villager in next_villagers:
+					villager.set_process(true)
+					villager.set_physics_process(true)
+					villager.set_process_input(true)
+					villager.visible = true
 					queue_free()
-					print("Replacing " + name + " with " + next_villager.name)
+					print("Replacing " + name + " with " + villager.name)
 			return
 
 func say_line(line: String):

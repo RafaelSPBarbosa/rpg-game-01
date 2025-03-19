@@ -67,14 +67,10 @@ script = ExtResource("3_gpi1x")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
 bones/1/rotation = Quaternion(0.0155667, -0.0909961, 0.0218572, 0.99549)
-bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
 bones/10/position = Vector3(0.0142521, 0.000877527, 0.00429075)
 bones/10/rotation = Quaternion(-0.373631, 0.496868, 0.620317, -0.478256)
 bones/12/position = Vector3(-0.0141498, 0.000910513, 0.00444233)
 bones/12/rotation = Quaternion(0.384811, 0.499181, 0.614783, 0.474111)
-bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
-bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
-bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("4_s5rhj")

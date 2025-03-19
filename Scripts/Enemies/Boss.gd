@@ -136,3 +136,7 @@ func die():
 	state = ai_states.dead
 	death_sound.play()
 	Player.instance.gain_xp(50)
+	Player.instance.is_busy = true
+	UI.instance.end_screen.visible = true
+	var tween = get_tree().create_tween()
+	tween.tween_property(UI.instance.end_screen, "modulate:a", 1.0, 2.0).set_ease(Tween.EASE_OUT)

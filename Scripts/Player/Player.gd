@@ -39,9 +39,13 @@ var is_alive := true
 @onready var hit_sound : AudioStreamPlayer3D = $Body/HitSound
 @onready var level_up_sound = $Body/LevelUpSound
 @onready var collect_xp_point_sound = $Body/Collect_XP_Point_Sound
+@onready var equip_sword_sound = $Body/Equip_Sword_Sound
+
+@onready var sword_basic = $Body/Skin/character/Armature/Skeleton3D/BoneAttachment3D/Sword_Basic
 
 func _ready():
 	time_to_regain_health = Time.get_ticks_msec() + 1000
+	sword_basic.visible = false
 
 func _physics_process(delta):
 	if Time.get_ticks_msec() >= time_to_regain_health:
@@ -83,6 +87,9 @@ func gain_xp(amount: int):
 				level_up()
 			else:
 				has_levels_to_gain = false
+		else:
+			xp = xp_by_levels[level - 1] - 1
+			has_levels_to_gain = false
 		
 	UI.instance.xp_bar.update_bar()
 		

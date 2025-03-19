@@ -4,8 +4,8 @@ class_name Enemy_Group
 @onready var enemy_dictionary = {}
 
 @export var quest_on_clear: String = ""
-@export var villager_to_disable: Villager = null
-@export var villager_to_enable: Villager = null
+@export var villagers_to_disable: Array[Villager] = []
+@export var villagers_to_enable: Array[Villager] = []
 
 func register_enemy(enemy: Enemy):
 	enemy_dictionary[enemy.name] = true
@@ -24,13 +24,15 @@ func check_if_cleared():
 	
 	if !has_survivors:
 		print(name + " has been cleared out!")
-		UI.instance.quests.change_quest(quest_on_clear)
-		if villager_to_enable != null:
-			print("Enabling " + villager_to_enable.name)
-			villager_to_enable.set_process(true)
-			villager_to_enable.set_physics_process(true)
-			villager_to_enable.set_process_input(true)
-			villager_to_enable.visible = true
-		if villager_to_disable != null:
-			print("Disabling " + villager_to_disable.name)
-			villager_to_disable.queue_free()
+		if quest_on_clear != "":
+			UI.instance.quests.change_quest(quest_on_clear)
+			
+		for villager in villagers_to_enable:
+			print("Enabling " + villager.name)
+			villager.set_process(true)
+			villager.set_physics_process(true)
+			villager.set_process_input(true)
+			villager.visible = true
+		for villager in villagers_to_disable:
+			print("Disabling " + villager.name)
+			villager.queue_free()

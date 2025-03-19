@@ -66,12 +66,12 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("3_gpi1x")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0375842, 0.0501929, -0.0148273, 0.997922)
+bones/1/rotation = Quaternion(0.0155667, -0.0909961, 0.0218572, 0.99549)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0133647, 0.000898672, 0.00493728)
-bones/10/rotation = Quaternion(-0.425276, 0.536092, 0.58618, -0.433749)
-bones/12/position = Vector3(-0.0136829, 0.000904106, 0.00473772)
-bones/12/rotation = Quaternion(0.379726, 0.494874, 0.618123, 0.478363)
+bones/10/position = Vector3(0.0142521, 0.000877527, 0.00429075)
+bones/10/rotation = Quaternion(-0.373631, 0.496868, 0.620317, -0.478256)
+bones/12/position = Vector3(-0.0141498, 0.000910513, 0.00444233)
+bones/12/rotation = Quaternion(0.384811, 0.499181, 0.614783, 0.474111)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
@@ -96,7 +96,7 @@ volume_db = -20.0
 stream = ExtResource("7_s5rhj")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Body"]
-transform = Transform3D(37.4935, 0.973418, 3.81869, -1.25789, 37.5769, 2.77184, -3.73465, -2.88407, 37.4035, 8.47033e-22, 0.627906, -7.10543e-15)
+transform = Transform3D(37.0396, -1.7474, -6.80451, 1.53379, 37.6457, -1.3184, 6.85582, 1.01847, 37.0574, 8.47033e-22, 0.627906, -7.10543e-15)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true

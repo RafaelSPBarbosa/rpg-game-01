@@ -1040,18 +1040,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0212951, 0.0987797, -0.0236566, 0.9946)
+bones/1/rotation = Quaternion(0.0381368, 0.071086, -0.0138717, 0.996644)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0137582, 0.000889516, 0.00465062)
-bones/10/rotation = Quaternion(-0.412622, 0.527288, 0.59525, -0.444282)
-bones/12/position = Vector3(-0.0134744, 0.000901247, 0.00486959)
-bones/12/rotation = Quaternion(0.425401, 0.535718, 0.586133, 0.434151)
+bones/10/position = Vector3(0.0140839, 0.00088161, 0.00441332)
+bones/10/rotation = Quaternion(-0.390586, 0.510734, 0.610005, -0.463128)
+bones/12/position = Vector3(-0.0135754, 0.000902633, 0.00480572)
+bones/12/rotation = Quaternion(0.425461, 0.535454, 0.586128, 0.434427)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.199696, 0.140406, 0.969746, -0.120757, -0.985662, 0.117843, 0.972388, -0.0935704, 0.213788, -0.0121983, -0.00746531, 0.0179031)
+transform = Transform3D(-0.221155, 0.0855723, 0.971477, -0.141716, -0.988389, 0.0548006, 0.964887, -0.125555, 0.230714, -0.0127273, -0.00674793, 0.0174819)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -1172,12 +1172,12 @@ transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0212951, 0.0987797, -0.0236566, 0.9946)
+bones/1/rotation = Quaternion(0.0381368, 0.071086, -0.0138717, 0.996644)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0137582, 0.000889516, 0.00465062)
-bones/10/rotation = Quaternion(-0.412622, 0.527288, 0.59525, -0.444282)
-bones/12/position = Vector3(-0.0134744, 0.000901247, 0.00486959)
-bones/12/rotation = Quaternion(0.425401, 0.535718, 0.586133, 0.434151)
+bones/10/position = Vector3(0.0140839, 0.00088161, 0.00441332)
+bones/10/rotation = Quaternion(-0.390586, 0.510734, 0.610005, -0.463128)
+bones/12/position = Vector3(-0.0135754, 0.000902633, 0.00480572)
+bones/12/rotation = Quaternion(0.425461, 0.535454, 0.586128, 0.434427)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
@@ -1206,7 +1206,7 @@ stream = ExtResource("13_jkv2x")
 pitch_scale = 0.6
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
-transform = Transform3D(91.591, 4.79431, 18.2819, -4.00742, 93.3312, -4.39864, -18.4703, 3.52449, 91.6108, 0, 1.55762, 0)
+transform = Transform3D(92.5395, 3.09294, 13.1524, -2.07881, 93.2126, -7.29366, -13.3503, 6.92478, 92.3035, 0, 1.55762, 0)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true

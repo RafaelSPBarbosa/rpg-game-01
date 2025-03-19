@@ -16,7 +16,7 @@ class_name Villager
 @export var start_enabled: bool = true
 @export var animatable_structure: Animatable_Structure = null
 
-@onready var talk_sound = $Body/TalkSound
+@onready var talk_sound : Array [AudioStreamPlayer3D] = [$Body/Villager_Talk_Sounds/TalkSound_01, $Body/Villager_Talk_Sounds/TalkSound_02, $Body/Villager_Talk_Sounds/TalkSound_03, $Body/Villager_Talk_Sounds/TalkSound_04, $Body/Villager_Talk_Sounds/TalkSound_05, $Body/Villager_Talk_Sounds/TalkSound_06, $Body/Villager_Talk_Sounds/TalkSound_07]
 
 @onready var character = $Body/Skin/character
 
@@ -92,5 +92,5 @@ func _input(event: InputEvent) -> void:
 func say_line(line: String):
 	UI.instance.dialog_panel.start_or_write(display_name, line)
 	character.talk()
-	talk_sound.play()
+	talk_sound[randi_range(0, talk_sound.size() - 1)].play()
 	print("Dialog with " + display_name + ": " + line)

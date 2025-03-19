@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c31n1bcksl7hk"]
+[gd_scene load_steps=20 format=3 uid="uid://c31n1bcksl7hk"]
 
 [ext_resource type="Script" uid="uid://b1buy25je4b2q" path="res://Scripts/NPCs/villager.gd" id="1_d6gm7"]
 [ext_resource type="PackedScene" uid="uid://cpswfllu5mpm6" path="res://Prefabs/Skins/character.tscn" id="2_lau5n"]
@@ -7,7 +7,13 @@
 [ext_resource type="AudioStream" uid="uid://btdj1w6go4uig" path="res://Sources/Audio/orc-aggroed.mp3" id="5_nx278"]
 [ext_resource type="AudioStream" uid="uid://ia61or0tt22w" path="res://Sources/Audio/orc-death.mp3" id="6_yx62h"]
 [ext_resource type="AudioStream" uid="uid://cl7nm2h206xy5" path="res://Sources/Audio/take-damage.mp3" id="7_hxbeh"]
-[ext_resource type="AudioStream" uid="uid://b6aurt5twdh1q" path="res://Sources/Audio/NPC_Talk.mp3" id="8_lau5n"]
+[ext_resource type="AudioStream" uid="uid://tn3hvinutuwy" path="res://Sources/Audio/Villager_Talk/villager_talk_01.mp3" id="8_1kgmy"]
+[ext_resource type="AudioStream" uid="uid://baj76e382il1n" path="res://Sources/Audio/Villager_Talk/villager_talk_02.mp3" id="9_lrled"]
+[ext_resource type="AudioStream" uid="uid://cbjrim7jwk45x" path="res://Sources/Audio/Villager_Talk/villager_talk_03.mp3" id="10_b84t3"]
+[ext_resource type="AudioStream" uid="uid://hmpoyktwp6ne" path="res://Sources/Audio/Villager_Talk/villager_talk_04.mp3" id="11_6prpe"]
+[ext_resource type="AudioStream" uid="uid://csx80hnqbox4t" path="res://Sources/Audio/Villager_Talk/villager_talk_05.mp3" id="12_gi7i2"]
+[ext_resource type="AudioStream" uid="uid://ckeoc1qp0w3bk" path="res://Sources/Audio/Villager_Talk/villager_talk_06.mp3" id="13_cogh0"]
+[ext_resource type="AudioStream" uid="uid://bqrwiu1npjdlh" path="res://Sources/Audio/Villager_Talk/villager_talk_07.mp3" id="14_yrcbj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y6deb"]
 
@@ -45,12 +51,12 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("3_28pq3")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0374592, 0.0756657, -0.0153456, 0.996311)
+bones/1/rotation = Quaternion(-0.0248146, -0.0583463, 0.0165186, 0.997851)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0140387, 0.000882708, 0.00444627)
-bones/10/rotation = Quaternion(-0.394013, 0.513386, 0.607799, -0.460183)
-bones/12/position = Vector3(-0.0135614, 0.00090244, 0.00481458)
-bones/12/rotation = Quaternion(0.425453, 0.535491, 0.586128, 0.434389)
+bones/10/position = Vector3(0.014905, 0.00086168, 0.0038151)
+bones/10/rotation = Quaternion(-0.316894, 0.455216, 0.651818, -0.517194)
+bones/12/position = Vector3(-0.0138983, 0.000907062, 0.00460143)
+bones/12/rotation = Quaternion(0.425608, 0.534641, 0.58608, 0.435348)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
@@ -74,16 +80,49 @@ volume_db = -20.0
 [node name="HitSound" type="AudioStreamPlayer3D" parent="Body"]
 stream = ExtResource("7_hxbeh")
 
-[node name="TalkSound" type="AudioStreamPlayer3D" parent="Body"]
-stream = ExtResource("8_lau5n")
-volume_db = -15.0
-
 [node name="PlayerTalkPosition" type="Node3D" parent="Body"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 2.57947)
 
 [node name="Camera3D" type="Camera3D" parent="Body"]
 transform = Transform3D(0.630716, 0, 0.776013, 0, 1, 0, -0.776013, 0, 0.630716, 1.50943, 0.849414, 2.47858)
 fov = 50.3
+
+[node name="Villager_Talk_Sounds" type="Node3D" parent="Body"]
+
+[node name="TalkSound_01" type="AudioStreamPlayer3D" parent="Body/Villager_Talk_Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("8_1kgmy")
+volume_db = -15.0
+
+[node name="TalkSound_02" type="AudioStreamPlayer3D" parent="Body/Villager_Talk_Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("9_lrled")
+volume_db = -15.0
+
+[node name="TalkSound_03" type="AudioStreamPlayer3D" parent="Body/Villager_Talk_Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("10_b84t3")
+volume_db = -15.0
+
+[node name="TalkSound_04" type="AudioStreamPlayer3D" parent="Body/Villager_Talk_Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("11_6prpe")
+volume_db = -15.0
+
+[node name="TalkSound_05" type="AudioStreamPlayer3D" parent="Body/Villager_Talk_Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("12_gi7i2")
+volume_db = -15.0
+
+[node name="TalkSound_06" type="AudioStreamPlayer3D" parent="Body/Villager_Talk_Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("13_cogh0")
+volume_db = -15.0
+
+[node name="TalkSound_07" type="AudioStreamPlayer3D" parent="Body/Villager_Talk_Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("14_yrcbj")
+volume_db = -15.0
 
 [node name="InteractTooltip" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18676, 0)

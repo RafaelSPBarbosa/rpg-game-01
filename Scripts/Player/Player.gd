@@ -17,10 +17,14 @@ var is_alive := true
 	20,
 	40,
 	80,
-	160
+	160,
+	320,
+	640,
+	880,
+	1760
 ]
 @onready var level = 1
-@onready var skill_points = 50
+@onready var skill_points = 5
 
 #Attributes
 @onready var endurance := 1
@@ -34,6 +38,7 @@ var is_alive := true
 @onready var character: CharacterSkin = $Body/Skin/character
 @onready var body: PlayerMovement = $Body
 @onready var skin = $Body/Skin
+@onready var camera : Camera3D = $CameraPivot/SpringArm3D/Camera
 
 @onready var death_sound : AudioStreamPlayer3D = $Body/DeathSound
 @onready var hit_sound : AudioStreamPlayer3D = $Body/HitSound

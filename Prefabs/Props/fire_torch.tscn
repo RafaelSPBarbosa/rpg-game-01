@@ -85,7 +85,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0978012, 3.81109, 0.029087
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25901, 0)
 light_color = Color(1, 0.735606, 0.620422, 1)
+light_energy = 0.5
 light_size = 1.035
 shadow_enabled = true
 distance_fade_enabled = true
-omni_range = 69.704
+omni_range = 50.0

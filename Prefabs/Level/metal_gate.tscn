@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://dc365o82yfs4b"]
+
+[ext_resource type="Script" uid="uid://co1lsmbhja1ck" path="res://Scripts/Levels/Metal_Gate.gd" id="1_0yc2f"]
+[ext_resource type="PackedScene" uid="uid://dbvl3ajillukh" path="res://Sources/Meshes/Level/Village/Gate/Metal_Gate.fbx" id="1_ug66c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1epgm"]
+size = Vector3(6.32385, 6.39331, 1)
+
+[sub_resource type="Animation" id="Animation_xhfw6"]
+resource_name = "MetalGate_Open"
+length = 3.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Metal_Gate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.130167, 0.00499774, 0.0981789, 2.9, 1, -0.130167, 6.8426, 0.0981789, 3, 1, -0.130167, 6.66246, 0.0981789)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatableBody3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 3, 1, 0, 6.74596, 0)
+
+[sub_resource type="Animation" id="Animation_1epgm"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Metal_Gate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.130167, 0.00499774, 0.0981789)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatableBody3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_152kg"]
+_data = {
+&"MetalGate_Open": SubResource("Animation_xhfw6"),
+&"RESET": SubResource("Animation_1epgm")
+}
+
+[node name="MetalGate_01" type="Node3D"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+script = ExtResource("1_0yc2f")
+
+[node name="Metal_Gate" parent="." instance=ExtResource("1_ug66c")]
+transform = Transform3D(2.30126, 0, 0, 0, 2.30126, 0, 0, 0, 2.30126, -0.130167, 0.00499774, 0.0981789)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15741, 3.45553, 0)
+shape = SubResource("BoxShape3D_1epgm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_152kg")
+}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=123 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -30,7 +30,10 @@
 [ext_resource type="PackedScene" uid="uid://dn52bs3eadks1" path="res://Sources/Meshes/Level/Nature/MountainHills_Cave_Entrance.fbx" id="17_tm6hj"]
 [ext_resource type="Script" uid="uid://dto46lvw6hb0r" path="res://Scripts/UI/UI.gd" id="18_0ld40"]
 [ext_resource type="Texture2D" uid="uid://kqt5j5bx603d" path="res://Sources/UI/DialogBox.png" id="18_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://dlgnp83d1h0hi" path="res://Prefabs/Props/fire_torch.tscn" id="19_t5ykj"]
+[ext_resource type="PackedScene" uid="uid://bh4gb3uxc0q1j" path="res://Prefabs/VFX/fire_particles.tscn" id="20_e755i"]
 [ext_resource type="Script" uid="uid://cvhqunexfryy2" path="res://Scripts/UI/Dialog_Panel.gd" id="20_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://ddbemolikmb3k" path="res://Sources/Textures/SummoningCircle.png" id="21_e755i"]
 [ext_resource type="Script" uid="uid://bcd307r6nycf7" path="res://Scripts/QuestSystem/Quest_System.gd" id="21_yc10j"]
 [ext_resource type="AudioStream" uid="uid://cv5kyjfky101x" path="res://Sources/Audio/player_level_up.mp3" id="25_cjqg0"]
 [ext_resource type="PackedScene" uid="uid://yyvhg3ae5ebv" path="res://Prefabs/Level/Village/village_wall.tscn" id="27_2f3dj"]
@@ -168,6 +171,43 @@ size = Vector3(4.04916, 1, 1.98914)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xhfw6"]
 size = Vector3(2.49835, 1, 1.20313)
+
+[sub_resource type="Curve" id="Curve_4j81b"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.192568, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_l0ppn"]
+curve = SubResource("Curve_4j81b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ro3en"]
+emission_shape = 3
+emission_box_extents = Vector3(0.3, 0.2, 0.3)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_l0ppn")
+turbulence_noise_strength = 6.99
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_od4ux"]
+albedo_color = Color(1, 0.336385, 0.70773, 1)
+emission_enabled = true
+emission = Color(1, 0.296739, 0.767569, 1)
+emission_energy_multiplier = 2.95
+
+[sub_resource type="BoxMesh" id="BoxMesh_xhfw6"]
+material = SubResource("StandardMaterial3D_od4ux")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ro3en"]
+transparency = 4
+albedo_color = Color(0.544177, 0.000545899, 0.61869, 1)
+albedo_texture = ExtResource("21_e755i")
+disable_receive_shadows = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_od4ux"]
+material = SubResource("StandardMaterial3D_ro3en")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tefeu"]
 
@@ -1371,6 +1411,61 @@ material_override = ExtResource("2_0wfyh")
 mesh = SubResource("ArrayMesh_xupff")
 skeleton = NodePath("")
 
+[node name="Fire_Torch" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("19_t5ykj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.0121, 0.00500001, -3.07769)
+
+[node name="Fire_Torch2" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("19_t5ykj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.4327, 0.00500001, -7.04253)
+
+[node name="Fire_Torch3" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("19_t5ykj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.947, 0.00499906, 18.8198)
+
+[node name="Fire_Torch4" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("19_t5ykj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.538, 0.00499906, 24.4083)
+
+[node name="Fire_Particles" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
+transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 125.023, 0.00500219, 30.1444)
+process_material = SubResource("ParticleProcessMaterial_ro3en")
+draw_pass_1 = SubResource("BoxMesh_xhfw6")
+
+[node name="Fire_Particles6" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
+transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 101.552, 0.00500314, 40.699)
+process_material = SubResource("ParticleProcessMaterial_ro3en")
+draw_pass_1 = SubResource("BoxMesh_xhfw6")
+
+[node name="Fire_Particles2" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
+transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 120.632, 0.00500171, 33.4138)
+process_material = SubResource("ParticleProcessMaterial_ro3en")
+draw_pass_1 = SubResource("BoxMesh_xhfw6")
+
+[node name="Fire_Particles3" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
+transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 115.943, 0.00500267, 35.7755)
+process_material = SubResource("ParticleProcessMaterial_ro3en")
+draw_pass_1 = SubResource("BoxMesh_xhfw6")
+
+[node name="Fire_Particles4" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
+transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 110.968, 0.00500076, 37.7549)
+process_material = SubResource("ParticleProcessMaterial_ro3en")
+draw_pass_1 = SubResource("BoxMesh_xhfw6")
+
+[node name="Fire_Particles5" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
+transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 106.85, 0.00500076, 39.4847)
+process_material = SubResource("ParticleProcessMaterial_ro3en")
+draw_pass_1 = SubResource("BoxMesh_xhfw6")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Game_CanvasLayer/World/Cave"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.533, 11.1177, 44.3932)
+light_color = Color(0.988726, 0.000193871, 0.831882, 1)
+light_energy = 7.147
+light_indirect_energy = 3.26
+distance_fade_enabled = true
+omni_range = 34.068
+
+[node name="Summoning_Circle" type="MeshInstance3D" parent="Game_CanvasLayer/World/Cave"]
+transform = Transform3D(-22.5637, 13.0271, 5.69434e-07, 0, -1.13887e-06, 26.0543, 13.0271, 22.5637, 9.86289e-07, 105.682, 0.0736957, 18.2185)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_od4ux")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Game_CanvasLayer"]
 environment = ExtResource("15_ids8r")
 
@@ -1414,17 +1509,17 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0141876, 0.101385, -0.0261684, 0.994402)
+bones/1/rotation = Quaternion(-0.0432398, 0.0726401, -0.019862, 0.996222)
 bones/2/rotation = Quaternion(0, -0.234415, 0, 0.972137)
 bones/4/rotation = Quaternion(0, 0.234415, 0, 0.972137)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
 bones/6/scale = Vector3(1, 1, 1)
 bones/8/scale = Vector3(1, 1, 1)
-bones/10/position = Vector3(0.013353, 0.000899214, 0.0049458)
-bones/10/rotation = Quaternion(-0.425309, 0.536066, 0.586154, -0.433785)
+bones/10/position = Vector3(0.0133609, 0.000898851, 0.0049401)
+bones/10/rotation = Quaternion(-0.425287, 0.536084, 0.586171, -0.433761)
 bones/10/scale = Vector3(1, 1, 1)
-bones/12/position = Vector3(-0.0134292, 0.000900627, 0.00489817)
-bones/12/rotation = Quaternion(0.421119, 0.531706, 0.589321, 0.438917)
+bones/12/position = Vector3(-0.0135989, 0.000902954, 0.00479084)
+bones/12/rotation = Quaternion(0.394932, 0.508477, 0.608076, 0.46446)
 bones/12/scale = Vector3(1, 1, 1)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
@@ -1433,7 +1528,7 @@ bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 bones/18/scale = Vector3(1, 1, 1)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.200877, 0.13124, 0.970786, -0.0488603, -0.991094, 0.123875, 0.978397, -0.0225493, 0.2055, -0.0120992, -0.00746315, 0.0184041)
+transform = Transform3D(-0.220358, -0.0188008, 0.975238, 0.0415064, -0.999089, -0.00988221, 0.974535, 0.0383011, 0.220938, -0.012713, -0.0065868, 0.0185767)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -1614,17 +1709,17 @@ transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0141876, 0.101385, -0.0261684, 0.994402)
+bones/1/rotation = Quaternion(-0.0432398, 0.0726401, -0.019862, 0.996222)
 bones/2/rotation = Quaternion(0, -0.234415, 0, 0.972137)
 bones/4/rotation = Quaternion(0, 0.234415, 0, 0.972137)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
 bones/6/scale = Vector3(1, 1, 1)
 bones/8/scale = Vector3(1, 1, 1)
-bones/10/position = Vector3(0.013353, 0.000899214, 0.0049458)
-bones/10/rotation = Quaternion(-0.425309, 0.536066, 0.586154, -0.433785)
+bones/10/position = Vector3(0.0133609, 0.000898851, 0.0049401)
+bones/10/rotation = Quaternion(-0.425287, 0.536084, 0.586171, -0.433761)
 bones/10/scale = Vector3(1, 1, 1)
-bones/12/position = Vector3(-0.0134292, 0.000900627, 0.00489817)
-bones/12/rotation = Quaternion(0.421119, 0.531706, 0.589321, 0.438917)
+bones/12/position = Vector3(-0.0135989, 0.000902954, 0.00479084)
+bones/12/rotation = Quaternion(0.394932, 0.508477, 0.608076, 0.46446)
 bones/12/scale = Vector3(1, 1, 1)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
@@ -1656,7 +1751,7 @@ stream = ExtResource("13_jkv2x")
 pitch_scale = 0.6
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
-transform = Transform3D(91.47, 4.59814, 18.9265, -5.13622, 93.3549, 2.14258, -18.7876, -3.13506, 91.5604, 0, 1.55762, 0)
+transform = Transform3D(92.46, 3.1135, 13.696, -4.28847, 93.0972, 7.78722, -13.3747, -8.32694, 92.184, 0, 1.55762, 0)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=113 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://b50cv1re1b4bn" path="res://Sources/Meshes/Props/WoodenWagon.fbx" id="16_1v6qk"]
 [ext_resource type="Script" uid="uid://b3ddjfm4fh5h6" path="res://Scripts/Enemies/Enemy_Group.gd" id="16_jscy8"]
 [ext_resource type="PackedScene" uid="uid://c31n1bcksl7hk" path="res://Prefabs/NPCs/villager.tscn" id="17_muem4"]
+[ext_resource type="PackedScene" uid="uid://dn52bs3eadks1" path="res://Sources/Meshes/Level/Nature/MountainHills_Cave_Entrance.fbx" id="17_tm6hj"]
 [ext_resource type="Script" uid="uid://dto46lvw6hb0r" path="res://Scripts/UI/UI.gd" id="18_0ld40"]
 [ext_resource type="Texture2D" uid="uid://kqt5j5bx603d" path="res://Sources/UI/DialogBox.png" id="18_dp3eg"]
 [ext_resource type="Script" uid="uid://cvhqunexfryy2" path="res://Scripts/UI/Dialog_Panel.gd" id="20_gqmmt"]
@@ -57,6 +58,7 @@
 [ext_resource type="Script" uid="uid://dh1l0dsrui5e5" path="res://Scripts/UI/Attribute_UI.gd" id="42_2cjbq"]
 [ext_resource type="AudioStream" uid="uid://dm6i2ga2jyve5" path="res://Sources/Audio/player_spend_skill_point.mp3" id="43_chjal"]
 [ext_resource type="Script" uid="uid://b0p26yfy6n3qr" path="res://Scripts/UI/End_Screen.gd" id="53_o7ddy"]
+[ext_resource type="PackedScene" uid="uid://m6my3vxq6mqb" path="res://Sources/Meshes/Level/Nature/Cave.fbx" id="58_augu2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
 size = Vector3(0.0606982, 0.0425195, 0.185)
@@ -93,10 +95,12 @@ _data = {
 &"RESET": SubResource("Animation_y6deb")
 }
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_0wfyh"]
+[sub_resource type="QuadMesh" id="QuadMesh_tm6hj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
-size = Vector3(1, 0.001, 1)
+size = Vector3(1, 1, 0.01)
+
+[sub_resource type="QuadMesh" id="QuadMesh_kf5aa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hr5km"]
 
@@ -143,6 +147,27 @@ albedo_texture = ExtResource("15_dnhof")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1v6qk"]
 size = Vector3(5, 3.6311, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tm6hj"]
+size = Vector3(1, 1, 1.27246)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kf5aa"]
+size = Vector3(1, 1, 1.79688)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t5ykj"]
+size = Vector3(1, 1, 3.57861)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e755i"]
+size = Vector3(1, 1, 2.55298)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ro3en"]
+size = Vector3(3.97137, 1, 0.693115)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_od4ux"]
+size = Vector3(4.04916, 1, 1.98914)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xhfw6"]
+size = Vector3(2.49835, 1, 1.20313)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tefeu"]
 
@@ -422,9 +447,9 @@ transform = Transform3D(1.41899e-07, 0, -1.19063, 0, 1, 0, 1.08209, 0, 1.56133e-
 [node name="Nature" type="Node3D" parent="Game_CanvasLayer/World"]
 
 [node name="Grass" type="MeshInstance3D" parent="Game_CanvasLayer/World/Nature"]
-transform = Transform3D(173.171, 0, 0, 0, 44.7747, 0, 0, 0, 173.171, 0, 0, 0)
+transform = Transform3D(300, 0, 0, 0, -1.31134e-05, 1, 0, -300, -4.37114e-08, 0, 0, 0)
 material_override = ExtResource("2_0wfyh")
-mesh = SubResource("PlaneMesh_0wfyh")
+mesh = SubResource("QuadMesh_tm6hj")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Game_CanvasLayer/World/Nature/Grass"]
@@ -433,10 +458,16 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_tefeu")
 
 [node name="LowRes" type="MeshInstance3D" parent="Game_CanvasLayer/World/Nature"]
-transform = Transform3D(553.14, 0, 0, 0, 44.7747, 0, 0, 0, 553.14, 0, -0.163865, 0)
+transform = Transform3D(1000, 0, 0, 0, -4.37114e-05, 1, 0, -1000, -4.37114e-08, 0, -0.163865, 0)
 material_override = ExtResource("2_0wfyh")
-mesh = SubResource("PlaneMesh_0wfyh")
+mesh = SubResource("QuadMesh_kf5aa")
 skeleton = NodePath("../..")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Game_CanvasLayer/World/Nature/LowRes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00365977, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Nature/LowRes/StaticBody3D2"]
+shape = SubResource("BoxShape3D_tefeu")
 
 [node name="MountainHills" type="Node3D" parent="Game_CanvasLayer/World/Nature"]
 transform = Transform3D(11.3348, 0, 0, 0, 11.3348, 0, 0, 0, 11.3348, -180.017, -13.9851, -559.941)
@@ -843,7 +874,7 @@ transform = Transform3D(0.292429, 0, -1.18147, 0, 1.21712, 0, 1.18147, 0, 0.2924
 transform = Transform3D(0.292429, 0, -1.18147, 0, 1.21712, 0, 1.18147, 0, 0.292429, 42.3682, 3.87153, 0.212839)
 
 [node name="Tree_78" parent="Game_CanvasLayer/World/Nature/Trees" instance=ExtResource("10_yq6so")]
-transform = Transform3D(0.292429, 0, -1.18147, 0, 1.21712, 0, 1.18147, 0, 0.292429, 65.6418, 3.87153, 10.67)
+transform = Transform3D(0.292429, 0, -1.18147, 0, 1.21712, 0, 1.18147, 0, 0.292429, 55.3049, 3.87153, 14.8216)
 
 [node name="Tree_79" parent="Game_CanvasLayer/World/Nature/Trees" instance=ExtResource("10_yq6so")]
 transform = Transform3D(0.292429, 0, -1.18147, 0, 1.21712, 0, 1.18147, 0, 0.292429, 70.1267, 3.87153, 52.2382)
@@ -940,6 +971,51 @@ transform = Transform3D(1.12593, 0, 0.0735609, 0, 1.12834, 0, -0.0735609, 0, 1.1
 
 [node name="Hill_01" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
 transform = Transform3D(2.01052, 0, 0, 0, 2.01052, 0, 0, 0, 2.01052, -38.5126, -1.29083, -63.9863)
+
+[node name="Hill_19" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(2.01052, 0, 0, 0, 2.01052, 0, 0, 0, 2.01052, 90.4524, 28.2352, 7.30887)
+
+[node name="Hill_20" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 3.27834, 0, -1.42262, 0, 1.42068, 97.9502, 21.7788, -1.64441)
+
+[node name="Hill_21" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 5.34735, 0, -1.42262, 0, 1.42068, 71.1825, 3.70924, 5.16567)
+
+[node name="Hill_22" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 5.34735, 0, -1.42262, 0, 1.42068, 78.2708, -4.44688, 2.67511)
+
+[node name="Hill_23" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 5.34735, 0, -1.42262, 0, 1.42068, 104.033, -1.41506, -14.9894)
+
+[node name="Hill_26" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 4.34467, 0, -1.42262, 0, 1.42068, 104.371, -4.24542, -40.0468)
+
+[node name="Hill_27" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 4.34467, 0, -1.42262, 0, 1.42068, 101.375, -5.83812, -24.5253)
+
+[node name="Hill_28" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 4.34467, 0, -1.42262, 0, 1.42068, 113.258, -5.83812, -53.555)
+
+[node name="Hill_29" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 4.34467, 0, -1.42262, 0, 1.42068, 89.5417, -4.41319, -63.9863)
+
+[node name="Hill_30" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 4.34467, 0, -1.42262, 0, 1.42068, 113.752, -1.81801, -73.5826)
+
+[node name="Hill_31" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 4.34467, 0, -1.42262, 0, 1.42068, 108.522, -4.83168, -90.7498)
+
+[node name="Hill_32" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 4.34467, 0, -1.42262, 0, 1.42068, 86.4105, -4.41319, -94.7743)
+
+[node name="Hill_33" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 4.34467, 0, -1.42262, 0, 1.42068, 78.1458, -3.0938, -77.8508)
+
+[node name="Hill_24" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 5.34735, 0, -1.42262, 0, 1.42068, 122.966, 17.0076, -14.5617)
+
+[node name="Hill_25" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
+transform = Transform3D(1.42068, 0, 1.42262, 0, 6.90304, 0, -1.42262, 0, 1.42068, 140.291, 19.7669, -5.64909)
 
 [node name="Hill_06" parent="Game_CanvasLayer/World/Nature" instance=ExtResource("30_fv21b")]
 transform = Transform3D(2.01052, 0, 0, 0, 2.01052, 0, 0, 0, 2.01052, -9.35416, -1.29083, -75.7644)
@@ -1160,6 +1236,141 @@ transform = Transform3D(0.382241, 0, 1.07995, 0, 1.1456, 0, -1.07995, 0, 0.38224
 transform = Transform3D(1, 0, -1.60933e-06, 0, 1, 0, 1.60933e-06, 0, 1, 0, 1.80612, 0)
 shape = SubResource("BoxShape3D_1v6qk")
 
+[node name="Cave" type="Node3D" parent="Game_CanvasLayer/World"]
+
+[node name="MountainHills_Cave_Entrance" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("17_tm6hj")]
+transform = Transform3D(2.96801, 0, 0, 0, 2.96801, 0, 0, 0, 2.96801, 83.9473, 2.33119, -41.0361)
+
+[node name="Plane" parent="Game_CanvasLayer/World/Cave/MountainHills_Cave_Entrance" index="0"]
+transform = Transform3D(-129.036, 63.3648, -9.09495e-13, 7.55368e-06, 1.53823e-05, 143.754, 63.3648, 129.036, -1.71369e-05, 5.75091, -2.17403, 23.2352)
+material_override = ExtResource("2_0wfyh")
+
+[node name="Cave" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("58_augu2")]
+transform = Transform3D(-0.713537, 0, -0.411961, 0, 0.823922, 0, 0.411961, 0, -0.713537, 86.1519, -0.2738, -12.1812)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(9.70544, 0, 0, 0, 9.70544, 0, 0, 0, 9.70544, -6.94654, 4.49528, 0.402088)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.136232)
+shape = SubResource("BoxShape3D_tm6hj")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(9.45832, 0, 2.17615, 0, 9.70544, 0, -2.17615, 0, 9.45832, -13.2986, 4.49528, -7.73008)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D3"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 0.999996, 0, -2.98023e-08, 0, 1, -9.53674e-07, 0, -0.534669)
+shape = SubResource("BoxShape3D_kf5aa")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(9.694, 0, 0.470895, 0, 9.70544, 0, -0.470895, 0, 9.694, -25.2652, 4.49528, -12.4745)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D4"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 0.999996, 0, -2.98023e-08, 0, 1, -9.53674e-07, 0, -0.534669)
+shape = SubResource("BoxShape3D_kf5aa")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(9.58194, 0, 1.54336, 0, 9.70544, 0, -1.54336, 0, 9.58194, -34.7054, 4.49528, -26.0699)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D5"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 0.999996, 0, -2.98023e-08, 0, 1, -9.53674e-07, 0, -0.534669)
+shape = SubResource("BoxShape3D_kf5aa")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(9.58194, 0, 1.54336, 0, 9.70544, 0, -1.54336, 0, 9.58194, -37.2153, 4.49528, -42.5797)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D6"]
+transform = Transform3D(0.999992, 0, -2.38419e-07, 0, 0.999988, 0, 2.38419e-07, 0, 0.999992, -9.53674e-07, 0, -1.42554)
+shape = SubResource("BoxShape3D_t5ykj")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(0.0503116, 0, -9.7053, 0, 9.70544, 0, 9.7053, 0, 0.0503116, -56.2543, 4.49528, -77.2654)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D7"]
+transform = Transform3D(0.999992, 0, -2.38419e-07, 0, 0.999988, 0, 2.38419e-07, 0, 0.999992, -9.53674e-07, 0, -1.42554)
+shape = SubResource("BoxShape3D_t5ykj")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(0.050312, 0, -9.7053, 0, 9.70544, 0, 9.7053, 0, 0.050312, -42.3869, 4.49528, -93.3923)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D8"]
+transform = Transform3D(0.999992, 0, -2.38419e-07, 0, 0.999988, 0, 2.38419e-07, 0, 0.999992, -9.53674e-07, 0, -1.42554)
+shape = SubResource("BoxShape3D_t5ykj")
+
+[node name="StaticBody3D9" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(6.83794, 0, -6.88752, 0, 9.70544, 0, 6.88752, 0, 6.83794, -33.2234, 4.49528, -81.7712)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D9"]
+transform = Transform3D(0.999992, 0, -2.38419e-07, 0, 0.999988, 0, 2.38419e-07, 0, 0.999992, -9.53674e-07, 0, -1.42554)
+shape = SubResource("BoxShape3D_t5ykj")
+
+[node name="StaticBody3D10" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(-0.0138865, 0, -9.70542, 0, 9.70544, 0, 9.70542, 0, -0.0138865, -10.6287, 4.49528, -96.879)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D10"]
+transform = Transform3D(0.999992, 0, -2.38419e-07, 0, 0.999988, 0, 2.38419e-07, 0, 0.999992, -9.53674e-07, 0, -1.42554)
+shape = SubResource("BoxShape3D_t5ykj")
+
+[node name="StaticBody3D11" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(-0.0138865, 0, -9.70542, 0, 9.70544, 0, 9.70542, 0, -0.0138865, 7.61754, 4.49528, -90.6395)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D11"]
+transform = Transform3D(0.999992, 0, -2.38419e-07, 0, 0.999988, 0, 2.38419e-07, 0, 0.999992, -9.53674e-07, 0, -1.42554)
+shape = SubResource("BoxShape3D_t5ykj")
+
+[node name="StaticBody3D12" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(-7.30775, 0, -6.38687, 0, 9.70544, 0, 6.38687, 0, -7.30775, 21.2794, 4.49528, -90.3036)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D12"]
+transform = Transform3D(0.999992, 0, -2.68221e-07, 0, 0.999988, 0, 2.68221e-07, 0, 0.999992, -2.38419e-06, 0, -0.912726)
+shape = SubResource("BoxShape3D_e755i")
+
+[node name="StaticBody3D13" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(0.304858, 0, -9.70064, 0, 9.70544, 0, 9.70064, 0, 0.304858, 29.9115, 4.49528, -74.4566)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D13"]
+transform = Transform3D(0.999992, 0, -2.68221e-07, 0, 0.999988, 0, 2.68221e-07, 0, 0.999992, 0.0201807, 0, -1.41303)
+shape = SubResource("BoxShape3D_t5ykj")
+
+[node name="StaticBody3D14" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(0.304859, 0, -9.70064, 0, 9.70544, 0, 9.70064, 0, 0.304859, 37.988, 4.49528, -67.7229)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D14"]
+transform = Transform3D(0.99845, 0, -0.0555985, 0, 0.999988, 0, 0.0555985, 0, 0.99845, 1.50514, 0, -0.154676)
+shape = SubResource("BoxShape3D_ro3en")
+
+[node name="StaticBody3D15" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(0.304859, 0, -9.70064, 0, 9.70544, 0, 9.70064, 0, 0.304859, 21.9428, 4.49528, -30.6057)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D15"]
+transform = Transform3D(0.998451, 0, -0.0555998, 0, 0.999988, 0, 0.0555998, 0, 0.998451, 1.50233, 0, -0.803845)
+shape = SubResource("BoxShape3D_od4ux")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Game_CanvasLayer/World/Cave/Cave"]
+transform = Transform3D(9.70544, 0, 0, 0, 9.70544, 0, 0, 0, 9.70544, 6.701, 4.49528, 0.402088)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Game_CanvasLayer/World/Cave/Cave/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.749173, 0, -0.101563)
+shape = SubResource("BoxShape3D_xhfw6")
+
+[node name="MountainHills8" type="Node3D" parent="Game_CanvasLayer/World/Cave"]
+transform = Transform3D(-5.24506, 0.0376982, -3.06134, 0.107011, 6.07131, -0.108582, 3.0597, -0.147717, -5.24407, 220.745, -36.2153, -3.88133)
+
+[node name="Plane" type="MeshInstance3D" parent="Game_CanvasLayer/World/Cave/MountainHills8"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("2_0wfyh")
+mesh = SubResource("ArrayMesh_xupff")
+skeleton = NodePath("")
+
+[node name="MountainHills9" type="Node3D" parent="Game_CanvasLayer/World/Cave"]
+transform = Transform3D(1.8323, 0.0295684, -2.83302, 0.057539, 4.76201, 0.0621488, 2.83251, -0.115862, 1.83137, 141.229, -36.4886, -35.4085)
+
+[node name="Plane" type="MeshInstance3D" parent="Game_CanvasLayer/World/Cave/MountainHills9"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+material_override = ExtResource("2_0wfyh")
+mesh = SubResource("ArrayMesh_xupff")
+skeleton = NodePath("")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Game_CanvasLayer"]
 environment = ExtResource("15_ids8r")
 
@@ -1203,18 +1414,26 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0181465, -0.0724316, 0.0160214, 0.99708)
+bones/1/rotation = Quaternion(-0.0141876, 0.101385, -0.0261684, 0.994402)
+bones/2/rotation = Quaternion(0, -0.234415, 0, 0.972137)
+bones/4/rotation = Quaternion(0, 0.234415, 0, 0.972137)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0140975, 0.000881221, 0.00440339)
-bones/10/rotation = Quaternion(-0.389369, 0.508639, 0.610572, -0.465704)
-bones/12/position = Vector3(-0.0140708, 0.000909429, 0.00449231)
-bones/12/rotation = Quaternion(0.375956, 0.491087, 0.620437, 0.482232)
+bones/6/scale = Vector3(1, 1, 1)
+bones/8/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(0.013353, 0.000899214, 0.0049458)
+bones/10/rotation = Quaternion(-0.425309, 0.536066, 0.586154, -0.433785)
+bones/10/scale = Vector3(1, 1, 1)
+bones/12/position = Vector3(-0.0134292, 0.000900627, 0.00489817)
+bones/12/rotation = Quaternion(0.421119, 0.531706, 0.589321, 0.438917)
+bones/12/scale = Vector3(1, 1, 1)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
+bones/16/scale = Vector3(1, 1, 1)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
+bones/18/scale = Vector3(1, 1, 1)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.281876, -0.364623, 0.887466, 0.0108486, -0.926125, -0.37706, 0.959389, -0.0966568, 0.265008, -0.0145936, -0.00243244, 0.0169781)
+transform = Transform3D(-0.200877, 0.13124, 0.970786, -0.0488603, -0.991094, 0.123875, 0.978397, -0.0225493, 0.2055, -0.0120992, -0.00746315, 0.0184041)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -1395,15 +1614,23 @@ transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0181465, -0.0724316, 0.0160214, 0.99708)
+bones/1/rotation = Quaternion(-0.0141876, 0.101385, -0.0261684, 0.994402)
+bones/2/rotation = Quaternion(0, -0.234415, 0, 0.972137)
+bones/4/rotation = Quaternion(0, 0.234415, 0, 0.972137)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0140975, 0.000881221, 0.00440339)
-bones/10/rotation = Quaternion(-0.389369, 0.508639, 0.610572, -0.465704)
-bones/12/position = Vector3(-0.0140708, 0.000909429, 0.00449231)
-bones/12/rotation = Quaternion(0.375956, 0.491087, 0.620437, 0.482232)
+bones/6/scale = Vector3(1, 1, 1)
+bones/8/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(0.013353, 0.000899214, 0.0049458)
+bones/10/rotation = Quaternion(-0.425309, 0.536066, 0.586154, -0.433785)
+bones/10/scale = Vector3(1, 1, 1)
+bones/12/position = Vector3(-0.0134292, 0.000900627, 0.00489817)
+bones/12/rotation = Quaternion(0.421119, 0.531706, 0.589321, 0.438917)
+bones/12/scale = Vector3(1, 1, 1)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
+bones/16/scale = Vector3(1, 1, 1)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
+bones/18/scale = Vector3(1, 1, 1)
 
 [node name="Cube" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_bu4jf")
@@ -1429,7 +1656,7 @@ stream = ExtResource("13_jkv2x")
 pitch_scale = 0.6
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
-transform = Transform3D(92.4914, -3.23376, -13.4538, 2.74207, 93.4111, -3.60129, 13.5625, 3.16718, 92.4778, 0, 1.55762, 0)
+transform = Transform3D(91.47, 4.59814, 18.9265, -5.13622, 93.3549, 2.14258, -18.7876, -3.13506, 91.5604, 0, 1.55762, 0)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true
@@ -2420,5 +2647,6 @@ vertical_alignment = 1
 [connection signal="button_down" from="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Strength_Label/Button" to="UI_CanvasLayer/UI/Character_Stats_Screen/Panel/Strength_Label" method="_on_button_button_down"]
 
 [editable path="Game_CanvasLayer/World/Village/Gate"]
+[editable path="Game_CanvasLayer/World/Cave/MountainHills_Cave_Entrance"]
 [editable path="Game_CanvasLayer/Player/Body/Skin/character"]
 [editable path="Game_CanvasLayer/Boss/Body/Skin/character"]

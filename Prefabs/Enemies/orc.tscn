@@ -66,17 +66,20 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("3_gpi1x")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0363277, 0.0469611, -0.0140971, 0.998136)
+bones/1/rotation = Quaternion(-0.0127439, -0.103109, 0.0265358, 0.994234)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0133653, 0.000898648, 0.0049369)
-bones/10/rotation = Quaternion(-0.425275, 0.536093, 0.586181, -0.433747)
-bones/12/position = Vector3(-0.0136941, 0.000904261, 0.0047306)
-bones/12/rotation = Quaternion(0.377727, 0.493155, 0.619415, 0.480048)
+bones/10/position = Vector3(0.0145915, 0.00086929, 0.00404351)
+bones/10/rotation = Quaternion(-0.327587, 0.462863, 0.646203, -0.510751)
+bones/12/position = Vector3(-0.0140663, 0.000909367, 0.00449516)
+bones/12/rotation = Quaternion(0.414122, 0.524867, 0.594476, 0.446783)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
+visibility_range_end = 20.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 surface_material_override/0 = ExtResource("4_s5rhj")
 
 [node name="Area3D" type="Area3D" parent="Body" groups=["Enemy"]]
@@ -96,7 +99,7 @@ volume_db = -20.0
 stream = ExtResource("7_s5rhj")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Body"]
-transform = Transform3D(37.5187, 0.932311, 3.57287, -1.18957, 37.5855, 2.68409, -3.49565, -2.78392, 37.4342, 8.47033e-22, 0.627906, -7.10543e-15)
+transform = Transform3D(36.8453, -1.89019, -7.75511, 2.08834, 37.6347, 0.749049, 7.70411, -1.16165, 36.8861, 8.47033e-22, 0.627906, -7.10543e-15)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true
@@ -104,6 +107,9 @@ external_skeleton = NodePath("../Skin/character/Armature/Skeleton3D")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Body/BoneAttachment3D"]
 transform = Transform3D(0.014514, -0.000781217, -0.00422567, 0.000649792, 0.0151124, -0.000562039, 0.00424787, 0.000357515, 0.0145241, 0.00037987, 0.0206175, -0.00294744)
+visibility_range_end = 10.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 process_material = SubResource("ParticleProcessMaterial_myui4")
 draw_pass_1 = SubResource("BoxMesh_gcgu5")
 

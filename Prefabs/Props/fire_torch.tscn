@@ -81,6 +81,9 @@ skeleton = NodePath("")
 
 [node name="Fire_Particles" parent="." instance=ExtResource("1_3jy5s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0978012, 3.81109, 0.0290871)
+visibility_range_end = 15.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25901, 0)

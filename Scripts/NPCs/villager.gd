@@ -76,6 +76,7 @@ func _input(event: InputEvent) -> void:
 				cur_line = 0
 				Player.instance.is_busy = false
 				camera_3d.current = false
+				Player.instance.camera.current = true
 				print("Player stopped talking to villager " + name)
 				UI.instance.dialog_panel.end()
 				if special_event == "sword_basic_enable":

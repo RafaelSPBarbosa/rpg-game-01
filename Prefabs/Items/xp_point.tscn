@@ -38,6 +38,9 @@ radius = 3.0
 script = ExtResource("1_drjb8")
 
 [node name="Glow" type="Sprite3D" parent="."]
+visibility_range_end = 10.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 billboard = 1
 texture = SubResource("ViewportTexture_oc1cp")
 

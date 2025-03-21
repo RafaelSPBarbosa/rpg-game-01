@@ -1842,31 +1842,49 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.538, 0.00499906, 24.4083)
 
 [node name="Fire_Particles" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
 transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 125.023, 0.00500219, 30.1444)
+visibility_range_end = 50.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 process_material = SubResource("ParticleProcessMaterial_ro3en")
 draw_pass_1 = SubResource("BoxMesh_xhfw6")
 
 [node name="Fire_Particles6" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
 transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 101.552, 0.00500314, 40.699)
+visibility_range_end = 50.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 process_material = SubResource("ParticleProcessMaterial_ro3en")
 draw_pass_1 = SubResource("BoxMesh_xhfw6")
 
 [node name="Fire_Particles2" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
 transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 120.632, 0.00500171, 33.4138)
+visibility_range_end = 50.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 process_material = SubResource("ParticleProcessMaterial_ro3en")
 draw_pass_1 = SubResource("BoxMesh_xhfw6")
 
 [node name="Fire_Particles3" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
 transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 115.943, 0.00500267, 35.7755)
+visibility_range_end = 50.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 process_material = SubResource("ParticleProcessMaterial_ro3en")
 draw_pass_1 = SubResource("BoxMesh_xhfw6")
 
 [node name="Fire_Particles4" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
 transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 110.968, 0.00500076, 37.7549)
+visibility_range_end = 50.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 process_material = SubResource("ParticleProcessMaterial_ro3en")
 draw_pass_1 = SubResource("BoxMesh_xhfw6")
 
 [node name="Fire_Particles5" parent="Game_CanvasLayer/World/Cave" instance=ExtResource("20_e755i")]
 transform = Transform3D(4.61005, 0, 0, 0, 4.61005, 0, 0, 0, 4.61005, 106.85, 0.00500076, 39.4847)
+visibility_range_end = 50.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 process_material = SubResource("ParticleProcessMaterial_ro3en")
 draw_pass_1 = SubResource("BoxMesh_xhfw6")
 
@@ -2004,18 +2022,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.00870419, -0.00201517, -0.00264403, 0.999957)
+bones/1/rotation = Quaternion(0.0183812, -0.0681256, 0.0147132, 0.997399)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0134891, 0.000895607, 0.00484668)
-bones/10/rotation = Quaternion(-0.421359, 0.533083, 0.589009, -0.437432)
-bones/12/position = Vector3(-0.0138459, 0.000906342, 0.00463461)
-bones/12/rotation = Quaternion(0.362596, 0.479753, 0.628832, 0.492881)
+bones/10/position = Vector3(0.0140525, 0.000882284, 0.00443615)
+bones/10/rotation = Quaternion(-0.392563, 0.511042, 0.60853, -0.463056)
+bones/12/position = Vector3(-0.0140542, 0.000909201, 0.00450282)
+bones/12/rotation = Quaternion(0.374189, 0.489478, 0.621544, 0.483815)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.245961, -0.276074, 0.929132, 0.0347565, -0.960475, -0.276186, 0.968656, -0.0356375, 0.245834, -0.0138592, -0.00456167, 0.017715)
+transform = Transform3D(-0.279043, -0.362516, 0.889222, 0.00921267, -0.926973, -0.375015, 0.960234, -0.0964535, 0.262005, -0.0145561, -0.00257198, 0.0170121)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -2248,12 +2266,12 @@ transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.00870419, -0.00201517, -0.00264403, 0.999957)
+bones/1/rotation = Quaternion(0.0183812, -0.0681256, 0.0147132, 0.997399)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0134891, 0.000895607, 0.00484668)
-bones/10/rotation = Quaternion(-0.421359, 0.533083, 0.589009, -0.437432)
-bones/12/position = Vector3(-0.0138459, 0.000906342, 0.00463461)
-bones/12/rotation = Quaternion(0.362596, 0.479753, 0.628832, 0.492881)
+bones/10/position = Vector3(0.0140525, 0.000882284, 0.00443615)
+bones/10/rotation = Quaternion(-0.392563, 0.511042, 0.60853, -0.463056)
+bones/12/position = Vector3(-0.0140542, 0.000909201, 0.00450282)
+bones/12/rotation = Quaternion(0.374189, 0.489478, 0.621544, 0.483815)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
@@ -2282,7 +2300,7 @@ stream = ExtResource("13_jkv2x")
 pitch_scale = 0.6
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
-transform = Transform3D(93.5186, 0.497803, -0.372616, -0.491241, 93.5052, 1.62897, 0.381222, -1.62698, 93.5058, 0, 1.55762, 0)
+transform = Transform3D(92.6121, -2.97904, -12.6586, 2.5106, 93.417, -3.61659, 12.7598, 3.24163, 92.5894, 0, 1.55762, 0)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true
@@ -2290,6 +2308,9 @@ external_skeleton = NodePath("../Skin/character/Armature/Skeleton3D")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Game_CanvasLayer/Boss/Body/BoneAttachment3D"]
 transform = Transform3D(0.014514, -0.000781217, -0.00422567, 0.000649792, 0.0151124, -0.000562039, 0.00424787, 0.000357515, 0.0145241, 0, 0.021, 0)
+visibility_range_end = 30.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
 process_material = SubResource("ParticleProcessMaterial_bu4jf")
 draw_pass_1 = SubResource("BoxMesh_0loja")
 

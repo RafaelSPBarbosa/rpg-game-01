@@ -2035,18 +2035,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.019275, -0.097015, 0.0250805, 0.99478)
+bones/1/rotation = Quaternion(0.0153903, -0.0918356, 0.0221287, 0.995409)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0146578, 0.00086768, 0.0039952)
-bones/10/rotation = Quaternion(-0.321607, 0.458506, 0.649329, -0.514503)
-bones/12/position = Vector3(-0.0140308, 0.00090888, 0.00451764)
-bones/12/rotation = Quaternion(0.418567, 0.528649, 0.591191, 0.44252)
+bones/10/position = Vector3(0.0142575, 0.000877397, 0.00428686)
+bones/10/rotation = Quaternion(-0.372841, 0.496278, 0.620793, -0.478867)
+bones/12/position = Vector3(-0.0141537, 0.000910566, 0.00443988)
+bones/12/rotation = Quaternion(0.38526, 0.499592, 0.614491, 0.473691)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.302597, -0.269891, 0.914108, 0.0647745, -0.962677, -0.262788, 0.950915, -0.0203077, 0.308785, -0.0146673, -0.00169536, 0.0169611)
+transform = Transform3D(-0.295213, -0.369571, 0.88106, 0.0208109, -0.924428, -0.380789, 0.955205, -0.0940782, 0.280594, -0.0147525, -0.00178976, 0.016827)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -2279,12 +2279,12 @@ transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.019275, -0.097015, 0.0250805, 0.99478)
+bones/1/rotation = Quaternion(0.0153903, -0.0918356, 0.0221287, 0.995409)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0146578, 0.00086768, 0.0039952)
-bones/10/rotation = Quaternion(-0.321607, 0.458506, 0.649329, -0.514503)
-bones/12/position = Vector3(-0.0140308, 0.00090888, 0.00451764)
-bones/12/rotation = Quaternion(0.418567, 0.528649, 0.591191, 0.44252)
+bones/10/position = Vector3(0.0142575, 0.000877397, 0.00428686)
+bones/10/rotation = Quaternion(-0.372841, 0.496278, 0.620793, -0.478867)
+bones/12/position = Vector3(-0.0141537, 0.000910566, 0.00443988)
+bones/12/rotation = Quaternion(0.38526, 0.499592, 0.614491, 0.473691)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
@@ -2313,7 +2313,7 @@ stream = ExtResource("13_jkv2x")
 pitch_scale = 0.6
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
-transform = Transform3D(91.6426, -4.31684, -18.1415, 5.01636, 93.3335, 3.13129, 17.9607, -4.0415, 91.6908, 0, 1.55762, 0)
+transform = Transform3D(91.8516, -4.38434, -17.0345, 3.85562, 93.3848, -3.24552, 17.1619, 2.4853, 91.8989, 0, 1.55762, 0)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true
@@ -2525,6 +2525,117 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6973, 1.97739, -8.68246)
 
 [node name="XP_Point16" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9309, 0.981151, -9.45824)
+
+[node name="XP_Point17" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.16095, 0.981151, -102.282)
+
+[node name="XP_Point18" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.11929, 1.50158, -100.566)
+
+[node name="XP_Point19" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.57745, 1.10053, -100.692)
+
+[node name="XP_Point20" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9889, 0.47547, -102.39)
+
+[node name="XP_Point21" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54521, 1.75744, -101.731)
+
+[node name="XP_Point22" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.341529, 1.28381, -101.788)
+
+[node name="XP_Point23" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47784, 1.89067, -100.099)
+
+[node name="XP_Point24" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.241652, 1.80242, -99.54)
+
+[node name="XP_Point25" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.3088, 1.80242, -122.295)
+
+[node name="XP_Point26" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.4415, 1.47074, -124.192)
+
+[node name="XP_Point27" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.3942, 1.4911, -122.893)
+
+[node name="XP_Point28" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5552, 1.89517, -123.781)
+
+[node name="XP_Point29" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.2407, 1.89517, -109.575)
+
+[node name="XP_Point30" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.1289, 1.52895, -110.005)
+
+[node name="XP_Point31" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.0955, 2.05217, -108.811)
+
+[node name="XP_Point32" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.6539, 2.05217, -108.504)
+
+[node name="XP_Point33" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.4338, 2.26522, -108.08)
+
+[node name="XP_Point35" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.1019, 2.39994, -108.225)
+
+[node name="XP_Point36" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9932, 2.39994, -106.95)
+
+[node name="XP_Point37" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3093, 2.75813, -106.202)
+
+[node name="XP_Point38" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.5512, 2.42666, -107.269)
+
+[node name="XP_Point39" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.964, 3.39483, -106.697)
+
+[node name="XP_Point40" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.964, 1.55188, -106.697)
+
+[node name="XP_Point41" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.5998, 2.07539, -80.9758)
+
+[node name="XP_Point42" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.5183, 2.71037, -82.8651)
+
+[node name="XP_Point43" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.8793, 2.38547, -80.9829)
+
+[node name="XP_Point44" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.7541, 2.7009, -83.3248)
+
+[node name="XP_Point45" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.5257, 2.7009, -80.7071)
+
+[node name="XP_Point46" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99.6611, 2.50383, -80.1198)
+
+[node name="XP_Point47" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.5489, 2.50383, -81.6129)
+
+[node name="XP_Point48" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.7131, 2.50383, -75.9453)
+
+[node name="XP_Point49" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.0502, 2.84454, -78.1231)
+
+[node name="XP_Point50" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.1636, 1.82399, -78.423)
+
+[node name="XP_Point51" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.1636, 2.84454, -76.423)
+
+[node name="XP_Point52" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100.742, 1.82399, -78.2149)
+
+[node name="XP_Point53" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.6513, 2.05687, -74.2583)
+
+[node name="XP_Point34" parent="Game_CanvasLayer/XP_Points" instance=ExtResource("32_vc5cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.4308, 1.71409, -107.153)
 
 [node name="UI_CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2

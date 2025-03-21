@@ -12,6 +12,7 @@ func _init() -> void: instance = self
 @onready var xp_bar: XP_Bar = $XPBar
 @onready var end_screen = $End_Screen
 @onready var death_ui = $Death_UI
+@onready var boss_health: Boss_Health = $Boss_Health
 
 
 func hide_ui():
@@ -45,3 +46,7 @@ func hide_death_ui():
 	tween.tween_property(death_ui, "modulate:a", 0.0, 0.5).set_ease(Tween.EASE_IN_OUT)
 	await tween.finished
 	death_ui.visible = false
+	
+func show_boss_health():
+	var tween = get_tree().create_tween()
+	tween.tween_property(boss_health, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_IN_OUT)

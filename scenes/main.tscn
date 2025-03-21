@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=130 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -66,6 +66,7 @@
 [ext_resource type="AudioStream" uid="uid://dm6i2ga2jyve5" path="res://Sources/Audio/player_spend_skill_point.mp3" id="43_chjal"]
 [ext_resource type="Script" uid="uid://b0p26yfy6n3qr" path="res://Scripts/UI/End_Screen.gd" id="53_o7ddy"]
 [ext_resource type="PackedScene" uid="uid://m6my3vxq6mqb" path="res://Sources/Meshes/Level/Nature/Cave.fbx" id="58_augu2"]
+[ext_resource type="Script" uid="uid://sxq4kcvmu410" path="res://Scripts/UI/Boss_Health.gd" id="59_152kg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
 size = Vector3(0.0606982, 0.0425195, 0.185)
@@ -303,6 +304,15 @@ modulate_color = Color(1, 1, 1, 0.184314)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8jky"]
 bg_color = Color(0.554446, 0.809195, 0.269738, 1)
+border_color = Color(0.340503, 0.240601, 0.243, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_152kg"]
+bg_color = Color(0.866179, 0, 0.154823, 1)
 border_color = Color(0.340503, 0.240601, 0.243, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
@@ -2025,18 +2035,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0171382, -0.0835122, 0.0194371, 0.99617)
+bones/1/rotation = Quaternion(-0.019275, -0.097015, 0.0250805, 0.99478)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0142046, 0.00087868, 0.00432537)
-bones/10/rotation = Quaternion(-0.380652, 0.502087, 0.61603, -0.472777)
-bones/12/position = Vector3(-0.0141154, 0.00091004, 0.00446412)
-bones/12/rotation = Quaternion(0.380804, 0.495503, 0.617364, 0.477836)
+bones/10/position = Vector3(0.0146578, 0.00086768, 0.0039952)
+bones/10/rotation = Quaternion(-0.321607, 0.458506, 0.649329, -0.514503)
+bones/12/position = Vector3(-0.0140308, 0.00090888, 0.00451764)
+bones/12/rotation = Quaternion(0.418567, 0.528649, 0.591191, 0.44252)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.289273, -0.369015, 0.883261, 0.0157282, -0.924417, -0.381058, 0.957117, -0.0963377, 0.273213, -0.0146854, -0.00206937, 0.016891)
+transform = Transform3D(-0.302597, -0.269891, 0.914108, 0.0647745, -0.962677, -0.262788, 0.950915, -0.0203077, 0.308785, -0.0146673, -0.00169536, 0.0169611)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -2233,7 +2243,7 @@ transform = Transform3D(-0.5229, 0, -0.852394, 0, 1, 0, 0.852394, 0, -0.5229, 1.
 transform = Transform3D(-0.5229, 0, -0.852394, 0, 1, 0, 0.852394, 0, -0.5229, -3.07886, -2.38419e-07, 5.15688)
 
 [node name="Boss" type="Node3D" parent="Game_CanvasLayer"]
-transform = Transform3D(-0.913212, 0, -0.407486, 0, 1, 0, 0.407486, 0, -0.913212, 105.662, -2.38419e-07, 18.2219)
+transform = Transform3D(-0.913212, 0, -0.407486, 0, 1, 0, 0.407486, 0, -0.913212, 105.17, -2.6226e-06, 17.4258)
 script = ExtResource("32_bjg73")
 move_speed = 3.0
 
@@ -2269,12 +2279,12 @@ transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0171382, -0.0835122, 0.0194371, 0.99617)
+bones/1/rotation = Quaternion(-0.019275, -0.097015, 0.0250805, 0.99478)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0142046, 0.00087868, 0.00432537)
-bones/10/rotation = Quaternion(-0.380652, 0.502087, 0.61603, -0.472777)
-bones/12/position = Vector3(-0.0141154, 0.00091004, 0.00446412)
-bones/12/rotation = Quaternion(0.380804, 0.495503, 0.617364, 0.477836)
+bones/10/position = Vector3(0.0146578, 0.00086768, 0.0039952)
+bones/10/rotation = Quaternion(-0.321607, 0.458506, 0.649329, -0.514503)
+bones/12/position = Vector3(-0.0140308, 0.00090888, 0.00451764)
+bones/12/rotation = Quaternion(0.418567, 0.528649, 0.591191, 0.44252)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
@@ -2303,7 +2313,7 @@ stream = ExtResource("13_jkv2x")
 pitch_scale = 0.6
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
-transform = Transform3D(92.1455, -3.88932, -15.4981, 3.35392, 93.3951, -3.49689, 15.6227, 2.88967, 92.1613, 0, 1.55762, 0)
+transform = Transform3D(91.6426, -4.31684, -18.1415, 5.01636, 93.3335, 3.13129, 17.9607, -4.0415, 91.6908, 0, 1.55762, 0)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true
@@ -2717,6 +2727,87 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(148, 2.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_j8jky")
+
+[node name="Boss_Health" type="Control" parent="UI_CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -460.0
+offset_top = 50.0
+offset_right = 540.0
+offset_bottom = 100.0
+grow_horizontal = 2
+script = ExtResource("59_152kg")
+
+[node name="Shadow" type="Panel" parent="UI_CanvasLayer/UI/Boss_Health"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -77.0
+offset_right = 500.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 2.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_pibwh")
+
+[node name="BG" type="Panel" parent="UI_CanvasLayer/UI/Boss_Health"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = 13.315
+offset_right = 450.0
+offset_bottom = 27.315
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 2.5)
+
+[node name="Bar" type="Panel" parent="UI_CanvasLayer/UI/Boss_Health"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -445.0
+offset_top = 15.315
+offset_right = 445.0
+offset_bottom = 25.315
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(148, 2.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_152kg")
+
+[node name="Label" type="Label" parent="UI_CanvasLayer/UI/Boss_Health"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.952006, 0, 0.124262, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 30
+text = "General Imperius"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="XPBar" type="Control" parent="UI_CanvasLayer/UI"]
 layout_mode = 1

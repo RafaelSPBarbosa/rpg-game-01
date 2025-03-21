@@ -1,6 +1,9 @@
 extends Node3D
 class_name Boss
 
+static var instance: Boss = null
+func _init() -> void: instance = self
+
 @export_group("Stats")
 @export var health: float = 500
 @export var max_health: float = 500
@@ -44,6 +47,7 @@ func _process(delta):
 		
 		if body.global_position.distance_to(Player.instance.body.global_position) < 10:
 			state = ai_states.chasing
+			UI.instance.show_boss_health()
 			aggro_sound.play()
 			
 	if state == ai_states.waiting_to_strike:
@@ -120,6 +124,8 @@ func take_damage(damage: float, is_critical: bool = false):
 		else:
 			character.take_damage()
 			
+	UI.instance.boss_health.update_bar()
+	
 func attack():
 	state = ai_states.attacking
 	attack_timer = 0

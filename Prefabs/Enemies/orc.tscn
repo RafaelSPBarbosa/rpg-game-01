@@ -77,7 +77,7 @@ bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
-visibility_range_end = 20.0
+visibility_range_end = 40.0
 visibility_range_end_margin = 5.0
 visibility_range_fade_mode = 1
 surface_material_override/0 = ExtResource("4_s5rhj")
@@ -107,7 +107,7 @@ external_skeleton = NodePath("../Skin/character/Armature/Skeleton3D")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Body/BoneAttachment3D"]
 transform = Transform3D(0.014514, -0.000781217, -0.00422567, 0.000649792, 0.0151124, -0.000562039, 0.00424787, 0.000357515, 0.0145241, 0.00037987, 0.0206175, -0.00294744)
-visibility_range_end = 10.0
+visibility_range_end = 25.0
 visibility_range_end_margin = 5.0
 visibility_range_fade_mode = 1
 process_material = SubResource("ParticleProcessMaterial_myui4")

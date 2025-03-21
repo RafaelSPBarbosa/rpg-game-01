@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=128 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -342,6 +342,9 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0loja"]
 font_size = 51
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1epgm"]
+texture = ExtResource("18_dp3eg")
 
 [node name="Root" type="Node"]
 
@@ -2022,18 +2025,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0183812, -0.0681256, 0.0147132, 0.997399)
+bones/1/rotation = Quaternion(0.0171382, -0.0835122, 0.0194371, 0.99617)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0140525, 0.000882284, 0.00443615)
-bones/10/rotation = Quaternion(-0.392563, 0.511042, 0.60853, -0.463056)
-bones/12/position = Vector3(-0.0140542, 0.000909201, 0.00450282)
-bones/12/rotation = Quaternion(0.374189, 0.489478, 0.621544, 0.483815)
+bones/10/position = Vector3(0.0142046, 0.00087868, 0.00432537)
+bones/10/rotation = Quaternion(-0.380652, 0.502087, 0.61603, -0.472777)
+bones/12/position = Vector3(-0.0141154, 0.00091004, 0.00446412)
+bones/12/rotation = Quaternion(0.380804, 0.495503, 0.617364, 0.477836)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.279043, -0.362516, 0.889222, 0.00921267, -0.926973, -0.375015, 0.960234, -0.0964535, 0.262005, -0.0145561, -0.00257198, 0.0170121)
+transform = Transform3D(-0.289273, -0.369015, 0.883261, 0.0157282, -0.924417, -0.381058, 0.957117, -0.0963377, 0.273213, -0.0146854, -0.00206937, 0.016891)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -2266,12 +2269,12 @@ transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0183812, -0.0681256, 0.0147132, 0.997399)
+bones/1/rotation = Quaternion(0.0171382, -0.0835122, 0.0194371, 0.99617)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0140525, 0.000882284, 0.00443615)
-bones/10/rotation = Quaternion(-0.392563, 0.511042, 0.60853, -0.463056)
-bones/12/position = Vector3(-0.0140542, 0.000909201, 0.00450282)
-bones/12/rotation = Quaternion(0.374189, 0.489478, 0.621544, 0.483815)
+bones/10/position = Vector3(0.0142046, 0.00087868, 0.00432537)
+bones/10/rotation = Quaternion(-0.380652, 0.502087, 0.61603, -0.472777)
+bones/12/position = Vector3(-0.0141154, 0.00091004, 0.00446412)
+bones/12/rotation = Quaternion(0.380804, 0.495503, 0.617364, 0.477836)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
@@ -2300,7 +2303,7 @@ stream = ExtResource("13_jkv2x")
 pitch_scale = 0.6
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
-transform = Transform3D(92.6121, -2.97904, -12.6586, 2.5106, 93.417, -3.61659, 12.7598, 3.24163, 92.5894, 0, 1.55762, 0)
+transform = Transform3D(92.1455, -3.88932, -15.4981, 3.35392, 93.3951, -3.49689, 15.6227, 2.88967, 92.1613, 0, 1.55762, 0)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true
@@ -3279,6 +3282,68 @@ text = "THE END
 General Imperius is dead, and with that,
  the village saw peace once again"
 label_settings = SubResource("LabelSettings_0loja")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Death_UI" type="Control" parent="UI_CanvasLayer/UI"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI_CanvasLayer/UI/Death_UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -497.0
+offset_top = -92.0
+offset_right = 497.0
+offset_bottom = 346.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1epgm")
+
+[node name="Label" type="Label" parent="UI_CanvasLayer/UI/Death_UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.5
+offset_top = -85.0
+offset_right = 251.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.995889, 0.64786, 1.54018e-06, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 69
+text = "You Have Died!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI_CanvasLayer/UI/Death_UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = 34.0
+offset_right = 181.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press E to Respawn at the nearest checkpoint"
 horizontal_alignment = 1
 vertical_alignment = 1
 

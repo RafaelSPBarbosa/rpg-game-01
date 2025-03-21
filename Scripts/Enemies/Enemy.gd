@@ -31,6 +31,8 @@ enum ai_states {idle, chasing, attacking, waiting_to_strike, dead, returning_to_
 var attack_timer = 0
 @export var attack_cooldown = 2
 
+@onready var is_alive := true
+
 func _ready():
 	initial_position = body.global_position
 	initial_rotation = _skin.global_rotation
@@ -39,8 +41,11 @@ func _ready():
 	group.register_enemy(self)
 
 func _process(delta):
+	if is_alive == false:
+		return
+	
 	if Player.instance.is_alive == false:
-		state = ai_states.idle
+		state = ai_states.returning_to_spawn
 		return
 	
 	if state == ai_states.idle:
@@ -58,6 +63,9 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	if is_alive == false:
+		return
+	
 	if Player.instance.is_alive == false:
 		return
 	
@@ -141,3 +149,4 @@ func die():
 	death_sound.play()
 	group.enemy_died(self)
 	Player.instance.gain_xp(5)
+	is_alive = false

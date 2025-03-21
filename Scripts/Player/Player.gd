@@ -46,11 +46,21 @@ var is_alive := true
 @onready var collect_xp_point_sound = $Body/Collect_XP_Point_Sound
 @onready var equip_sword_sound = $Body/Equip_Sword_Sound
 
+@onready var spawn_pos := Vector3.ZERO
+@onready var spawn_rot := Vector3.ZERO
+
 @onready var sword_basic = $Body/Skin/character/Armature/Skeleton3D/BoneAttachment3D/Sword_Basic
 
 func _ready():
 	time_to_regain_health = Time.get_ticks_msec() + 1000
 	sword_basic.visible = false
+	spawn_pos = body.global_position
+	spawn_rot = body.global_rotation
+	
+func _input(event: InputEvent) -> void:
+	if is_alive == false:
+		if event.is_action_pressed("interact"):
+			respawn()
 
 func _physics_process(delta):
 	if Time.get_ticks_msec() >= time_to_regain_health:
@@ -81,6 +91,17 @@ func die():
 	character.die()
 	death_sound.play()
 	is_alive = false
+	UI.instance.hide_ui()
+	UI.instance.show_death_ui()
+	
+func respawn():
+	character.idle()
+	is_alive = true
+	body.global_position = spawn_pos
+	body.global_rotation = spawn_rot
+	health = max_health / 2
+	UI.instance.show_ui()
+	UI.instance.hide_death_ui()
 
 func gain_xp(amount: int):
 	xp += amount * (1.0 + (float(luck) / 10))

@@ -11,6 +11,8 @@ func _init() -> void: instance = self
 @onready var character_stats_screen: Character_Stats_Screen = $Character_Stats_Screen
 @onready var xp_bar: XP_Bar = $XPBar
 @onready var end_screen = $End_Screen
+@onready var death_ui = $Death_UI
+
 
 func hide_ui():
 	var tween = get_tree().create_tween()
@@ -32,3 +34,14 @@ func show_ui():
 	tween3.tween_property(health, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_IN_OUT)
 	var tween4 = get_tree().create_tween()
 	tween4.tween_property(xp_bar, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_IN_OUT)
+
+func show_death_ui():
+	var tween = get_tree().create_tween()
+	tween.tween_property(death_ui, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_IN_OUT)
+	death_ui.visible = true
+	
+func hide_death_ui():
+	var tween = get_tree().create_tween()
+	tween.tween_property(death_ui, "modulate:a", 0.0, 0.5).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
+	death_ui.visible = false

@@ -67,14 +67,10 @@ script = ExtResource("3_gpi1x")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
 bones/1/rotation = Quaternion(-0.0127439, -0.103109, 0.0265358, 0.994234)
-bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
 bones/10/position = Vector3(0.0145915, 0.00086929, 0.00404351)
 bones/10/rotation = Quaternion(-0.327587, 0.462863, 0.646203, -0.510751)
 bones/12/position = Vector3(-0.0140663, 0.000909367, 0.00449516)
 bones/12/rotation = Quaternion(0.414122, 0.524867, 0.594476, 0.446783)
-bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
-bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
-bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
 visibility_range_end = 40.0

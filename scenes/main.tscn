@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=131 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -67,6 +67,7 @@
 [ext_resource type="Script" uid="uid://b0p26yfy6n3qr" path="res://Scripts/UI/End_Screen.gd" id="53_o7ddy"]
 [ext_resource type="PackedScene" uid="uid://m6my3vxq6mqb" path="res://Sources/Meshes/Level/Nature/Cave.fbx" id="58_augu2"]
 [ext_resource type="Script" uid="uid://sxq4kcvmu410" path="res://Scripts/UI/Boss_Health.gd" id="59_152kg"]
+[ext_resource type="PackedScene" uid="uid://cxa0idg80exwg" path="res://Prefabs/Items/fire_trap.tscn" id="68_r4e17"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
 size = Vector3(0.0606982, 0.0425195, 0.185)
@@ -1992,6 +1993,29 @@ target = NodePath("../../../Cave_Entrance/MetalGate_01")
 [node name="Interactable_Button_02_Camera" type="Camera3D" parent="Game_CanvasLayer/World/Cave_Entrance_Challenges/Cave_Entrance_Challenge_01"]
 transform = Transform3D(-1, 2.1753e-08, -8.46732e-08, 0, 0.968548, 0.248825, 8.74228e-08, 0.248825, -0.968548, -10.7628, 5.73353, -4.24121)
 
+[node name="Fire_Traps" type="Node3D" parent="Game_CanvasLayer/World"]
+
+[node name="Fire_Trap" parent="Game_CanvasLayer/World/Fire_Traps" instance=ExtResource("68_r4e17")]
+transform = Transform3D(1.2125, 0, 0, 0, 1.2125, 0, 0, 0, 1.2125, 74.8745, 0.00499526, -100.202)
+
+[node name="Fire_Trap2" parent="Game_CanvasLayer/World/Fire_Traps" instance=ExtResource("68_r4e17")]
+transform = Transform3D(1.2125, 0, 0, 0, 1.2125, 0, 0, 0, 1.2125, 69.9741, 0.00499526, -87.1332)
+
+[node name="Fire_Trap3" parent="Game_CanvasLayer/World/Fire_Traps" instance=ExtResource("68_r4e17")]
+transform = Transform3D(1.2125, 0, 0, 0, 1.2125, 0, 0, 0, 1.2125, 65.5468, 0.00499526, -82.7855)
+
+[node name="Fire_Trap4" parent="Game_CanvasLayer/World/Fire_Traps" instance=ExtResource("68_r4e17")]
+transform = Transform3D(1.2125, 0, 0, 0, 1.2125, 0, 0, 0, 1.2125, 76.3814, 0.00499526, -116.378)
+
+[node name="Fire_Trap5" parent="Game_CanvasLayer/World/Fire_Traps" instance=ExtResource("68_r4e17")]
+transform = Transform3D(1.2125, 0, 0, 0, 1.2125, 0, 0, 0, 1.2125, 69.3992, 0.00499526, -123.34)
+
+[node name="Fire_Trap6" parent="Game_CanvasLayer/World/Fire_Traps" instance=ExtResource("68_r4e17")]
+transform = Transform3D(1.2125, 0, 0, 0, 1.2125, 0, 0, 0, 1.2125, 28.3622, 0.00499526, -130.188)
+
+[node name="Fire_Trap7" parent="Game_CanvasLayer/World/Fire_Traps" instance=ExtResource("68_r4e17")]
+transform = Transform3D(1.2125, 0, 0, 0, 1.2125, 0, 0, 0, 1.2125, 24.3226, 0.00499526, -125.704)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Game_CanvasLayer"]
 environment = ExtResource("15_ids8r")
 
@@ -2035,18 +2059,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0153903, -0.0918356, 0.0221287, 0.995409)
+bones/1/rotation = Quaternion(0.0374646, 0.0756471, -0.0153394, 0.996313)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0142575, 0.000877397, 0.00428686)
-bones/10/rotation = Quaternion(-0.372841, 0.496278, 0.620793, -0.478867)
-bones/12/position = Vector3(-0.0141537, 0.000910566, 0.00443988)
-bones/12/rotation = Quaternion(0.38526, 0.499592, 0.614491, 0.473691)
+bones/10/position = Vector3(0.0140389, 0.000882703, 0.00444613)
+bones/10/rotation = Quaternion(-0.393999, 0.513375, 0.607808, -0.460195)
+bones/12/position = Vector3(-0.0135614, 0.000902441, 0.00481455)
+bones/12/rotation = Quaternion(0.425453, 0.53549, 0.586128, 0.434389)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.295213, -0.369571, 0.88106, 0.0208109, -0.924428, -0.380789, 0.955205, -0.0940782, 0.280594, -0.0147525, -0.00178976, 0.016827)
+transform = Transform3D(-0.217513, 0.0944865, 0.971473, -0.142411, -0.987724, 0.0641812, 0.965612, -0.124388, 0.228299, -0.0126469, -0.00687099, 0.0175219)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -2279,12 +2303,12 @@ transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0153903, -0.0918356, 0.0221287, 0.995409)
+bones/1/rotation = Quaternion(0.0374646, 0.0756471, -0.0153394, 0.996313)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0142575, 0.000877397, 0.00428686)
-bones/10/rotation = Quaternion(-0.372841, 0.496278, 0.620793, -0.478867)
-bones/12/position = Vector3(-0.0141537, 0.000910566, 0.00443988)
-bones/12/rotation = Quaternion(0.38526, 0.499592, 0.614491, 0.473691)
+bones/10/position = Vector3(0.0140389, 0.000882703, 0.00444613)
+bones/10/rotation = Quaternion(-0.393999, 0.513375, 0.607808, -0.460195)
+bones/12/position = Vector3(-0.0135614, 0.000902441, 0.00481455)
+bones/12/rotation = Quaternion(0.425453, 0.53549, 0.586128, 0.434389)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
@@ -2313,7 +2337,7 @@ stream = ExtResource("13_jkv2x")
 pitch_scale = 0.6
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
-transform = Transform3D(91.8516, -4.38434, -17.0345, 3.85562, 93.3848, -3.24552, 17.1619, 2.4853, 91.8989, 0, 1.55762, 0)
+transform = Transform3D(92.4064, 3.38861, 13.9895, -2.32842, 93.2141, -7.19862, -14.2044, 6.76454, 92.1878, 0, 1.55762, 0)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true

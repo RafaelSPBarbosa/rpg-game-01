@@ -15,6 +15,7 @@ var group: Enemy_Group = null
 @onready var area_3d = $Body/Area3D
 @onready var collision_shape_3d = $Body/CollisionShape3D
 @onready var critical_strike_icon = $Critical_Strike_Icon
+@onready var alert_icon : Sprite3D = $Body/Alert_Icon
 
 #sounds
 @onready var aggro_sound: AudioStreamPlayer3D = $Body/AggroSound
@@ -29,7 +30,7 @@ enum ai_states {idle, chasing, attacking, waiting_to_strike, dead, returning_to_
 
 @export var damage = 25.0
 var attack_timer = 0
-@export var attack_cooldown = 2
+@export var attack_cooldown :float = 2.0
 
 @onready var is_alive := true
 
@@ -49,8 +50,6 @@ func _process(delta):
 		return
 	
 	if state == ai_states.idle:
-		attack_timer = 0
-		
 		if body.global_position.distance_to(Player.instance.body.global_position) < 10:
 			state = ai_states.chasing
 			aggro_sound.play()
@@ -64,13 +63,26 @@ func _process(delta):
 
 func _physics_process(delta):
 	if is_alive == false:
+		body.velocity = Vector3.ZERO
 		return
 	
 	if Player.instance.is_alive == false:
 		return
+		
+	if attack_timer > attack_cooldown * 0.65:
+		alert_icon.modulate.a = 1.0
+	else:
+		alert_icon.modulate.a = 0.0
+		
+	if state == ai_states.idle:
+		attack_timer -= delta
+		if attack_timer <= 0:
+			attack_timer = 0
 	
 	if state == ai_states.chasing:
-		attack_timer = 0
+		attack_timer -= delta
+		if attack_timer <= 0:
+			attack_timer = 0
 		
 		if body.global_position.distance_to(initial_position) > 10:
 			state = ai_states.returning_to_spawn

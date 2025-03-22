@@ -31,7 +31,7 @@ enum ai_states {idle, chasing, attacking, waiting_to_strike, dead, returning_to_
 
 @export var damage = 75.0
 var attack_timer = 0
-@export var attack_cooldown = 2
+@export var attack_cooldown : float = 2.0
 
 func _ready():
 	initial_position = body.global_position
@@ -43,12 +43,11 @@ func _process(delta):
 		return
 	
 	if state == ai_states.idle:
-		attack_timer = 0
-		
 		if body.global_position.distance_to(Player.instance.body.global_position) < 10:
 			state = ai_states.chasing
 			UI.instance.show_boss_health()
 			aggro_sound.play()
+			Audio_Manager.instance.start_boss_fight()
 			
 	if state == ai_states.waiting_to_strike:
 		if(character.state_machine.get_current_node() != "Idle" && character.state_machine.get_current_node() != "Take Damage"):
@@ -61,8 +60,15 @@ func _physics_process(delta):
 	if Player.instance.is_alive == false:
 		return
 	
+	if state == ai_states.idle:
+		attack_timer -= delta
+		if attack_timer <= 0:
+			attack_timer = 0
+	
 	if state == ai_states.chasing:
-		attack_timer = 0
+		attack_timer -= delta
+		if attack_timer <= 0:
+			attack_timer = 0
 		
 		if body.global_position.distance_to(initial_position) > 10:
 			state = ai_states.returning_to_spawn

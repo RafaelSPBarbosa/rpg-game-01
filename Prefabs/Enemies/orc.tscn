@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ci4ftwvou63co"]
+[gd_scene load_steps=21 format=3 uid="uid://ci4ftwvou63co"]
 
 [ext_resource type="Script" uid="uid://ddqq2vxmhasn2" path="res://Scripts/Enemies/Enemy.gd" id="1_f0fbn"]
 [ext_resource type="PackedScene" uid="uid://cpswfllu5mpm6" path="res://Prefabs/Skins/character.tscn" id="2_8vw3x"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://ia61or0tt22w" path="res://Sources/Audio/orc-death.mp3" id="6_gpi1x"]
 [ext_resource type="AudioStream" uid="uid://cl7nm2h206xy5" path="res://Sources/Audio/take-damage.mp3" id="7_s5rhj"]
 [ext_resource type="Texture2D" uid="uid://c00x64c31kaad" path="res://Sources/UI/Critical_Strike_Icon.png" id="8_myui4"]
+[ext_resource type="Texture2D" uid="uid://cqb15ub3vessv" path="res://Sources/UI/Alert_Icon.png" id="9_gcgu5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y6deb"]
 
@@ -43,6 +44,13 @@ emission_energy_multiplier = 2.95
 [sub_resource type="BoxMesh" id="BoxMesh_gcgu5"]
 material = SubResource("StandardMaterial3D_myui4")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_3ictq"]
+viewport_path = NodePath("Body/Alert_Icon/SubViewport")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4uc11"]
+texture = ExtResource("9_gcgu5")
+modulate_color = Color(0.772223, 0, 0.08101, 1)
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_myui4"]
 viewport_path = NodePath("Critical_Strike_Icon/SubViewport")
 
@@ -51,6 +59,10 @@ texture = ExtResource("8_myui4")
 
 [node name="Orc" type="Node3D"]
 script = ExtResource("1_f0fbn")
+health = 200.0
+max_health = 200.0
+damage = 40.0
+attack_cooldown = 1.5
 
 [node name="Body" type="CharacterBody3D" parent="."]
 
@@ -66,11 +78,15 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("3_gpi1x")
 
 [node name="Skeleton3D" parent="Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.0127439, -0.103109, 0.0265358, 0.994234)
-bones/10/position = Vector3(0.0145915, 0.00086929, 0.00404351)
-bones/10/rotation = Quaternion(-0.327587, 0.462863, 0.646203, -0.510751)
-bones/12/position = Vector3(-0.0140663, 0.000909367, 0.00449516)
-bones/12/rotation = Quaternion(0.414122, 0.524867, 0.594476, 0.446783)
+bones/1/rotation = Quaternion(0.0362182, 0.0799701, -0.0167814, 0.995998)
+bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
+bones/10/position = Vector3(0.0139946, 0.000883778, 0.00447837)
+bones/10/rotation = Quaternion(-0.397262, 0.515908, 0.605682, -0.457352)
+bones/12/position = Vector3(-0.0135477, 0.000902253, 0.00482323)
+bones/12/rotation = Quaternion(0.425444, 0.535526, 0.586129, 0.434351)
+bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
+bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
+bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="Cube" parent="Body/Skin/character/Armature/Skeleton3D" index="0"]
 visibility_range_end = 40.0
@@ -95,7 +111,7 @@ volume_db = -20.0
 stream = ExtResource("7_s5rhj")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Body"]
-transform = Transform3D(36.8453, -1.89019, -7.75511, 2.08834, 37.6347, 0.749049, 7.70411, -1.16165, 36.8861, 8.47033e-22, 0.627906, -7.10543e-15)
+transform = Transform3D(37.1966, 1.47864, 5.95978, -1.04187, 37.5798, -2.82111, -6.05143, 2.61873, 37.1189, 8.47033e-22, 0.627906, -7.10543e-15)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true
@@ -108,6 +124,24 @@ visibility_range_end_margin = 5.0
 visibility_range_fade_mode = 1
 process_material = SubResource("ParticleProcessMaterial_myui4")
 draw_pass_1 = SubResource("BoxMesh_gcgu5")
+
+[node name="Alert_Icon" type="Sprite3D" parent="Body"]
+transform = Transform3D(0.648794, 0, 0, 0, 0.648794, 0, 0, 0, 0.648794, 0, 2.67515, 0)
+modulate = Color(1, 1, 1, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_3ictq")
+
+[node name="SubViewport" type="SubViewport" parent="Body/Alert_Icon"]
+transparent_bg = true
+size = Vector2i(256, 256)
+
+[node name="Panel" type="Panel" parent="Body/Alert_Icon/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4uc11")
 
 [node name="Critical_Strike_Icon" type="Sprite3D" parent="."]
 transform = Transform3D(0.648794, 0, 0, 0, 0.648794, 0, 0, 0, 0.648794, 0, 2.18676, 0)

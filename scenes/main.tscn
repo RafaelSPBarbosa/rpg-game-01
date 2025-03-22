@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=4 uid="uid://c56eo8bxo8rfm"]
+[gd_scene load_steps=142 format=4 uid="uid://c56eo8bxo8rfm"]
 
 [ext_resource type="Material" uid="uid://bbpq7sqphowlw" path="res://Sources/Materials/gray.tres" id="1_o5qli"]
 [ext_resource type="Material" uid="uid://j4c4es30vthd" path="res://Sources/Materials/grass.tres" id="2_0wfyh"]
@@ -67,6 +67,7 @@
 [ext_resource type="Script" uid="uid://b0p26yfy6n3qr" path="res://Scripts/UI/End_Screen.gd" id="53_o7ddy"]
 [ext_resource type="PackedScene" uid="uid://m6my3vxq6mqb" path="res://Sources/Meshes/Level/Nature/Cave.fbx" id="58_augu2"]
 [ext_resource type="Script" uid="uid://sxq4kcvmu410" path="res://Scripts/UI/Boss_Health.gd" id="59_152kg"]
+[ext_resource type="Script" uid="uid://7h38e776qeao" path="res://Scripts/UI/Level_Up_Screen.gd" id="60_y57op"]
 [ext_resource type="PackedScene" uid="uid://cxa0idg80exwg" path="res://Prefabs/Items/fire_trap.tscn" id="68_r4e17"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
@@ -223,6 +224,56 @@ radius = 0.64
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4e17"]
+transparency = 4
+emission_enabled = true
+emission = Color(0, 0.647417, 0.887222, 1)
+disable_receive_shadows = true
+
+[sub_resource type="Curve" id="Curve_y57op"]
+_data = [Vector2(0.00337838, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mlv25"]
+curve = SubResource("Curve_y57op")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a82wo"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 10, 0)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -10, 0)
+scale_min = 0.2
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_mlv25")
+
+[sub_resource type="BoxMesh" id="BoxMesh_gdvew"]
+
+[sub_resource type="Curve" id="Curve_kjtvk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xrs0c"]
+curve = SubResource("Curve_kjtvk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xljpf"]
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 6.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_mlv25")
+alpha_curve = SubResource("CurveTexture_xrs0c")
+
+[sub_resource type="TorusMesh" id="TorusMesh_j4bwh"]
+inner_radius = 1.026
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_bu4jf"]
 viewport_path = NodePath("Game_CanvasLayer/Boss/Critical_Strike_Icon/SubViewport")
 
@@ -311,6 +362,9 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 corner_detail = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r4e17"]
+texture = ExtResource("37_fuf3a")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_152kg"]
 bg_color = Color(0.866179, 0, 0.154823, 1)
@@ -2059,18 +2113,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0374646, 0.0756471, -0.0153394, 0.996313)
+bones/1/rotation = Quaternion(0.0170157, 0.102129, -0.0249834, 0.994312)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0140389, 0.000882703, 0.00444613)
-bones/10/rotation = Quaternion(-0.393999, 0.513375, 0.607808, -0.460195)
-bones/12/position = Vector3(-0.0135614, 0.000902441, 0.00481455)
-bones/12/rotation = Quaternion(0.425453, 0.53549, 0.586128, 0.434389)
+bones/10/position = Vector3(0.0137034, 0.000890846, 0.00469053)
+bones/10/rotation = Quaternion(-0.41562, 0.529468, 0.593143, -0.441707)
+bones/12/position = Vector3(-0.0134574, 0.000901015, 0.00488034)
+bones/12/rotation = Quaternion(0.425391, 0.535763, 0.586134, 0.434105)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.217513, 0.0944865, 0.971473, -0.142411, -0.987724, 0.0641812, 0.965612, -0.124388, 0.228299, -0.0126469, -0.00687099, 0.0175219)
+transform = Transform3D(-0.197354, 0.147214, 0.969216, -0.113788, -0.985418, 0.126505, 0.973706, -0.0853189, 0.211228, -0.012125, -0.00754618, 0.0179865)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -2140,6 +2194,28 @@ visible = false
 material_override = ExtResource("1_o5qli")
 mesh = SubResource("BoxMesh_sgp6g")
 skeleton = NodePath("../..")
+
+[node name="Level_Up_effect" type="Node3D" parent="Game_CanvasLayer/Player/Body"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Game_CanvasLayer/Player/Body/Level_Up_effect"]
+material_override = SubResource("StandardMaterial3D_r4e17")
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_a82wo")
+draw_pass_1 = SubResource("BoxMesh_gdvew")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Game_CanvasLayer/Player/Body/Level_Up_effect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0530646, 0)
+material_override = SubResource("StandardMaterial3D_r4e17")
+emitting = false
+amount = 1
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_xljpf")
+draw_pass_1 = SubResource("TorusMesh_j4bwh")
 
 [node name="Imp_Camp_01" type="Node3D" parent="Game_CanvasLayer" node_paths=PackedStringArray("villagers_to_disable", "villagers_to_enable")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5838, 0, -25.1238)
@@ -2303,12 +2379,12 @@ transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0374646, 0.0756471, -0.0153394, 0.996313)
+bones/1/rotation = Quaternion(0.0170157, 0.102129, -0.0249834, 0.994312)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0140389, 0.000882703, 0.00444613)
-bones/10/rotation = Quaternion(-0.393999, 0.513375, 0.607808, -0.460195)
-bones/12/position = Vector3(-0.0135614, 0.000902441, 0.00481455)
-bones/12/rotation = Quaternion(0.425453, 0.53549, 0.586128, 0.434389)
+bones/10/position = Vector3(0.0137034, 0.000890846, 0.00469053)
+bones/10/rotation = Quaternion(-0.41562, 0.529468, 0.593143, -0.441707)
+bones/12/position = Vector3(-0.0134574, 0.000901015, 0.00488034)
+bones/12/rotation = Quaternion(0.425391, 0.535763, 0.586134, 0.434105)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
@@ -2337,7 +2413,7 @@ stream = ExtResource("13_jkv2x")
 pitch_scale = 0.6
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
-transform = Transform3D(92.4064, 3.38861, 13.9895, -2.32842, 93.2141, -7.19862, -14.2044, 6.76454, 92.1878, 0, 1.55762, 0)
+transform = Transform3D(91.4531, 4.9714, 18.9141, -4.32132, 93.3498, -3.64179, -19.0731, 2.6873, 91.5156, 0, 1.55762, 0)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true
@@ -2862,6 +2938,68 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(148, 2.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_j8jky")
+
+[node name="Level_Up_Screen" type="Control" parent="UI_CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = -290.0
+offset_right = 213.0
+offset_bottom = -124.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("60_y57op")
+
+[node name="Panel" type="Panel" parent="UI_CanvasLayer/UI/Level_Up_Screen"]
+modulate = Color(1, 1, 1, 0.478431)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -49.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_r4e17")
+
+[node name="Title" type="Label" parent="UI_CanvasLayer/UI/Level_Up_Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(6.16074e-06, 0.795195, 0.930004, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "LEVELED UP!"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Level_Indicator" type="Label" parent="UI_CanvasLayer/UI/Level_Up_Screen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -51.745
+offset_right = 44.0
+offset_bottom = -17.745
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Level 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="Boss_Health" type="Control" parent="UI_CanvasLayer/UI"]
 layout_mode = 1

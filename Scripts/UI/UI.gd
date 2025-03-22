@@ -13,6 +13,7 @@ func _init() -> void: instance = self
 @onready var end_screen = $End_Screen
 @onready var death_ui = $Death_UI
 @onready var boss_health: Boss_Health = $Boss_Health
+@onready var level_up_screen: Level_Up_Screen = $Level_Up_Screen
 
 
 func hide_ui():

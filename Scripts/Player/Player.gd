@@ -51,6 +51,10 @@ var is_alive := true
 
 @onready var sword_basic = $Body/Skin/character/Armature/Skeleton3D/BoneAttachment3D/Sword_Basic
 
+@onready var level_up_particles_01 : GPUParticles3D = $Body/Level_Up_effect/GPUParticles3D
+@onready var level_up_particles_02 : GPUParticles3D = $Body/Level_Up_effect/GPUParticles3D2
+
+
 func _ready():
 	time_to_regain_health = Time.get_ticks_msec() + 1000
 	sword_basic.visible = false
@@ -124,6 +128,9 @@ func level_up():
 	level += 1
 	level_up_sound.play()
 	skill_points += 5
+	level_up_particles_01.emitting = true
+	level_up_particles_02.emitting = true
+	UI.instance.level_up_screen.show_screen(level)
 	print("Player leveled up to level " + str(level))
 
 func update_max_health():

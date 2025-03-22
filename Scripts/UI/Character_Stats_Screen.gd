@@ -9,6 +9,8 @@ class_name Character_Stats_Screen
 
 @onready var available_points_label = $Panel/Available_Points_Label
 
+@onready var is_open : bool = false
+
 func _ready():
 	modulate.a = 0.0
 	
@@ -38,18 +40,26 @@ func _input(event: InputEvent) -> void:
 	if Player.instance.is_alive == false:
 		return
 		
-	if Player.instance.is_busy == true:
-		return
+	#if Player.instance.is_busy == true:
+		#return
 		
 	if event.is_action_pressed("toggle_character_stats_screen"):
-		Player.instance.is_busy = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		UI.instance.hide_ui()
-		var tween = get_tree().create_tween()
-		tween.tween_property(self, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_IN_OUT)
-		Player.instance.character.idle()
+		if is_open == false:
+			open()
+		else:
+			close()
 		
+func open():
+	Player.instance.is_busy = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	UI.instance.hide_ui()
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_IN_OUT)
+	Player.instance.character.idle()
+	is_open = true	
+	
 func close():
+	is_open = false
 	Player.instance.is_busy = false
 	UI.instance.show_ui()
 	var tween = get_tree().create_tween()

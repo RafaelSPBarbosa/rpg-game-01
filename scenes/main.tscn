@@ -339,6 +339,12 @@ font_size = 18
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.278431)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjqg0"]
+texture = ExtResource("40_5he1u")
+
+[sub_resource type="FontVariation" id="FontVariation_vchkt"]
+variation_embolden = 2.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_chjal"]
 texture = ExtResource("18_dp3eg")
 
@@ -389,12 +395,6 @@ texture = ExtResource("38_c6pm6")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2cjbq"]
 texture = ExtResource("39_5he1u")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjqg0"]
-texture = ExtResource("40_5he1u")
-
-[sub_resource type="FontVariation" id="FontVariation_vchkt"]
-variation_embolden = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5he1u"]
 bg_color = Color(0, 0, 0, 0.639216)
@@ -2113,18 +2113,18 @@ transform = Transform3D(0.377, 0, 0, 0, 0.377, 0, 0, 0, 0.377, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0170157, 0.102129, -0.0249834, 0.994312)
+bones/1/rotation = Quaternion(-0.0327377, 0.0395876, -0.0124113, 0.998603)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0137034, 0.000890846, 0.00469053)
-bones/10/rotation = Quaternion(-0.41562, 0.529468, 0.593143, -0.441707)
-bones/12/position = Vector3(-0.0134574, 0.000901015, 0.00488034)
-bones/12/rotation = Quaternion(0.425391, 0.535763, 0.586134, 0.434105)
+bones/10/position = Vector3(0.0133664, 0.000898596, 0.00493609)
+bones/10/rotation = Quaternion(-0.425272, 0.536096, 0.586184, -0.433744)
+bones/12/position = Vector3(-0.0137183, 0.000904593, 0.00471528)
+bones/12/rotation = Quaternion(0.373968, 0.489912, 0.621821, 0.483191)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Player/Body/Skin/character/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.197354, 0.147214, 0.969216, -0.113788, -0.985418, 0.126505, 0.973706, -0.0853189, 0.211228, -0.012125, -0.00754618, 0.0179865)
+transform = Transform3D(-0.231674, -0.157328, 0.959987, 0.052689, -0.987416, -0.149107, 0.971365, 0.0160364, 0.237048, -0.0132744, -0.00570385, 0.018237)
 bone_name = "Hand.R"
 bone_idx = 12
 
@@ -2379,12 +2379,12 @@ transform = Transform3D(0.935207, 0, 0, 0, 0.935207, 0, 0, 0, 0.935207, 0, 0, 0)
 script = ExtResource("7_o6xl0")
 
 [node name="Skeleton3D" parent="Game_CanvasLayer/Boss/Body/Skin/character/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0170157, 0.102129, -0.0249834, 0.994312)
+bones/1/rotation = Quaternion(-0.0327377, 0.0395876, -0.0124113, 0.998603)
 bones/6/rotation = Quaternion(0.138134, -0.136948, 0.673818, 0.712834)
-bones/10/position = Vector3(0.0137034, 0.000890846, 0.00469053)
-bones/10/rotation = Quaternion(-0.41562, 0.529468, 0.593143, -0.441707)
-bones/12/position = Vector3(-0.0134574, 0.000901015, 0.00488034)
-bones/12/rotation = Quaternion(0.425391, 0.535763, 0.586134, 0.434105)
+bones/10/position = Vector3(0.0133664, 0.000898596, 0.00493609)
+bones/10/rotation = Quaternion(-0.425272, 0.536096, 0.586184, -0.433744)
+bones/12/position = Vector3(-0.0137183, 0.000904593, 0.00471528)
+bones/12/rotation = Quaternion(0.373968, 0.489912, 0.621821, 0.483191)
 bones/14/rotation = Quaternion(1.34663e-25, -3.76895e-09, -8.73115e-10, 1)
 bones/16/rotation = Quaternion(-0.172955, 0.534022, 0.682616, -0.467914)
 bones/18/rotation = Quaternion(0.172955, 0.534022, 0.682616, 0.467914)
@@ -2413,7 +2413,7 @@ stream = ExtResource("13_jkv2x")
 pitch_scale = 0.6
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Game_CanvasLayer/Boss/Body"]
-transform = Transform3D(91.4531, 4.9714, 18.9141, -4.32132, 93.3498, -3.64179, -19.0731, 2.6873, 91.5156, 0, 1.55762, 0)
+transform = Transform3D(93.1988, 2.07578, 7.47015, -2.56059, 93.2914, 6.02284, -7.31815, -6.20664, 93.0271, 0, 1.55762, 0)
 bone_name = "Head"
 bone_idx = 1
 use_external_skeleton = true
@@ -2800,6 +2800,34 @@ grow_vertical = 2
 text = "Message"
 label_settings = SubResource("LabelSettings_0ld40")
 horizontal_alignment = 1
+
+[node name="Keybind2" type="Panel" parent="UI_CanvasLayer/UI/Dialog_Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 152.0
+offset_top = -201.0
+offset_right = 226.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_cjqg0")
+
+[node name="Label" type="Label" parent="UI_CanvasLayer/UI/Dialog_Panel/Keybind2"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 14.0
+offset_right = 50.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.277528, 0.277528, 0.277528, 1)
+theme_override_fonts/font = SubResource("FontVariation_vchkt")
+theme_override_font_sizes/font_size = 22
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Quests" type="Control" parent="UI_CanvasLayer/UI"]
 layout_mode = 1

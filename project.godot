@@ -73,4 +73,5 @@ toggle_character_stats_screen={
 
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/use_taa=true

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bp1cnetqg6k34"
 path.s3tc="res://.godot/imported/XP.png-68160789fc31689adb2a3d3ad8879eb4.s3tc.ctex"
+path.etc2="res://.godot/imported/XP.png-68160789fc31689adb2a3d3ad8879eb4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Sources/Particles/XP/XP.png"
-dest_files=["res://.godot/imported/XP.png-68160789fc31689adb2a3d3ad8879eb4.s3tc.ctex"]
+dest_files=["res://.godot/imported/XP.png-68160789fc31689adb2a3d3ad8879eb4.s3tc.ctex", "res://.godot/imported/XP.png-68160789fc31689adb2a3d3ad8879eb4.etc2.ctex"]
 
 [params]
 

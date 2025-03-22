@@ -64,6 +64,9 @@ func _process(delta):
 func _physics_process(delta):
 	if is_alive == false:
 		body.velocity = Vector3.ZERO
+		alert_icon.modulate.a = 0.0
+		if character.state_machine.get_current_node() != "Die":
+			character.die()
 		return
 	
 	if Player.instance.is_alive == false:

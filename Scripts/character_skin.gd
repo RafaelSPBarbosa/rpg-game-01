@@ -17,7 +17,7 @@ func take_damage():
 	state_machine.travel("Take Damage")
 	
 func die():
-	state_machine.travel("Die")
+	state_machine.start("Die")
 	
 func talk():
 	state_machine.start("Talk")
